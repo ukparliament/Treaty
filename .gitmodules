@@ -1,0 +1,3 @@
+[submodule "dotNetRDF.Dynamic"]
+	path = dotNetRDF.Dynamic
+	url = https://github.com/langsamu/dotNetRDF.Dynamic.git

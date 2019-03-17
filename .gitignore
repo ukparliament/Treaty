@@ -1,0 +1,10 @@
+# Do not commit
+.vs
+packages
+TestResults
+bin
+obj
+Secrets.config
+*.csproj.user
+.idea/*
+Properties/PublishProfiles
