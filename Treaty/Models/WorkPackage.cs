@@ -10,10 +10,15 @@
 
 namespace UKParliament
 {
+    using OntologyHelper;
+    using System.Collections.Generic;
     using VDS.RDF;
+    using VDS.RDF.Dynamic;
 
-    public class Treaty : LaidThing
+    public class WorkPackage : UKParliamentDynamicNode
     {
-        public Treaty(INode node) : base(node) { }
+        public WorkPackage(INode node) : base(node) { }
+
+        public ICollection<Procedure> WorkPackageHasProcedure => new DynamicObjectCollection<Procedure>(this, Property(UKParliament.WorkPackageHasProcedure));
     }
 }

@@ -16,25 +16,38 @@ namespace OntologyHelper
     public static class UKParliament
     {
         /// <summary>
-        /// UK Parliament Ontology base URL and schema namespace URL
+        /// Base URI for things in the UK Parliament Knowledge Graph
         /// </summary>
-        public const string
-            Base = "https://id.parliament.uk/",
-            Namespace = "https://id.parliament.uk/schema/",
-            SKOSBase = "http://data.parliament.uk/terms/";
+        public const string Base = "https://id.parliament.uk/";
+
+        /// <summary>
+        /// UK Parliament namespace URI
+        /// </summary>
+        public const string Namespace = Base + "schema/";
 
         /// <summary>
         /// Constant URIs for classes in the UK Parliament Ontology
         /// </summary>
         public const string
-            Person = Namespace + "Person",
-            Treaty = Namespace + "Treaty";
+            LaidThing = Namespace + "LaidThing",
+            Laying = Namespace + "Laying",
+            LayingBody = Namespace + "LayingBody",
+            Treaty = Namespace + "Treaty",
+            WorkPackage = Namespace + "WorkPackage",
+            WorkPackagedThing = Namespace + "WorkPackagedThing";
 
         /// <summary>
         /// Constant URIs for properties in the UK Parliament Ontology
         /// </summary>
         public const string
+            GroupName = Namespace + "groupName",
+            LayingDate = Namespace + "layingDate",
+            LaidThingHasLaying = Namespace + "laidThingHasLaying",
             LaidThingName = Namespace + "laidThingName",
-            PersonFamilyName = Namespace + "personFamilyName";
+            LayingHasLayingBody = Namespace + "layingHasLayingBody",
+            PersonFamilyName = Namespace + "personFamilyName",
+            ProcedureName = Namespace + "procedureName",
+            WorkPackageHasProcedure = Namespace + "workPackageHasProcedure",
+            WorkPackagedThingHasWorkPackage = Namespace + "workPackagedThingHasWorkPackage";
     }
 }

@@ -11,12 +11,12 @@
 namespace OntologyHelper
 {
     /// <summary>
-    /// Static Helper class for the UK Parliament Ontology
+    /// Static Helper class for the SKOS Ontology
     /// </summary>
     public static class SKOS
     {
         /// <summary>
-        /// SKOS base namespace URL
+        /// SKOS namespace URI
         /// </summary>
         public const string Namespace = "http://www.w3.org/2004/02/skos/core#";
 

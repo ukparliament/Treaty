@@ -8,12 +8,29 @@
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-namespace UKParliament
+namespace OntologyHelper
 {
-    using VDS.RDF;
-
-    public class Treaty : LaidThing
+    /// <summary>
+    /// Static Helper class for the OWL Ontology
+    /// </summary>
+    public static class OWL
     {
-        public Treaty(INode node) : base(node) { }
+        /// <summary>
+        /// OWL namespace URI
+        /// </summary>
+        public const string Namespace = "http://www.w3.org/2002/07/owl#";
+
+        /// <summary>
+        /// Constant URIs for classes in the OWL Ontology
+        /// </summary>
+        public const string
+            Class = Namespace + "Class",
+            Ontology = Namespace + "Ontology";
+
+        /// <summary>
+        /// Constant URIs for properties in the OWL Ontology
+        /// </summary>
+        public const string
+            InverseOf = Namespace + "inverseOf";
     }
 }

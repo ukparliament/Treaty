@@ -10,10 +10,16 @@
 
 namespace UKParliament
 {
+    using OntologyHelper;
+    using System;
+    using System.Collections.Generic;
     using VDS.RDF;
+    using VDS.RDF.Dynamic;
 
-    public class Treaty : LaidThing
+    public class LayingBody : UKParliamentDynamicNode
     {
-        public Treaty(INode node) : base(node) { }
+        public LayingBody(INode node) : base(node) { }
+
+        public ICollection<string> GroupName => new DynamicObjectCollection<string>(this, Property(UKParliament.GroupName));
     }
 }
