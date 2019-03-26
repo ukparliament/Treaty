@@ -21,21 +21,37 @@
                             <h2>
                                 @treaty.LaidThingName.Single()
                             </h2>
-                            @foreach (var laying in @treaty.LaidThingHasLaying)
-                            {
-                                <p>laying date: @laying.LayingDate.Single().ToString()</p>
-                                @foreach (var layingBody in @laying.LayingHasLayingBody)
+                            <dl>
+                                @foreach (var laying in @treaty.LaidThingHasLaying)
                                 {
-                                    <p>laying body: @layingBody.GroupName.Single()</p>
-                                }
-                            }
-                            @foreach (var workpackage in @treaty.WorkPackagedThingHasWorkPackage)
-                            {
-                                @foreach (var procedure in @workpackage.WorkPackageHasProcedure)
-                                {
-                                    <p>procedure: @procedure.ProcedureName.Single()</p>
-                                }
-                            }
+                                    <dt>Laying date</dt>
+                                    <dd>@laying.LayingDate.Single().ToString()</dd>
+                                    @foreach (var layingBody in @laying.LayingHasLayingBody)
+                                    {
+                                    <dt>Laying body</dt>
+                                    <dd>@layingBody.GroupName.Single()</dd>
+                                    }
+                                    @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
+                                    {
+                                        @foreach (var house in @procedureStep.ProcedureStepHasHouse)
+                                        {
+                                            @foreach (var label in @house.Label)
+                                            {
+                                                <dt>Procedure step has house</dt>
+                                                <dd>@label</dd>
+                                            }
+                                        }
+                                    }
+                                    }
+                                    @foreach (var workpackage in @treaty.WorkPackagedThingHasWorkPackage)
+                                    {
+                                        @foreach (var procedure in @workpackage.WorkPackageHasProcedure)
+                                        {
+                                            <dt>Procedure</dt>
+                                            <dd>@procedure.ProcedureName.Single()</dd>
+                                        }
+                                    }
+                                </dl>
                         </div>
                     </div>
                 </li>

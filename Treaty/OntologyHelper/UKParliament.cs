@@ -29,9 +29,12 @@ namespace OntologyHelper
         /// Constant URIs for classes in the UK Parliament Ontology
         /// </summary>
         public const string
+            BusinessItem = Namespace + "BusinessItem",
+            House = Namespace + "House",
             LaidThing = Namespace + "LaidThing",
             Laying = Namespace + "Laying",
             LayingBody = Namespace + "LayingBody",
+            ProcedureStep = Namespace + "ProcedureStep",
             Treaty = Namespace + "Treaty",
             WorkPackage = Namespace + "WorkPackage",
             WorkPackagedThing = Namespace + "WorkPackagedThing";
@@ -40,6 +43,7 @@ namespace OntologyHelper
         /// Constant URIs for properties in the UK Parliament Ontology
         /// </summary>
         public const string
+            BusinessItemHasProcedureStep = Namespace + "businessItemHasProcedureStep",
             GroupName = Namespace + "groupName",
             LayingDate = Namespace + "layingDate",
             LaidThingHasLaying = Namespace + "laidThingHasLaying",
@@ -47,6 +51,7 @@ namespace OntologyHelper
             LayingHasLayingBody = Namespace + "layingHasLayingBody",
             PersonFamilyName = Namespace + "personFamilyName",
             ProcedureName = Namespace + "procedureName",
+            ProcedureStepHasHouse = Namespace + "procedureStepHasHouse",
             WorkPackageHasProcedure = Namespace + "workPackageHasProcedure",
             WorkPackagedThingHasWorkPackage = Namespace + "workPackagedThingHasWorkPackage";
     }

@@ -16,7 +16,7 @@ namespace UKParliament
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
-    public class Laying : UKParliamentDynamicNode
+    public class Laying : BusinessItem
     {
         public Laying(INode node) : base(node) { }
 
