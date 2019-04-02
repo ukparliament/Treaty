@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<div class="section--primary" id="content" tabindex="0">
+    <div class="container">
+        <h1><span>@Localizer["Title"]</span></h1>
+        <p>@Localizer["Abstract"]</p>
+    </div>
+</div>
+<section>
+    <div class="container">
+        <h2>@Localizer["UKParliamentCookies"]</h2>
+        <p>@Localizer["UKParliamentCookiesAbstract"]</p>
+        <p>@Localizer["UKParliamentCookiesAnonymous"]</p>
+        <h3>@Localizer["CookiesWhich"]</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Purpose</th>
+                    <th>Expires</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>UK_Parliament__seen_cookie_message</td>
+                    <td>This lets us know you have seen our cookie message.</td>
+                    <td>After 28 days.</td>
+                </tr>
+                <tr>
+                    <td>_beta_parliament_session</td>
+                    <td>This ensures your preferences and settings remain while you browse our site.</td>
+                    <td>When you close your web browser.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2>How to manage your cookies</h2>
+        <p>Most web browsers allow you to control cookies through browser settings.</p>
+        <p>Find out how to <a href="http://www.aboutcookies.org/">manage and delete cookies</a>.</p>
+    </div>
+</section>

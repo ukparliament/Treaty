@@ -1,0 +1,15 @@
+﻿PREFIX : <https://id.parliament.uk/schema/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+    ?house
+        a :House ;
+        :houseName ?HouseName .
+}
+WHERE {
+    BIND (@id as ?house)
+
+    ?house
+        a :House ;
+        :houseName ?HouseName .
+}

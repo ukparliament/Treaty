@@ -1,0 +1,14 @@
+﻿@model UKParliamentDynamicGraph
+
+<ol class="list--block list--3 ">
+    @foreach (var house in Model.Houses.OrderBy(x => x.HouseName.Single()))
+            {
+    <li>
+        <div class="card">
+            <div class="card__details">
+                <h3><a asp-controller="House" asp-action="Item" asp-route-id="@house.Id">@house.HouseName.Single()</a></h3>
+            </div>
+        </div>
+    </li>
+            }
+</ol>

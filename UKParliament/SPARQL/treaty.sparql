@@ -1,0 +1,73 @@
+﻿PREFIX : <https://id.parliament.uk/schema/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+    ?treaty
+        a :Treaty, :LaidThing, :WorkPackagedThing ;
+        :laidThingName ?laidThingName ;
+        :laidThingHasLaying ?laying ;
+        :workPackagedThingHasWorkPackage ?workPackage ;
+        :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation .
+
+    ?leadGovernmentOrganisation :groupName ?groupName .
+
+    ?laying
+        a :Laying, :BusinessItem ;
+        :layingDate ?layingDate ;
+        :layingHasLayingBody ?layingBody ;
+        :businessItemHasProcedureStep ?procedureStep .
+
+    ?layingBody
+        a :Group ;
+        :groupName ?groupName .
+
+    ?workPackage
+        a :WorkPackage ;
+        :workPackageHasProcedure ?procedure .
+
+    ?procedure
+        a :Procedure ;
+        :procedureName ?procedureName .
+
+    ?procedureStep :procedureStepHasHouse ?house .
+
+    ?house :houseName ?houseName .
+}
+WHERE {
+    ?treaty
+        a :Treaty ;
+        :laidThingName ?laidThingName ;
+        :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation .
+
+    ?leadGovernmentOrganisation :groupName ?groupName .
+
+    OPTIONAL {
+        ?treaty :laidThingHasLaying ?laying .
+
+        OPTIONAL { ?laying :layingDate ?layingDate . }
+
+        OPTIONAL {
+            ?laying :businessItemHasProcedureStep ?procedureStep .
+
+            ?procedureStep :procedureStepHasHouse ?house .
+
+            ?house :houseName ?houseName .
+        }
+
+        OPTIONAL {
+            ?laying :layingHasLayingBody ?layingBody .
+
+            OPTIONAL { ?layingBody :groupName ?groupName . }
+        }
+    }
+
+    OPTIONAL {
+        ?treaty :workPackagedThingHasWorkPackage ?workPackage .
+
+        OPTIONAL {
+            ?workPackage :workPackageHasProcedure ?procedure .
+
+            OPTIONAL { ?procedure :procedureName ?procedureName . }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+﻿PREFIX : <https://id.parliament.uk/schema/>
+
+CONSTRUCT
+{
+    ?house
+        a :House ;
+        :houseName ?houseName .
+
+    ?procedure
+        a :Procedure ;
+        :procedureName ?procedureName ;
+        :procedureDescription ?procedureDescription .
+}
+WHERE
+{
+    ?house
+        a :House ;
+        :houseName ?houseName .
+
+    ?procedure
+        a :Procedure ;
+        :procedureName ?procedureName ;
+        :procedureDescription ?procedureDescription .
+}

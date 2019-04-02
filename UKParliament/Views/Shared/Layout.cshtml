@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:title" content="@ViewData["Title"] - @Localizer["Title"]">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@Context.Request.Scheme://@Context.Request.Host@Context.Request.PathBase@Context.Request.Path">
+    <title>@ViewData["Title"] - @Localizer["Title"]</title>
+    <link rel="stylesheet" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.PathBase/css/main.css">
+    <link rel="shortcut icon" type="image/x-icon" href="@Context.Request.Scheme://@Context.Request.Host@Context.Request.PathBase/favicon.ico">
+</head>
+<body>
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' has-js' : 'has-js');</script>
+    <a class="skip-to-content" href="#content" id="skiplink">@Localizer["SkipLink"]</a>
+    <div class="status--banner theme--caution cookie " id="cookie">
+        <div class="container">
+            <p>@Localizer["CookieWarning"] <a asp-action="CookiePolicy" asp-controller="Meta">@Localizer["CookiePolicy"]</a></p>
+        </div>
+    </div>
+    <header>
+        <div class="container">
+            <a asp-action="Index" asp-controller="Home" class="uk_parliament ">
+                <partial name="_UKParliamentPortcullis.cshtml" />
+            </a>
+            <partial name="_Search.cshtml" />
+        </div>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <partial name="_Footer.cshtml" />
+    <script src="@Context.Request.Scheme://@Context.Request.Host@Context.Request.PathBase/js/main.js"></script>
+</body>
+</html>

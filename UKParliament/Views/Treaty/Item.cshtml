@@ -1,0 +1,17 @@
+﻿@model UKParliamentDynamicGraph
+@{
+    ViewData["Title"] = @Model.Treaties.First().LaidThingName.Single();
+}
+
+<div class="section--primary">
+    <div class="container">
+        <small><a asp-controller="Treaty" asp-action="Index">@Localizer["Category"]</a></small>
+        <h1><span>@Model.Treaties.First().LaidThingName.Single()</span></h1>
+    </div>
+</div>
+
+<section id="content">
+    <div class="container">
+        <p>bla</p>
+    </div>
+</section>

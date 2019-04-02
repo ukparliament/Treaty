@@ -1,0 +1,18 @@
+﻿@model UKParliamentDynamicGraph
+@{
+    ViewData["Title"] = @Localizer["Title"];
+}
+
+<div class="section--primary">
+    <div class="container">
+        <small><a asp-controller="Home" asp-action="Index">@Localizer["Category"]</a></small>
+        <h1><span>@Localizer["Title"]</span></h1>
+        <p>@Localizer["Abstract"]</p>
+    </div>
+</div>
+
+<section id="content">
+    <div class="container">
+        <partial name="../Shared/_Procedure.cshtml" />
+    </div>
+</section>

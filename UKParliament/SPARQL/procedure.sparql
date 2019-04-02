@@ -1,0 +1,16 @@
+﻿PREFIX : <https://id.parliament.uk/schema/>
+
+CONSTRUCT
+{
+    ?procedure
+        a :Procedure ;
+        :procedureName ?procedureName ;
+        :procedureDescription ?procedureDescription .
+}
+WHERE
+{
+    ?procedure
+        a :Procedure ;
+        :procedureName ?procedureName ;
+        :procedureDescription ?procedureDescription .
+}

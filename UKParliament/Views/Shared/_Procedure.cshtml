@@ -1,0 +1,24 @@
+﻿@model UKParliamentDynamicGraph
+
+<ol class="list--block list--3">
+    @foreach (var procedure in Model.Procedures.OrderBy(x => x.ProcedureName.Single()))
+    {
+        <li>
+            <div class="card">
+                <div class="card__details">
+                    <h3>
+                        @if (GraphHelper.ControllerMap.ContainsKey(procedure.ToString()))
+                        {
+                            <a asp-action="Index" asp-controller="@GraphHelper.ControllerMap[procedure.ToString()]">@procedure.ProcedureName.Single()</a>
+                        }
+                        else
+                        {
+                            @procedure.ProcedureName.Single()
+                        }
+                    </h3>
+                    <p>@procedure.ProcedureDescription.Single()</p>
+                </div>
+            </div>
+        </li>
+    }
+</ol>
