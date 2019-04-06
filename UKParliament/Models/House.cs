@@ -1,13 +1,3 @@
-﻿// MIT License
-//
-// Copyright (c) 2019 UK Parliament
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 namespace UKParliament
 {
     using OntologyHelper;
@@ -19,6 +9,16 @@ namespace UKParliament
     public class House : UKParliamentDynamicNode
     {
         public House(INode node) : base(node) { }
+
+        public ICollection<ContactPoint> HouseHasContactPoint => new DynamicObjectCollection<ContactPoint>(this, Property(UKParliamentOntology.HouseHasContactPoint));
+
+        public ICollection<FormalBody> HouseHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.HouseHasFormalBody));
+
+        public ICollection<FormalBody> LeadHouseHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.LeadHouseHasFormalBody));
+
+        public ICollection<HouseSeat> HouseHasHouseSeat => new DynamicObjectCollection<HouseSeat>(this, Property(UKParliamentOntology.HouseHasHouseSeat));
+
+        public ICollection<ProcedureStep> HouseHasProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.HouseHasProcedureStep));
 
         public ICollection<string> HouseName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseName));
     }

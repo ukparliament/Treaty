@@ -1,16 +1,7 @@
-﻿// MIT License
-//
-// Copyright (c) 2019 UK Parliament
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 namespace UKParliament
 {
     using OntologyHelper;
+    using System;
     using System.Collections.Generic;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
@@ -20,5 +11,23 @@ namespace UKParliament
         public Treaty(INode node) : base(node) { }
 
         public ICollection<GovernmentOrganisation> TreatyHasLeadGovernmentOrganisation => new DynamicObjectCollection<GovernmentOrganisation>(this, Property(UKParliamentOntology.TreatyHasLeadGovernmentOrganisation));
+
+        public ICollection<SeriesMembership> TreatyHasSeriesMembership => new DynamicObjectCollection<SeriesMembership>(this, Property(UKParliamentOntology.TreatyHasSeriesMembership));
+
+        public ICollection<CountrySeriesMembership> TreatyHasCountrySeriesMembership => new DynamicObjectCollection<CountrySeriesMembership>(this, Property(UKParliamentOntology.TreatyHasCountrySeriesMembership));
+
+        public ICollection<EuropeanUnionSeriesMembership> TreatyHasEuropeanUnionSeriesMembership => new DynamicObjectCollection<EuropeanUnionSeriesMembership>(this, Property(UKParliamentOntology.TreatyHasEuropeanUnionSeriesMembership));
+
+        public ICollection<MiscellaneousSeriesMembership> TreatyHasMiscellaneousSeriesMembership => new DynamicObjectCollection<MiscellaneousSeriesMembership>(this, Property(UKParliamentOntology.TreatyHasMiscellaneousSeriesMembership));
+
+        public ICollection<string> TreatyName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TreatyName));
+
+        public ICollection<DateTimeOffset> TreatyComingIntoForceDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.TreatyComingIntoForceDate));
+
+        public ICollection<string> TreatyComingIntoForceNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TreatyComingIntoForceNote));
+
+        public ICollection<string> TreatyCommandPaperPrefix => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TreatyCommandPaperPrefix));
+
+        public ICollection<int> TreatyCommandPaperNumber => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.TreatyCommandPaperNumber));
     }
 }

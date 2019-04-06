@@ -1,13 +1,3 @@
-﻿// MIT License
-//
-// Copyright (c) 2019 UK Parliament
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 namespace UKParliament
 {
     using OntologyHelper;
@@ -20,6 +10,34 @@ namespace UKParliament
     {
         public ProcedureStep(INode node) : base(node) { }
 
+        public ICollection<ProcedureStepPublication> ProcedureStepHasProcedureStepPublication => new DynamicObjectCollection<ProcedureStepPublication>(this, Property(UKParliamentOntology.ProcedureStepHasProcedureStepPublication));
+
+        public ICollection<ProcedureStep> ProcedureStepCommonlyActualisedAlongsideProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.ProcedureStepCommonlyActualisedAlongsideProcedureStep));
+
+        public ICollection<BusinessItem> ProcedureStepHasBusinessItem => new DynamicObjectCollection<BusinessItem>(this, Property(UKParliamentOntology.ProcedureStepHasBusinessItem));
+
+        public ICollection<ProcedureRoute> ProcedureStepIsFromProcedureRoute => new DynamicObjectCollection<ProcedureRoute>(this, Property(UKParliamentOntology.ProcedureStepIsFromProcedureRoute));
+
+        public ICollection<ProcedureRoute> ProcedureStepIsToProcedureRoute => new DynamicObjectCollection<ProcedureRoute>(this, Property(UKParliamentOntology.ProcedureStepIsToProcedureRoute));
+
+        public ICollection<CausedProcedureRoute> ProcedureStepCausesCausedProcedureRoute => new DynamicObjectCollection<CausedProcedureRoute>(this, Property(UKParliamentOntology.ProcedureStepCausesCausedProcedureRoute));
+
+        public ICollection<AllowedProcedureRoute> ProcedureStepAllowsAllowedProcedureRoute => new DynamicObjectCollection<AllowedProcedureRoute>(this, Property(UKParliamentOntology.ProcedureStepAllowsAllowedProcedureRoute));
+
+        public ICollection<RequiredProcedureRoute> ProcedureStepRequiresRequiredProcedureRoute => new DynamicObjectCollection<RequiredProcedureRoute>(this, Property(UKParliamentOntology.ProcedureStepRequiresRequiredProcedureRoute));
+
+        public ICollection<PrecludedProcedureRoute> ProcedureStepPrecludesPrecludedProcedureRoute => new DynamicObjectCollection<PrecludedProcedureRoute>(this, Property(UKParliamentOntology.ProcedureStepPrecludesPrecludedProcedureRoute));
+
         public ICollection<House> ProcedureStepHasHouse => new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.ProcedureStepHasHouse));
+
+        public ICollection<string> ProcedureStepName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepName));
+
+        public ICollection<string> ProcedureStepDescription => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepDescription));
+
+        public ICollection<string> ProcedureStepScopeNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepScopeNote));
+
+        public ICollection<string> ProcedureStepLinkNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepLinkNote));
+
+        public ICollection<string> ProcedureStepDateNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepDateNote));
     }
 }
