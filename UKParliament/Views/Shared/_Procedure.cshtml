@@ -1,7 +1,7 @@
-﻿@model UKParliamentDynamicGraph
+﻿@model UKParliament.Model.UKParliamentDynamicGraph
 
 <ol class="list--block list--3">
-    @foreach (var procedure in Model.Procedures.OrderBy(x => x.ProcedureName.Single()))
+    @foreach (var procedure in Model.Procedures.OrderBy(x => x.ProcedureName))
     {
         <li>
             <div class="card">
@@ -9,14 +9,14 @@
                     <h3>
                         @if (GraphHelper.ControllerMap.ContainsKey(procedure.ToString()))
                         {
-                            <a asp-action="Index" asp-controller="@GraphHelper.ControllerMap[procedure.ToString()]">@procedure.ProcedureName.Single()</a>
+                            <a asp-action="Index" asp-controller="@GraphHelper.ControllerMap[procedure.ToString()]">@procedure.ProcedureName</a>
                         }
                         else
                         {
-                            @procedure.ProcedureName.Single()
+                            @procedure.ProcedureName
                         }
                     </h3>
-                    <p>@procedure.ProcedureDescription.Single()</p>
+                    <p>@procedure.ProcedureDescription</p>
                 </div>
             </div>
         </li>

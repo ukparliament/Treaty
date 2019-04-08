@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,16 +13,16 @@ namespace UKParliament
 
         public ICollection<ProposedNegativeStatutoryInstrumentPaper> StatutoryInstrumentPaperFollowsProposedNegativeStatutoryInstrumentPaper => new DynamicObjectCollection<ProposedNegativeStatutoryInstrumentPaper>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperFollowsProposedNegativeStatutoryInstrumentPaper));
 
-        public ICollection<string> StatutoryInstrumentPaperName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperName));
+        public string StatutoryInstrumentPaperName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperName))).SingleOrDefault();
 
-        public ICollection<string> StatutoryInstrumentPaperPrefix => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperPrefix));
+        public string StatutoryInstrumentPaperPrefix => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperPrefix))).SingleOrDefault();
 
-        public ICollection<string> StatutoryInstrumentPaperYear => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperYear));
+        public string StatutoryInstrumentPaperYear => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperYear))).SingleOrDefault();
 
-        public ICollection<int> StatutoryInstrumentPaperNumber => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperNumber));
+        public int StatutoryInstrumentPaperNumber => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperNumber))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> StatutoryInstrumentPaperComingIntoForceDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperComingIntoForceDate));
+        public DateTimeOffset StatutoryInstrumentPaperComingIntoForceDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperComingIntoForceDate))).SingleOrDefault();
 
-        public ICollection<string> StatutoryInstrumentPaperComingIntoForceNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperComingIntoForceNote));
+        public string StatutoryInstrumentPaperComingIntoForceNote => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperComingIntoForceNote))).SingleOrDefault();
     }
 }

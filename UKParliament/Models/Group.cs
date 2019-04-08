@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,8 +13,8 @@ namespace UKParliament
 
         public ICollection<Position> GroupHasPosition => new DynamicObjectCollection<Position>(this, Property(UKParliamentOntology.GroupHasPosition));
 
-        public ICollection<DateTimeOffset> GroupStartDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupStartDate));
+        public DateTimeOffset GroupStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupStartDate))).SingleOrDefault();
 
-        public ICollection<string> GroupName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GroupName));
+        public string GroupName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GroupName))).FirstOrDefault();
     }
 }

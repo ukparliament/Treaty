@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,7 +11,7 @@ namespace UKParliament
     {
         public SeatIncumbency(INode node) : base(node) { }
 
-        public ICollection<HouseSeat> SeatIncumbencyHasHouseSeat => new DynamicObjectCollection<HouseSeat>(this, Property(UKParliamentOntology.SeatIncumbencyHasHouseSeat));
+        public HouseSeat SeatIncumbencyHasHouseSeat => ((IEnumerable<HouseSeat>)new DynamicObjectCollection<HouseSeat>(this, Property(UKParliamentOntology.SeatIncumbencyHasHouseSeat))).SingleOrDefault();
 
         public ICollection<ParliamentPeriod> SeatIncumbencyHasParliamentPeriod => new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.SeatIncumbencyHasParliamentPeriod));
     }

@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,7 +11,7 @@ namespace UKParliament
     {
         public CorrectingAnswer(INode node) : base(node) { }
 
-        public ICollection<SinceCorrectedAnswer> CorrectingAnswerReplacesSinceCorrectedAnswer => new DynamicObjectCollection<SinceCorrectedAnswer>(this, Property(UKParliamentOntology.CorrectingAnswerReplacesSinceCorrectedAnswer));
+        public SinceCorrectedAnswer CorrectingAnswerReplacesSinceCorrectedAnswer => ((IEnumerable<SinceCorrectedAnswer>)new DynamicObjectCollection<SinceCorrectedAnswer>(this, Property(UKParliamentOntology.CorrectingAnswerReplacesSinceCorrectedAnswer))).SingleOrDefault();
 
         public ICollection<Question> CorrectingAnswerHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.CorrectingAnswerHasQuestion));
     }

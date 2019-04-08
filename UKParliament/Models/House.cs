@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -20,6 +21,6 @@ namespace UKParliament
 
         public ICollection<ProcedureStep> HouseHasProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.HouseHasProcedureStep));
 
-        public ICollection<string> HouseName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseName));
+        public string HouseName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseName))).SingleOrDefault();
     }
 }

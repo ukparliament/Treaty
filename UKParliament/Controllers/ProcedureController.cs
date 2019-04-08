@@ -12,6 +12,7 @@ namespace UKParliament
 {
     using Microsoft.AspNetCore.Mvc;
     using Services;
+    using UKParliament.Model;
 
     [Route("procedure")]
     public class ProcedureController : BaseController

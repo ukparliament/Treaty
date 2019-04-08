@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -26,12 +27,12 @@ namespace UKParliament
 
         public ICollection<Answer> AnsweringPersonHasAnswer => new DynamicObjectCollection<Answer>(this, Property(UKParliamentOntology.AnsweringPersonHasAnswer));
 
-        public ICollection<DateTimeOffset> PersonDateOfBirth => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PersonDateOfBirth));
+        public DateTimeOffset PersonDateOfBirth => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PersonDateOfBirth))).SingleOrDefault();
 
-        public ICollection<string> PersonFamilyName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonFamilyName));
+        public string PersonFamilyName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonFamilyName))).SingleOrDefault();
 
-        public ICollection<string> PersonGivenName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonGivenName));
+        public string PersonGivenName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonGivenName))).SingleOrDefault();
 
-        public ICollection<string> PersonOtherNames => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonOtherNames));
+        public string PersonOtherNames => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonOtherNames))).SingleOrDefault();
     }
 }

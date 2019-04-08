@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,6 +11,6 @@ namespace UKParliament
     {
         public PastIncumbency(INode node) : base(node) { }
 
-        public ICollection<DateTimeOffset> IncumbencyEndDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.IncumbencyEndDate));
+        public DateTimeOffset IncumbencyEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.IncumbencyEndDate))).SingleOrDefault();
     }
 }

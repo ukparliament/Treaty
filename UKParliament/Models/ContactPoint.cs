@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -16,7 +17,7 @@ namespace UKParliament
 
         public ICollection<ContactableThing> ContactPointHasContactableThing => new DynamicObjectCollection<ContactableThing>(this, Property(UKParliamentOntology.ContactPointHasContactableThing));
 
-        public ICollection<PostalAddress> ContactPointHasPostalAddress => new DynamicObjectCollection<PostalAddress>(this, Property(UKParliamentOntology.ContactPointHasPostalAddress));
+        public PostalAddress ContactPointHasPostalAddress => ((IEnumerable<PostalAddress>)new DynamicObjectCollection<PostalAddress>(this, Property(UKParliamentOntology.ContactPointHasPostalAddress))).SingleOrDefault();
 
         public ICollection<ParliamentaryIncumbency> ContactPointHasParliamentaryIncumbency => new DynamicObjectCollection<ParliamentaryIncumbency>(this, Property(UKParliamentOntology.ContactPointHasParliamentaryIncumbency));
 
@@ -24,12 +25,12 @@ namespace UKParliament
 
         public ICollection<Person> ContactPointHasPerson => new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.ContactPointHasPerson));
 
-        public ICollection<string> FaxNumber => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FaxNumber));
+        public string FaxNumber => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FaxNumber))).SingleOrDefault();
 
-        public ICollection<string> Email => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Email));
+        public string Email => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Email))).SingleOrDefault();
 
-        public ICollection<string> PhoneNumber => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PhoneNumber));
+        public string PhoneNumber => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PhoneNumber))).SingleOrDefault();
 
-        public ICollection<string> ContactForm => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ContactForm));
+        public string ContactForm => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ContactForm))).SingleOrDefault();
     }
 }

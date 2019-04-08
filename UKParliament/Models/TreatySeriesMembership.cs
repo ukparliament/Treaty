@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,8 +11,8 @@ namespace UKParliament
     {
         public TreatySeriesMembership(INode node) : base(node) { }
 
-        public ICollection<InForceTreaty> TreatySeriesMembershipHasInForceTreaty => new DynamicObjectCollection<InForceTreaty>(this, Property(UKParliamentOntology.TreatySeriesMembershipHasInForceTreaty));
+        public InForceTreaty TreatySeriesMembershipHasInForceTreaty => ((IEnumerable<InForceTreaty>)new DynamicObjectCollection<InForceTreaty>(this, Property(UKParliamentOntology.TreatySeriesMembershipHasInForceTreaty))).SingleOrDefault();
 
-        public ICollection<string> TreatySeriesItemCitation => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TreatySeriesItemCitation));
+        public string TreatySeriesItemCitation => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TreatySeriesItemCitation))).SingleOrDefault();
     }
 }

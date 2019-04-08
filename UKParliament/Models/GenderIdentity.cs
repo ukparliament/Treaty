@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,8 +11,8 @@ namespace UKParliament
     {
         public GenderIdentity(INode node) : base(node) { }
 
-        public ICollection<Person> GenderIdentityHasPerson => new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.GenderIdentityHasPerson));
+        public Person GenderIdentityHasPerson => ((IEnumerable<Person>)new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.GenderIdentityHasPerson))).SingleOrDefault();
 
-        public ICollection<Gender> GenderIdentityHasGender => new DynamicObjectCollection<Gender>(this, Property(UKParliamentOntology.GenderIdentityHasGender));
+        public Gender GenderIdentityHasGender => ((IEnumerable<Gender>)new DynamicObjectCollection<Gender>(this, Property(UKParliamentOntology.GenderIdentityHasGender))).SingleOrDefault();
     }
 }

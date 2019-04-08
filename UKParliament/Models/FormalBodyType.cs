@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,6 +13,6 @@ namespace UKParliament
 
         public ICollection<FormalBody> FormalBodyTypeHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyTypeHasFormalBody));
 
-        public ICollection<string> FormalBodyTypeName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyTypeName));
+        public string FormalBodyTypeName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyTypeName))).SingleOrDefault();
     }
 }

@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -14,6 +15,6 @@ namespace UKParliament
 
         public ICollection<Candidacy> PartyhasCandidacy => new DynamicObjectCollection<Candidacy>(this, Property(UKParliamentOntology.PartyhasCandidacy));
 
-        public ICollection<string> PartyName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PartyName));
+        public string PartyName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PartyName))).SingleOrDefault();
     }
 }

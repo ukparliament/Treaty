@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -14,10 +15,10 @@ namespace UKParliament
 
         public ICollection<Electorate> ConstituencyGroupHasElectorate => new DynamicObjectCollection<Electorate>(this, Property(UKParliamentOntology.ConstituencyGroupHasElectorate));
 
-        public ICollection<ConstituencyArea> ConstituencyGroupHasConstituencyArea => new DynamicObjectCollection<ConstituencyArea>(this, Property(UKParliamentOntology.ConstituencyGroupHasConstituencyArea));
+        public ConstituencyArea ConstituencyGroupHasConstituencyArea => ((IEnumerable<ConstituencyArea>)new DynamicObjectCollection<ConstituencyArea>(this, Property(UKParliamentOntology.ConstituencyGroupHasConstituencyArea))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> ConstituencyGroupStartDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ConstituencyGroupStartDate));
+        public DateTimeOffset ConstituencyGroupStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ConstituencyGroupStartDate))).SingleOrDefault();
 
-        public ICollection<string> ConstituencyGroupName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConstituencyGroupName));
+        public string ConstituencyGroupName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConstituencyGroupName))).SingleOrDefault();
     }
 }

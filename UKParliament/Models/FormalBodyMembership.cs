@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,10 +11,10 @@ namespace UKParliament
     {
         public FormalBodyMembership(INode node) : base(node) { }
 
-        public ICollection<Person> FormalBodyMembershipHasPerson => new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.FormalBodyMembershipHasPerson));
+        public Person FormalBodyMembershipHasPerson => ((IEnumerable<Person>)new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.FormalBodyMembershipHasPerson))).SingleOrDefault();
 
-        public ICollection<FormalBody> FormalBodyMembershipHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyMembershipHasFormalBody));
+        public FormalBody FormalBodyMembershipHasFormalBody => ((IEnumerable<FormalBody>)new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyMembershipHasFormalBody))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> FormalBodyMembershipStartDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyMembershipStartDate));
+        public DateTimeOffset FormalBodyMembershipStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyMembershipStartDate))).SingleOrDefault();
     }
 }

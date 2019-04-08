@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,6 +11,6 @@ namespace UKParliament
     {
         public PastGroup(INode node) : base(node) { }
 
-        public ICollection<DateTimeOffset> GroupEndDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupEndDate));
+        public DateTimeOffset GroupEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupEndDate))).SingleOrDefault();
     }
 }

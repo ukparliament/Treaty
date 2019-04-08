@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,6 +11,6 @@ namespace UKParliament
     {
         public DeceasedPerson(INode node) : base(node) { }
 
-        public ICollection<DateTimeOffset> PersonDateOfDeath => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PersonDateOfDeath));
+        public DateTimeOffset PersonDateOfDeath => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PersonDateOfDeath))).SingleOrDefault();
     }
 }

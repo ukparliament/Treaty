@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,6 +11,6 @@ namespace UKParliament
     {
         public MnisMember(INode node) : base(node) { }
 
-        public ICollection<string> MemberMnisId => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.MemberMnisId));
+        public string MemberMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.MemberMnisId))).SingleOrDefault();
     }
 }

@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,8 +13,8 @@ namespace UKParliament
 
         public ICollection<EPetition> ThresholdAttainmentHasEPetition => new DynamicObjectCollection<EPetition>(this, Property(UKParliamentOntology.ThresholdAttainmentHasEPetition));
 
-        public ICollection<Threshold> ThresholdAttainmentHasThreshold => new DynamicObjectCollection<Threshold>(this, Property(UKParliamentOntology.ThresholdAttainmentHasThreshold));
+        public Threshold ThresholdAttainmentHasThreshold => ((IEnumerable<Threshold>)new DynamicObjectCollection<Threshold>(this, Property(UKParliamentOntology.ThresholdAttainmentHasThreshold))).SingleOrDefault();
 
-        public ICollection<string> ThresholdAttainmentAt => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ThresholdAttainmentAt));
+        public string ThresholdAttainmentAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ThresholdAttainmentAt))).SingleOrDefault();
     }
 }

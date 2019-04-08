@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,7 +11,7 @@ namespace UKParliament
     {
         public GovRegisterCountry(INode node) : base(node) { }
 
-        public ICollection<string> CountryGovRegisterId => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.CountryGovRegisterId));
+        public string CountryGovRegisterId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.CountryGovRegisterId))).SingleOrDefault();
 
         public ICollection<DateTimeOffset> GovRegisterCountryStartDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GovRegisterCountryStartDate));
 

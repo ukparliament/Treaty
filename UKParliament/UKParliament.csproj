@@ -12,6 +12,7 @@
     <None Remove="SPARQL\Treaty.sparql" />
     <None Remove="SPARQL\treaty_by_id.sparql" />
     <None Remove="SPARQL\uk_parliament.sparql" />
+    <None Remove="SPARQL\workpackage_by_id.sparql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,9 @@
       <CustomToolNamespace></CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="SPARQL\procedure.sparql">
+      <CustomToolNamespace></CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SPARQL\workpackage_by_id.sparql">
       <CustomToolNamespace></CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="SPARQL\uk_parliament.sparql">

@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,12 +11,12 @@ namespace UKParliament
     {
         public CandidacyResult(INode node) : base(node) { }
 
-        public ICollection<Candidacy> CandidacyResultHasCandidacy => new DynamicObjectCollection<Candidacy>(this, Property(UKParliamentOntology.CandidacyResultHasCandidacy));
+        public Candidacy CandidacyResultHasCandidacy => ((IEnumerable<Candidacy>)new DynamicObjectCollection<Candidacy>(this, Property(UKParliamentOntology.CandidacyResultHasCandidacy))).SingleOrDefault();
 
         public ICollection<ElectoralIncumbency> CandidacyResultHasElectoralIncumbency => new DynamicObjectCollection<ElectoralIncumbency>(this, Property(UKParliamentOntology.CandidacyResultHasElectoralIncumbency));
 
-        public ICollection<int> VoteCount => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.VoteCount));
+        public int VoteCount => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.VoteCount))).SingleOrDefault();
 
-        public ICollection<int> ResultPosition => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ResultPosition));
+        public int ResultPosition => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ResultPosition))).SingleOrDefault();
     }
 }

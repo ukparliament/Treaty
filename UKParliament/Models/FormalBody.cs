@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -16,11 +17,11 @@ namespace UKParliament
 
         public ICollection<ContactPoint> FormalBodyHasContactPoint => new DynamicObjectCollection<ContactPoint>(this, Property(UKParliamentOntology.FormalBodyHasContactPoint));
 
-        public ICollection<FormalBodyChair> FormalBodyHasFormalBodyChair => new DynamicObjectCollection<FormalBodyChair>(this, Property(UKParliamentOntology.FormalBodyHasFormalBodyChair));
+        public FormalBodyChair FormalBodyHasFormalBodyChair => ((IEnumerable<FormalBodyChair>)new DynamicObjectCollection<FormalBodyChair>(this, Property(UKParliamentOntology.FormalBodyHasFormalBodyChair))).SingleOrDefault();
 
         public ICollection<House> FormalBodyHasHouse => new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.FormalBodyHasHouse));
 
-        public ICollection<House> FormalBodyHasLeadHouse => new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.FormalBodyHasLeadHouse));
+        public House FormalBodyHasLeadHouse => ((IEnumerable<House>)new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.FormalBodyHasLeadHouse))).SingleOrDefault();
 
         public ICollection<FormalBody> FormalBodyHasParentFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyHasParentFormalBody));
 
@@ -28,10 +29,10 @@ namespace UKParliament
 
         public ICollection<FormalBodyMembership> FormalBodyHasFormalBodyMembership => new DynamicObjectCollection<FormalBodyMembership>(this, Property(UKParliamentOntology.FormalBodyHasFormalBodyMembership));
 
-        public ICollection<string> FormalBodyName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyName));
+        public string FormalBodyName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyName))).SingleOrDefault();
 
-        public ICollection<string> FormalBodyRemit => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyRemit));
+        public string FormalBodyRemit => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyRemit))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> FormalBodyStartDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyStartDate));
+        public DateTimeOffset FormalBodyStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyStartDate))).SingleOrDefault();
     }
 }

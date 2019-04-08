@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,14 +11,14 @@ namespace UKParliament
     {
         public HouseSeat(INode node) : base(node) { }
 
-        public ICollection<House> HouseSeatHasHouse => new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.HouseSeatHasHouse));
+        public House HouseSeatHasHouse => ((IEnumerable<House>)new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.HouseSeatHasHouse))).SingleOrDefault();
 
-        public ICollection<ConstituencyGroup> HouseSeatHasConstituencyGroup => new DynamicObjectCollection<ConstituencyGroup>(this, Property(UKParliamentOntology.HouseSeatHasConstituencyGroup));
+        public ConstituencyGroup HouseSeatHasConstituencyGroup => ((IEnumerable<ConstituencyGroup>)new DynamicObjectCollection<ConstituencyGroup>(this, Property(UKParliamentOntology.HouseSeatHasConstituencyGroup))).SingleOrDefault();
 
-        public ICollection<HouseSeatType> HouseSeatHasHouseSeatType => new DynamicObjectCollection<HouseSeatType>(this, Property(UKParliamentOntology.HouseSeatHasHouseSeatType));
+        public HouseSeatType HouseSeatHasHouseSeatType => ((IEnumerable<HouseSeatType>)new DynamicObjectCollection<HouseSeatType>(this, Property(UKParliamentOntology.HouseSeatHasHouseSeatType))).SingleOrDefault();
 
         public ICollection<SeatIncumbency> HouseSeatHasSeatIncumbency => new DynamicObjectCollection<SeatIncumbency>(this, Property(UKParliamentOntology.HouseSeatHasSeatIncumbency));
 
-        public ICollection<string> HouseSeatName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatName));
+        public string HouseSeatName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatName))).SingleOrDefault();
     }
 }

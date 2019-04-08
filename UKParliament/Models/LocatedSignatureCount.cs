@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,7 +13,7 @@ namespace UKParliament
 
         public ICollection<EPetition> LocatedSignatureCountHasEPetition => new DynamicObjectCollection<EPetition>(this, Property(UKParliamentOntology.LocatedSignatureCountHasEPetition));
 
-        public ICollection<Place> LocatedSignatureCountHasPlace => new DynamicObjectCollection<Place>(this, Property(UKParliamentOntology.LocatedSignatureCountHasPlace));
+        public Place LocatedSignatureCountHasPlace => ((IEnumerable<Place>)new DynamicObjectCollection<Place>(this, Property(UKParliamentOntology.LocatedSignatureCountHasPlace))).SingleOrDefault();
 
         public ICollection<int> SignatureCount => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.SignatureCount));
 

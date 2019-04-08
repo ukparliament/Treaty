@@ -15,6 +15,7 @@ namespace UKParliament
     using Services;
     using System;
     using System.Collections.Generic;
+    using UKParliament.Model;
 
     [Route("treaty")]
     public class TreatyController : BaseController

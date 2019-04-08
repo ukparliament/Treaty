@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,8 +11,8 @@ namespace UKParliament
     {
         public GeographicalThing(INode node) : base(node) { }
 
-        public ICollection<string> Latitude => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Latitude));
+        public string Latitude => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Latitude))).SingleOrDefault();
 
-        public ICollection<string> Longitude => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Longitude));
+        public string Longitude => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Longitude))).SingleOrDefault();
     }
 }

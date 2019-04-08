@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,6 +13,6 @@ namespace UKParliament
 
         public ICollection<StatutoryInstrumentPaper> ProposedNegativeStatutoryInstrumentPaperPrecedesStatutoryInstrumentPaper => new DynamicObjectCollection<StatutoryInstrumentPaper>(this, Property(UKParliamentOntology.ProposedNegativeStatutoryInstrumentPaperPrecedesStatutoryInstrumentPaper));
 
-        public ICollection<string> ProposedNegativeStatutoryInstrumentPaperName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProposedNegativeStatutoryInstrumentPaperName));
+        public string ProposedNegativeStatutoryInstrumentPaperName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProposedNegativeStatutoryInstrumentPaperName))).SingleOrDefault();
     }
 }

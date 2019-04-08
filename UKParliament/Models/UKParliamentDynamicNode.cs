@@ -23,6 +23,6 @@ namespace UKParliament
 
         protected string Property (string uri) => Property(new Uri(uri));
 
-        protected string Property(Uri uri) => new Uri(UKParliamentOntology.Namespace).MakeRelativeUri(uri).ToString();
+        protected string Property (Uri uri) => new Uri(UKParliamentOntology.Namespace).MakeRelativeUri(uri).ToString();
     }
 }

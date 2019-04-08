@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,9 +13,9 @@ namespace UKParliament
 
         public ICollection<RejectedEPetition> RejectionHasRejectedEPetition => new DynamicObjectCollection<RejectedEPetition>(this, Property(UKParliamentOntology.RejectionHasRejectedEPetition));
 
-        public ICollection<RejectionCode> RejectionHasRejectionCode => new DynamicObjectCollection<RejectionCode>(this, Property(UKParliamentOntology.RejectionHasRejectionCode));
+        public RejectionCode RejectionHasRejectionCode => ((IEnumerable<RejectionCode>)new DynamicObjectCollection<RejectionCode>(this, Property(UKParliamentOntology.RejectionHasRejectionCode))).SingleOrDefault();
 
-        public ICollection<string> RejectedAt => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectedAt));
+        public string RejectedAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectedAt))).SingleOrDefault();
 
         public ICollection<string> RejectionDetails => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectionDetails));
     }

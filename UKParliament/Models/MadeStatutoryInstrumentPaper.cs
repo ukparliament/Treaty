@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,6 +11,6 @@ namespace UKParliament
     {
         public MadeStatutoryInstrumentPaper(INode node) : base(node) { }
 
-        public ICollection<DateTimeOffset> StatutoryInstrumentPaperMadeDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperMadeDate));
+        public DateTimeOffset StatutoryInstrumentPaperMadeDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperMadeDate))).SingleOrDefault();
     }
 }

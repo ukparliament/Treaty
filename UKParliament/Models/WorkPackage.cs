@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,10 +11,10 @@ namespace UKParliament
     {
         public WorkPackage(INode node) : base(node) { }
 
-        public ICollection<Procedure> WorkPackageHasProcedure => new DynamicObjectCollection<Procedure>(this, Property(UKParliamentOntology.WorkPackageHasProcedure));
+        public Procedure WorkPackageHasProcedure => ((IEnumerable<Procedure>)new DynamicObjectCollection<Procedure>(this, Property(UKParliamentOntology.WorkPackageHasProcedure))).SingleOrDefault();
 
         public ICollection<BusinessItem> WorkPackageHasBusinessItem => new DynamicObjectCollection<BusinessItem>(this, Property(UKParliamentOntology.WorkPackageHasBusinessItem));
 
-        public ICollection<WorkPackagedThing> WorkPackageHasWorkPackagedThing => new DynamicObjectCollection<WorkPackagedThing>(this, Property(UKParliamentOntology.WorkPackageHasWorkPackagedThing));
+        public WorkPackagedThing WorkPackageHasWorkPackagedThing => ((IEnumerable<WorkPackagedThing>)new DynamicObjectCollection<WorkPackagedThing>(this, Property(UKParliamentOntology.WorkPackageHasWorkPackagedThing))).SingleOrDefault();
     }
 }

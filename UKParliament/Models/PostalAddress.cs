@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -12,16 +13,16 @@ namespace UKParliament
 
         public ICollection<ContactPoint> PostalAddressHasContactPoint => new DynamicObjectCollection<ContactPoint>(this, Property(UKParliamentOntology.PostalAddressHasContactPoint));
 
-        public ICollection<string> AddressLine1 => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine1));
+        public string AddressLine1 => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine1))).SingleOrDefault();
 
-        public ICollection<string> AddressLine2 => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine2));
+        public string AddressLine2 => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine2))).SingleOrDefault();
 
-        public ICollection<string> AddressLine3 => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine3));
+        public string AddressLine3 => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine3))).SingleOrDefault();
 
-        public ICollection<string> AddressLine4 => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine4));
+        public string AddressLine4 => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine4))).SingleOrDefault();
 
-        public ICollection<string> AddressLine5 => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine5));
+        public string AddressLine5 => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.AddressLine5))).SingleOrDefault();
 
-        public ICollection<string> PostCode => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PostCode));
+        public string PostCode => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PostCode))).SingleOrDefault();
     }
 }

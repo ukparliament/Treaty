@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -34,10 +35,10 @@ namespace UKParliament
 
         public ICollection<Person> QuestionHasAskingPerson => new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.QuestionHasAskingPerson));
 
-        public ICollection<string> QuestionText => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.QuestionText));
+        public string QuestionText => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.QuestionText))).SingleOrDefault();
 
-        public ICollection<string> QuestionHeading => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.QuestionHeading));
+        public string QuestionHeading => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.QuestionHeading))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> QuestionAskedAt => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.QuestionAskedAt));
+        public DateTimeOffset QuestionAskedAt => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.QuestionAskedAt))).SingleOrDefault();
     }
 }

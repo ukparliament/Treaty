@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,9 +11,9 @@ namespace UKParliament
     {
         public AnsweringBodyAllocation(INode node) : base(node) { }
 
-        public ICollection<Question> AnsweringBodyAllocationHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.AnsweringBodyAllocationHasQuestion));
+        public Question AnsweringBodyAllocationHasQuestion => ((IEnumerable<Question>)new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.AnsweringBodyAllocationHasQuestion))).SingleOrDefault();
 
-        public ICollection<AnsweringBody> AnsweringBodyAllocationHasAnsweringBody => new DynamicObjectCollection<AnsweringBody>(this, Property(UKParliamentOntology.AnsweringBodyAllocationHasAnsweringBody));
+        public AnsweringBody AnsweringBodyAllocationHasAnsweringBody => ((IEnumerable<AnsweringBody>)new DynamicObjectCollection<AnsweringBody>(this, Property(UKParliamentOntology.AnsweringBodyAllocationHasAnsweringBody))).SingleOrDefault();
 
         public ICollection<AnsweringBodyAllocation> AnsweringBodyAllocationReplacesAnsweringBodyAllocation => new DynamicObjectCollection<AnsweringBodyAllocation>(this, Property(UKParliamentOntology.AnsweringBodyAllocationReplacesAnsweringBodyAllocation));
 

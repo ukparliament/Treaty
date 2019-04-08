@@ -1,8 +1,9 @@
-namespace UKParliament
+namespace UKParliament.Model
 {
     using OntologyHelper;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using VDS.RDF;
     using VDS.RDF.Dynamic;
 
@@ -10,12 +11,12 @@ namespace UKParliament
     {
         public Laying(INode node) : base(node) { }
 
-        public ICollection<LayingPerson> LayingHasLayingPerson => new DynamicObjectCollection<LayingPerson>(this, Property(UKParliamentOntology.LayingHasLayingPerson));
+        public LayingPerson LayingHasLayingPerson => ((IEnumerable<LayingPerson>)new DynamicObjectCollection<LayingPerson>(this, Property(UKParliamentOntology.LayingHasLayingPerson))).SingleOrDefault();
 
-        public ICollection<LayingBody> LayingHasLayingBody => new DynamicObjectCollection<LayingBody>(this, Property(UKParliamentOntology.LayingHasLayingBody));
+        public LayingBody LayingHasLayingBody => ((IEnumerable<LayingBody>)new DynamicObjectCollection<LayingBody>(this, Property(UKParliamentOntology.LayingHasLayingBody))).SingleOrDefault();
 
-        public ICollection<LaidThing> LayingHasLaidThing => new DynamicObjectCollection<LaidThing>(this, Property(UKParliamentOntology.LayingHasLaidThing));
+        public LaidThing LayingHasLaidThing => ((IEnumerable<LaidThing>)new DynamicObjectCollection<LaidThing>(this, Property(UKParliamentOntology.LayingHasLaidThing))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> LayingDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.LayingDate));
+        public DateTimeOffset LayingDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.LayingDate))).SingleOrDefault();
     }
 }

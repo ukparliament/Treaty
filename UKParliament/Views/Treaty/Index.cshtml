@@ -1,4 +1,4 @@
-﻿@model UKParliamentDynamicGraph
+﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
     ViewData["Title"] = @Localizer["Title"];
 }
@@ -20,48 +20,28 @@
                     <div class="card">
                         <div class="card__details">
                             <h2>
-                                <a asp-controller="Treaty" asp-action="Item" asp-route-id="@treaty.Id">@treaty.LaidThingName.Single()</a>
-</h2>
+                                <a asp-controller="Treaty" asp-action="Item" asp-route-id="@treaty.Id">@treaty.LaidThingName</a>
+                            </h2>
                             <dl>
-                                @foreach (var leadGovernmentOrganisation in @treaty.TreatyHasLeadGovernmentOrganisation)
-                                {
-                                    <dt>Lead government organisation</dt>
-                                    <dd>
-                                    @foreach (var name in @leadGovernmentOrganisation.GroupName)
-                                    {
-                                        @name
-                                    }
-                                    </dd>
-                                }
+                                <dt>Lead government organisation</dt>
+                                <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
                                 @foreach (var laying in @treaty.LaidThingHasLaying)
                                 {
                                     <dt>Laying date</dt>
-                                    <dd>@laying.LayingDate.Single().ToString()</dd>
-                                    @foreach (var layingBody in @laying.LayingHasLayingBody)
-                                    {
-                                        <dt>Laying body</dt>
-                                        <dd>@layingBody.GroupName.Single()</dd>
-                                    }
+                                    <dd>@laying.LayingDate.ToString()</dd>
+                                    <dt>Laying body</dt>
+                                    <dd>@laying.LayingHasLayingBody.GroupName</dd>
                                     @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
                                     {
                                         @foreach (var house in @procedureStep.ProcedureStepHasHouse)
                                         {
-                                            @foreach (var label in @house.HouseName)
-                                            {
-                                                <dt>Procedure step has house</dt>
-                                                <dd>@label</dd>
-                                            }
+                                            <dt>Procedure step has house</dt>
+                                            <dd>@house.HouseName</dd>
                                         }
                                     }
                                 }
-                                @foreach (var workpackage in @treaty.WorkPackagedThingHasWorkPackage)
-                                {
-                                    @foreach (var procedure in @workpackage.WorkPackageHasProcedure)
-                                    {
-                                        <dt>Procedure</dt>
-                                        <dd>@procedure.ProcedureName.Single()</dd>
-                                    }
-                                }
+                                <dt>Procedure</dt>
+                                <dd>@treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName</dd>
                             </dl>
                         </div>
                     </div>
