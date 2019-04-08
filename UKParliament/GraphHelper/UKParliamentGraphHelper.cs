@@ -35,7 +35,13 @@ namespace UKParliament
             MadeNegativeProcedure = UKParliamentOntology.Base + "5S6p4YsP",
             ProposedNegativeStatutoryInstrumentProcedure = UKParliamentOntology.Base + "iCdMN1MW",
             TreatyProcedure = UKParliamentOntology.Base + "D00dsjR2";
- 
+
+        /// <summary>
+        /// Lists of URI instances in the UK Parliament Graph
+        /// </summary>
+        public static List<string>
+            TreatyProcedureEndStep = new List<string>() { "ypryR1wZ", "qkrlv9rh" };
+
         /// <summary>
         /// Constant mapping of resource URIs to controllers
         /// </summary>

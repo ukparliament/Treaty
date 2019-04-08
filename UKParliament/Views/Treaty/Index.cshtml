@@ -7,14 +7,14 @@
     <div class="container">
         <small><a asp-controller="Procedure" asp-action="Index">@Localizer["Category"]</a></small>
         <h1><span>@Localizer["Title"]</span></h1>
-        <p>@Localizer["Abstract"]</p>
+        <p>@Localizer["Abstract"] Number of treaties: @Model.Treaties.Count()</p>
     </div>
 </div>
 
 <section id="content">
     <div class="container">
         <ol class="list--block">
-            @foreach (var treaty in Model.Treaties)
+            @foreach (var treaty in Model.Treaties.OrderByDescending(x => x.LaidThingHasLaying.FirstOrDefault()?.LayingDate))
             {
                 <li>
                     <div class="card">
@@ -28,7 +28,7 @@
                                 @foreach (var laying in @treaty.LaidThingHasLaying)
                                 {
                                     <dt>Laying date</dt>
-                                    <dd>@laying.LayingDate.ToString()</dd>
+                                    <dd>@laying.LayingDate.ToString("dddd, dd MMMM yyyy")</dd>
                                     <dt>Laying body</dt>
                                     <dd>@laying.LayingHasLayingBody.GroupName</dd>
                                     @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
@@ -43,6 +43,15 @@
                                 <dt>Procedure</dt>
                                 <dd>@treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName</dd>
                             </dl>
+                            <ul>
+                                @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.OrderBy(x => x.BusinessItemDate.FirstOrDefault()))
+                                {
+                                    @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
+                                    {
+                                <li>@businessItem.BusinessItemDate.FirstOrDefault().ToString("dddd, dd MMMM yyyy") - @procedureStep.ProcedureStepName - @procedureStep.ProcedureStepHasHouse.FirstOrDefault()?.HouseName - @businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()</li>
+                                    }
+                                }
+                            </ul>
                         </div>
                     </div>
                 </li>

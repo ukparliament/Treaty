@@ -24,7 +24,15 @@ CONSTRUCT {
 
     ?workPackage
         a :WorkPackage ;
+        :workPackageHasBusinessItem ?businessItem ;
         :workPackageHasProcedure ?procedure .
+
+    ?businessItem
+        :businessItemDate ?businessItemDate ;
+        :businessItemHasBusinessItemWebLink ?businessItemWebLink ;
+        :businessItemHasProcedureStep ?BusinessItemProcedureStep .
+
+    ?BusinessItemProcedureStep :procedureStepName ?procedureStepName .
 
     ?procedure
         a :Procedure ;
@@ -43,32 +51,41 @@ WHERE {
     ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
 
     OPTIONAL {
-        ?treaty :laidThingHasLaying ?laying .
+        ?treaty
+            a :LaidThing ;
+            :laidThingHasLaying ?laying .
 
-        OPTIONAL { ?laying :layingDate ?layingDate . }
+        ?laying
+            :businessItemHasProcedureStep ?procedureStep ;
+            :layingDate ?layingDate ;
+            :layingHasLayingBody ?layingBody .
 
-        OPTIONAL {
-            ?laying :businessItemHasProcedureStep ?procedureStep .
+        ?layingBody :groupName ?layingBodyGroupName .
 
-            ?procedureStep :procedureStepHasHouse ?house .
+        ?procedureStep :procedureStepHasHouse ?house .
 
-            ?house :houseName ?houseName .
-        }
-
-        OPTIONAL {
-            ?laying :layingHasLayingBody ?layingBody .
-
-            OPTIONAL { ?layingBody :groupName ?layingBodyGroupName . }
-        }
+        ?house :houseName ?houseName .
     }
 
     OPTIONAL {
-        ?treaty :workPackagedThingHasWorkPackage ?workPackage .
+        ?treaty
+            a :WorkPackagedThing ;
+            :workPackagedThingHasWorkPackage ?workPackage .
+
+        ?workPackage :workPackageHasProcedure ?procedure .
+
+        ?procedure :procedureName ?procedureName .
 
         OPTIONAL {
-            ?workPackage :workPackageHasProcedure ?procedure .
+            ?workPackage :workPackageHasBusinessItem ?businessItem .
 
-            OPTIONAL { ?procedure :procedureName ?procedureName . }
+            ?businessItem :businessItemHasProcedureStep ?BusinessItemProcedureStep .
+
+            OPTIONAL { ?businessItem :businessItemDate ?businessItemDate . }
+
+            OPTIONAL { ?businessItem :businessItemHasBusinessItemWebLink ?businessItemWebLink . }
+
+            ?BusinessItemProcedureStep :procedureStepName ?procedureStepName .
         }
     }
 }
