@@ -15,6 +15,7 @@ namespace UKParliament
     using Services;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using UKParliament.Model;
 
     [Route("treaty")]
@@ -26,6 +27,20 @@ namespace UKParliament
         public ActionResult Index()
         {
             var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty.sparql");
+
+            var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
+
+            ViewBag.Filter = false;
+
+            if (filters.Any(x => Request.Query.ContainsKey(x)))
+            {
+                ViewBag.Filter = true;
+                ViewBag.Current = Request.Query["current"];
+                ViewBag.LeadGovernmentOrganisation = Request.Query["leadGovernmentOrganisation"];
+                ViewBag.SeriesMembershipType = Request.Query["seriesMembershipType"];
+                ViewBag.ProcedureStep = Request.Query["procedureStep"];
+            }
+
             return this.View(new UKParliamentDynamicGraph(graph));
         }
 

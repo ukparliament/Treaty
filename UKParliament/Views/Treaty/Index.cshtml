@@ -1,20 +1,137 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
     ViewData["Title"] = Model.Treaties.FirstOrDefault().WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName;
+    int totalNumberOfTreaties = Model.Treaties.Count();
+    IEnumerable<Model.Treaty> treaties = Model.Treaties.Where(treaty =>
+    {
+        var filterTreaty = false;
+        var hasLeadGovernmentOrganisation = false;
+        var hasSeriesMembership = false;
+        var hasProcedureStep = false;
+        if (ViewBag.Filter)
+        {
+            if (ViewBag.Current == "true" && treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Any(businessItem => businessItem.BusinessItemHasProcedureStep.Any(procedureStep => UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))))
+            {
+                filterTreaty = true;
+            }
+            if (ViewBag.LeadGovernmentOrganisation.Count > 0)
+            {
+                foreach (var leadGovernmentOrganisationId in ViewBag.LeadGovernmentOrganisation)
+                {
+                    if (treaty.TreatyHasLeadGovernmentOrganisation.Id == leadGovernmentOrganisationId)
+                    {
+                        hasLeadGovernmentOrganisation = true;
+                    }
+                }
+                filterTreaty = filterTreaty || !hasLeadGovernmentOrganisation;
+            }
+            if (ViewBag.SeriesMembershipType.Count > 0)
+            {
+                foreach (var seriesMembershipType in ViewBag.SeriesMembershipType)
+                {
+                    if (treaty.TreatyHasCountrySeriesMembership != null && seriesMembershipType == "CountrySeriesMembership")
+                    {
+                        hasSeriesMembership = true;
+                    }
+                    if (treaty.TreatyHasMiscellaneousSeriesMembership != null && seriesMembershipType == "MiscellaneousSeriesMembership")
+                    {
+                        hasSeriesMembership = true;
+                    }
+                    if (treaty.TreatyHasEuropeanUnionSeriesMembership != null && seriesMembershipType == "EuropeanUnionSeriesMembership")
+                    {
+                        hasSeriesMembership = true;
+                    }
+                }
+                filterTreaty = filterTreaty || !hasSeriesMembership;
+            }
+            if (ViewBag.ProcedureStep.Count > 0)
+            {
+                foreach (var procedureStepId in ViewBag.ProcedureStep)
+                {
+                    if (treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Any(businessItem => businessItem.BusinessItemHasProcedureStep.Any(procedureStep => procedureStep.Id == procedureStepId)))
+                    {
+                        hasProcedureStep = true;
+                    }
+                }
+                filterTreaty = filterTreaty || !hasProcedureStep;
+            }
+        }
+        return !filterTreaty;
+    });
 }
 
 <div class="section--primary">
     <div class="container">
         <small><a asp-controller="Procedure" asp-action="Index">@Localizer["Category"]</a></small>
         <h1><span>@ViewData["Title"]</span></h1>
-        <p>Number of treaties: @Model.Treaties.Count()</p>
+        <dl class="meta">
+            <dt>Total number of treaties</dt>
+            <dd>@totalNumberOfTreaties</dd>
+            <dt>Treaties ordered by</dt>
+            <dd>Laid date</dd>
+            @if (ViewBag.Filter)
+            {
+                <dt>Number of filtered treaties</dt>
+                <dd>@treaties.Count()</dd>
+                <dt>Filters</dt>
+                <dd>
+                    <ul class="list--inline">
+                        @if (ViewBag.Current == "true")
+                        {
+                        <li>
+                            <a aria-label="Remove current filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep">Current</a>
+                        </li>
+                        }
+                        @foreach (var leadGovernmentOrganisationId in @ViewBag.LeadGovernmentOrganisation)
+                        {
+                            @foreach (var leadGovernmentOrganisation in Model.GovernmentOrganisations.Where(x => x.Id == leadGovernmentOrganisationId))
+                            {
+                                <li>
+                                    <a aria-label="Remove lead government organisation filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep">@leadGovernmentOrganisation.GroupName</a>
+                                </li>
+                            }
+                        }
+                        @foreach (var seriesMembershipType in @ViewBag.SeriesMembershipType)
+                        {
+                            @if (seriesMembershipType == "CountrySeriesMembership")
+                            {
+                                <li>
+                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep">Country series</a>
+                                </li>
+                            }
+                            @if (seriesMembershipType == "MiscellaneousSeriesMembership")
+                            {
+                                <li>
+                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep">Miscellaneous series</a>
+                                </li>
+                            }
+                            @if (seriesMembershipType == "EuropeanUnionSeriesMembership")
+                            {
+                                <li>
+                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep">European Union series</a>
+                                </li>
+                            }
+                        }
+                        @foreach (var procedureStepId in @ViewBag.ProcedureStep)
+                        {
+                            @foreach (var procedureStep in Model.ProcedureSteps.Where(procedureStep => procedureStep.Id == procedureStepId))
+                            {
+                                <li>
+                                    <a aria-label="Remove procedure step filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType">@procedureStep.ProcedureStepName</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </dd>
+            }
+        </dl>
     </div>
 </div>
 
 <section id="content">
     <div class="container">
         <ol class="list--block">
-            @foreach (var treaty in Model.Treaties.OrderByDescending(x => x.LaidThingHasLaying.FirstOrDefault()?.LayingDate))
+            @foreach (var treaty in treaties.OrderByDescending(x => x.LaidThingHasLaying.FirstOrDefault()?.LayingDate))
             {
                 <li>
                     <div class="card">
@@ -22,14 +139,39 @@
                             <h2>
                                 <a asp-controller="Treaty" asp-action="Item" asp-route-id="@treaty.Id">@treaty.LaidThingName</a>
                             </h2>
+                            @if (treaty.LaidThingHasLaying.Count() > 0)
+                            {
+                                <p>Laid @treaty.LaidThingHasLaying.FirstOrDefault()?.LayingDate.ToString("dddd, dd MMMM yyyy")</p>
+                            }
                             <ul class="list--inline">
-                                <li>
-                                    <a class="hint theme--grey-5" href="?leadGovernmentOrganisation=@treaty.TreatyHasLeadGovernmentOrganisation.Id">@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</a>
-                                </li>
-                                @if (!@treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Any(businessItem => businessItem.BusinessItemHasProcedureStep.Any(procedureStep => UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))))
+                                @if (!treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Any(businessItem => businessItem.BusinessItemHasProcedureStep.Any(procedureStep => UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))))
                                 {
                                     <li>
-                                        <a class="hint theme--grey-5" href="?current">Current</a>
+                                        <a class="hint theme--grey-4" asp-controller="Treaty" asp-action="Index" asp-route-current="true" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep">Current</a>
+                                    </li>
+                                }
+                                @if (@treaty.TreatyHasLeadGovernmentOrganisation != null)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-4" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@treaty.TreatyHasLeadGovernmentOrganisation.Id" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep">@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</a>
+                                    </li>
+                                }
+                                @if (@treaty.TreatyHasCountrySeriesMembership != null)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-4" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@treaty.TreatyHasCountrySeriesMembership.GetType().Name" asp-route-procedureStep="@ViewBag.ProcedureStep">Country series</a>
+                                    </li>
+                                }
+                                @if (@treaty.TreatyHasEuropeanUnionSeriesMembership != null)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-4" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@treaty.TreatyHasEuropeanUnionSeriesMembership.GetType().Name" asp-route-procedureStep="@ViewBag.ProcedureStep">European Union series</a>
+                                    </li>
+                                }
+                                @if (@treaty.TreatyHasMiscellaneousSeriesMembership != null)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-4" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@treaty.TreatyHasMiscellaneousSeriesMembership.GetType().Name" asp-route-procedureStep="@ViewBag.ProcedureStep">Miscellaneous series</a>
                                     </li>
                                 }
                                 @if (@treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Any(businessItem => businessItem.BusinessItemHasProcedureStep.Any(procedureStep => UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))))
@@ -41,38 +183,20 @@
                                             @if (UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))
                                             {
                                                 <li>
-                                                    <a class="hint theme--grey-5" href="?procedureStep=@procedureStep.Id">@procedureStep.ProcedureStepName</a>
+                                                    <a class="hint theme--grey-4" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@procedureStep.Id">@procedureStep.ProcedureStepName</a>
                                                 </li>
                                             }
                                         }
                                     }
                                 }
-                                @if (@treaty.TreatyHasCountrySeriesMembership != null)
-                                {
-                                    <li>
-                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasCountrySeriesMembership.GetType().Name">Country series membership</a>
-                                    </li>
-                                }
-                                @if (@treaty.TreatyHasEuropeanUnionSeriesMembership != null)
-                                {
-                                    <li>
-                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasEuropeanUnionSeriesMembership.GetType().Name">European Union series membership</a>
-                                    </li>
-                                }
-                                @if (@treaty.TreatyHasMiscellaneousSeriesMembership != null)
-                                {
-                                    <li>
-                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasMiscellaneousSeriesMembership.GetType().Name">Miscellaneous series membership</a>
-                                    </li>
-                                }
                                 @*
-                                    TODO: Something like treaty is in force treaty and inforcetreaty has InForceTreatyHasTreatySeriesMembership
-                                    @if (@treaty. != null)
-                                {
-                                    <li>
-                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasSeriesMembership.GetType().Name">In force treaty</a>
-                                    </li>
-                                }*@
+                                        TODO: Something like treaty is in force treaty and inforcetreaty has InForceTreatyHasTreatySeriesMembership
+                                        @if (@treaty. != null)
+                                    {
+                                        <li>
+                                            <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasSeriesMembership.GetType().Name">In force treaty</a>
+                                        </li>
+                                    }*@
                             </ul>
                         </div>
                     </div>
