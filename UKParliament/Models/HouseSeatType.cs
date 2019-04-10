@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public HouseSeatType(INode node) : base(node) { }
 
-        public ICollection<HouseSeat> HouseSeatTypeHasHouseSeat => new DynamicObjectCollection<HouseSeat>(this, Property(UKParliamentOntology.HouseSeatTypeHasHouseSeat));
+        public ICollection<HouseSeat> HouseSeatTypeHasHouseSeat => new DynamicObjectCollection<HouseSeat>(this, Property(UKParliamentOntology.HouseSeatTypeHasHouseSeat.Uri));
 
-        public string HouseSeatTypeName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatTypeName))).SingleOrDefault();
+        public string HouseSeatTypeName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatTypeName.Uri))).SingleOrDefault();
 
-        public string HouseSeatTypeDescription => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatTypeDescription))).SingleOrDefault();
+        public string HouseSeatTypeDescription => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatTypeDescription.Uri))).SingleOrDefault();
     }
 }

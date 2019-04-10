@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public ExternalThing(INode node) : base(node) { }
 
-        public ICollection<string> ExternalIdentifier => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ExternalIdentifier));
+        public ICollection<string> ExternalIdentifier => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ExternalIdentifier.Uri));
     }
 }

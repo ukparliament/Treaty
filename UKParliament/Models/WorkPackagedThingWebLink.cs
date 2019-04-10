@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public WorkPackagedThingWebLink(INode node) : base(node) { }
 
-        public ICollection<WorkPackagedThing> WorkPackagedThingWebLinkHasWorkPackagedThing => new DynamicObjectCollection<WorkPackagedThing>(this, Property(UKParliamentOntology.WorkPackagedThingWebLinkHasWorkPackagedThing));
+        public ICollection<WorkPackagedThing> WorkPackagedThingWebLinkHasWorkPackagedThing => new DynamicObjectCollection<WorkPackagedThing>(this, Property(UKParliamentOntology.WorkPackagedThingWebLinkHasWorkPackagedThing.Uri));
     }
 }

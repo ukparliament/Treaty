@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public MnisFormalBodyLayPerson(INode node) : base(node) { }
 
-        public string FormalBodyLayPersonMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyLayPersonMnisId))).SingleOrDefault();
+        public string FormalBodyLayPersonMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyLayPersonMnisId.Uri))).SingleOrDefault();
     }
 }

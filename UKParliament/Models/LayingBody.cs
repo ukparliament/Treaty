@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public LayingBody(INode node) : base(node) { }
 
-        public ICollection<Laying> LayingBodyHasLaying => new DynamicObjectCollection<Laying>(this, Property(UKParliamentOntology.LayingBodyHasLaying));
+        public ICollection<Laying> LayingBodyHasLaying => new DynamicObjectCollection<Laying>(this, Property(UKParliamentOntology.LayingBodyHasLaying.Uri));
     }
 }

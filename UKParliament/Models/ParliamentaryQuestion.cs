@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public ParliamentaryQuestion(INode node) : base(node) { }
 
-        public ICollection<DateTimeOffset> ParliamentaryQuestionWithdrawnOn => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentaryQuestionWithdrawnOn));
+        public ICollection<DateTimeOffset> ParliamentaryQuestionWithdrawnOn => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentaryQuestionWithdrawnOn.Uri));
     }
 }

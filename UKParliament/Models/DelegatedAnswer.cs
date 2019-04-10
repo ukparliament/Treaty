@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public DelegatedAnswer(INode node) : base(node) { }
 
-        public ICollection<ArmsLengthBody> DelegatedAnswerHasArmsLengthBody => new DynamicObjectCollection<ArmsLengthBody>(this, Property(UKParliamentOntology.DelegatedAnswerHasArmsLengthBody));
+        public ICollection<ArmsLengthBody> DelegatedAnswerHasArmsLengthBody => new DynamicObjectCollection<ArmsLengthBody>(this, Property(UKParliamentOntology.DelegatedAnswerHasArmsLengthBody.Uri));
     }
 }

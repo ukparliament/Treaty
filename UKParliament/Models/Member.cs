@@ -11,12 +11,12 @@ namespace UKParliament.Model
     {
         public Member(INode node) : base(node) { }
 
-        public ICollection<ExOfficioMembership> MemberHasExOfficioMembership => new DynamicObjectCollection<ExOfficioMembership>(this, Property(UKParliamentOntology.MemberHasExOfficioMembership));
+        public ICollection<ExOfficioMembership> MemberHasExOfficioMembership => new DynamicObjectCollection<ExOfficioMembership>(this, Property(UKParliamentOntology.MemberHasExOfficioMembership.Uri));
 
-        public ICollection<AlternateMembership> MemberHasAlternateMembership => new DynamicObjectCollection<AlternateMembership>(this, Property(UKParliamentOntology.MemberHasAlternateMembership));
+        public ICollection<AlternateMembership> MemberHasAlternateMembership => new DynamicObjectCollection<AlternateMembership>(this, Property(UKParliamentOntology.MemberHasAlternateMembership.Uri));
 
-        public ICollection<MemberImage> MemberHasMemberImage => new DynamicObjectCollection<MemberImage>(this, Property(UKParliamentOntology.MemberHasMemberImage));
+        public ICollection<MemberImage> MemberHasMemberImage => new DynamicObjectCollection<MemberImage>(this, Property(UKParliamentOntology.MemberHasMemberImage.Uri));
 
-        public ICollection<ParliamentaryIncumbency> MemberHasParliamentaryIncumbency => new DynamicObjectCollection<ParliamentaryIncumbency>(this, Property(UKParliamentOntology.MemberHasParliamentaryIncumbency));
+        public ICollection<ParliamentaryIncumbency> MemberHasParliamentaryIncumbency => new DynamicObjectCollection<ParliamentaryIncumbency>(this, Property(UKParliamentOntology.MemberHasParliamentaryIncumbency.Uri));
     }
 }

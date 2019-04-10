@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public PimsPerson(INode node) : base(node) { }
 
-        public string PersonPimsId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonPimsId))).SingleOrDefault();
+        public string PersonPimsId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PersonPimsId.Uri))).SingleOrDefault();
     }
 }

@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public FormalBodyType(INode node) : base(node) { }
 
-        public ICollection<FormalBody> FormalBodyTypeHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyTypeHasFormalBody));
+        public ICollection<FormalBody> FormalBodyTypeHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyTypeHasFormalBody.Uri));
 
-        public string FormalBodyTypeName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyTypeName))).SingleOrDefault();
+        public string FormalBodyTypeName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.FormalBodyTypeName.Uri))).SingleOrDefault();
     }
 }

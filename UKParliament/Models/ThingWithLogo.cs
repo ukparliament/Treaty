@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public ThingWithLogo(INode node) : base(node) { }
 
-        public ICollection<Logo> ThingWithLogoHasLogo => new DynamicObjectCollection<Logo>(this, Property(UKParliamentOntology.ThingWithLogoHasLogo));
+        public ICollection<Logo> ThingWithLogoHasLogo => new DynamicObjectCollection<Logo>(this, Property(UKParliamentOntology.ThingWithLogoHasLogo.Uri));
     }
 }

@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public CountrySeriesMembership(INode node) : base(node) { }
 
-        public Treaty CountrySeriesMembershipHasTreaty => ((IEnumerable<Treaty>)new DynamicObjectCollection<Treaty>(this, Property(UKParliamentOntology.CountrySeriesMembershipHasTreaty))).SingleOrDefault();
+        public Treaty CountrySeriesMembershipHasTreaty => ((IEnumerable<Treaty>)new DynamicObjectCollection<Treaty>(this, Property(UKParliamentOntology.CountrySeriesMembershipHasTreaty.Uri))).SingleOrDefault();
 
-        public string CountrySeriesItemCitation => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.CountrySeriesItemCitation))).SingleOrDefault();
+        public string CountrySeriesItemCitation => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.CountrySeriesItemCitation.Uri))).SingleOrDefault();
     }
 }

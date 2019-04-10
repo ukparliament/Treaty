@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public IndexingAndSearchWrittenQuestion(INode node) : base(node) { }
 
-        public ICollection<string> WrittenQuestionIndexingAndSearchUin => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.WrittenQuestionIndexingAndSearchUin));
+        public ICollection<string> WrittenQuestionIndexingAndSearchUin => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.WrittenQuestionIndexingAndSearchUin.Uri));
     }
 }

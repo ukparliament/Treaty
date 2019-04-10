@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public ConceptualisedThing(INode node) : base(node) { }
 
-        public ICollection<Concept> ConceptualisedThingHasConcept => new DynamicObjectCollection<Concept>(this, Property(UKParliamentOntology.ConceptualisedThingHasConcept));
+        public ICollection<Concept> ConceptualisedThingHasConcept => new DynamicObjectCollection<Concept>(this, Property(UKParliamentOntology.ConceptualisedThingHasConcept.Uri));
     }
 }

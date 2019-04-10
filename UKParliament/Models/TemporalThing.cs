@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public TemporalThing(INode node) : base(node) { }
 
-        public ICollection<DateTimeOffset> Date => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.Date));
+        public ICollection<DateTimeOffset> Date => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.Date.Uri));
 
-        public DateTimeOffset StartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StartDate))).SingleOrDefault();
+        public DateTimeOffset StartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StartDate.Uri))).SingleOrDefault();
     }
 }

@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public Electorate(INode node) : base(node) { }
 
-        public ICollection<Election> ElectorateHasElection => new DynamicObjectCollection<Election>(this, Property(UKParliamentOntology.ElectorateHasElection));
+        public ICollection<Election> ElectorateHasElection => new DynamicObjectCollection<Election>(this, Property(UKParliamentOntology.ElectorateHasElection.Uri));
 
-        public ConstituencyGroup ElectorateHasConstitutencyGroup => ((IEnumerable<ConstituencyGroup>)new DynamicObjectCollection<ConstituencyGroup>(this, Property(UKParliamentOntology.ElectorateHasConstitutencyGroup))).SingleOrDefault();
+        public ConstituencyGroup ElectorateHasConstitutencyGroup => ((IEnumerable<ConstituencyGroup>)new DynamicObjectCollection<ConstituencyGroup>(this, Property(UKParliamentOntology.ElectorateHasConstitutencyGroup.Uri))).SingleOrDefault();
     }
 }

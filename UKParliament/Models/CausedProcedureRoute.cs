@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public CausedProcedureRoute(INode node) : base(node) { }
 
-        public ICollection<ProcedureStep> CausedProcedureRouteIsCausedByProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.CausedProcedureRouteIsCausedByProcedureStep));
+        public ICollection<ProcedureStep> CausedProcedureRouteIsCausedByProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.CausedProcedureRouteIsCausedByProcedureStep.Uri));
     }
 }

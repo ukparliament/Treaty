@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public SeatIncumbency(INode node) : base(node) { }
 
-        public HouseSeat SeatIncumbencyHasHouseSeat => ((IEnumerable<HouseSeat>)new DynamicObjectCollection<HouseSeat>(this, Property(UKParliamentOntology.SeatIncumbencyHasHouseSeat))).SingleOrDefault();
+        public HouseSeat SeatIncumbencyHasHouseSeat => ((IEnumerable<HouseSeat>)new DynamicObjectCollection<HouseSeat>(this, Property(UKParliamentOntology.SeatIncumbencyHasHouseSeat.Uri))).SingleOrDefault();
 
-        public ICollection<ParliamentPeriod> SeatIncumbencyHasParliamentPeriod => new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.SeatIncumbencyHasParliamentPeriod));
+        public ICollection<ParliamentPeriod> SeatIncumbencyHasParliamentPeriod => new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.SeatIncumbencyHasParliamentPeriod.Uri));
     }
 }

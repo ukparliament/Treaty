@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public GenderIdentity(INode node) : base(node) { }
 
-        public Person GenderIdentityHasPerson => ((IEnumerable<Person>)new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.GenderIdentityHasPerson))).SingleOrDefault();
+        public Person GenderIdentityHasPerson => ((IEnumerable<Person>)new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.GenderIdentityHasPerson.Uri))).SingleOrDefault();
 
-        public Gender GenderIdentityHasGender => ((IEnumerable<Gender>)new DynamicObjectCollection<Gender>(this, Property(UKParliamentOntology.GenderIdentityHasGender))).SingleOrDefault();
+        public Gender GenderIdentityHasGender => ((IEnumerable<Gender>)new DynamicObjectCollection<Gender>(this, Property(UKParliamentOntology.GenderIdentityHasGender.Uri))).SingleOrDefault();
     }
 }

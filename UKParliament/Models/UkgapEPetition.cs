@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public UkgapEPetition(INode node) : base(node) { }
 
-        public string EPetitionUkgapId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.EPetitionUkgapId))).SingleOrDefault();
+        public string EPetitionUkgapId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.EPetitionUkgapId.Uri))).SingleOrDefault();
     }
 }

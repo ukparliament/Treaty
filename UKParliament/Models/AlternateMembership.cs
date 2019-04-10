@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public AlternateMembership(INode node) : base(node) { }
 
-        public Member AlternateMembershipHasMember => ((IEnumerable<Member>)new DynamicObjectCollection<Member>(this, Property(UKParliamentOntology.AlternateMembershipHasMember))).SingleOrDefault();
+        public Member AlternateMembershipHasMember => ((IEnumerable<Member>)new DynamicObjectCollection<Member>(this, Property(UKParliamentOntology.AlternateMembershipHasMember.Uri))).SingleOrDefault();
     }
 }

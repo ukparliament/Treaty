@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public WithdrawnThing(INode node) : base(node) { }
 
-        public Withdrawal WithdrawnThingHasWithdrawal => ((IEnumerable<Withdrawal>)new DynamicObjectCollection<Withdrawal>(this, Property(UKParliamentOntology.WithdrawnThingHasWithdrawal))).SingleOrDefault();
+        public Withdrawal WithdrawnThingHasWithdrawal => ((IEnumerable<Withdrawal>)new DynamicObjectCollection<Withdrawal>(this, Property(UKParliamentOntology.WithdrawnThingHasWithdrawal.Uri))).SingleOrDefault();
     }
 }

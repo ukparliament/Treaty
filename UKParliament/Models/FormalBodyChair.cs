@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public FormalBodyChair(INode node) : base(node) { }
 
-        public ICollection<FormalBody> FormalBodyChairHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyChairHasFormalBody));
+        public ICollection<FormalBody> FormalBodyChairHasFormalBody => new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyChairHasFormalBody.Uri));
     }
 }

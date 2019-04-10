@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public ProcedureRoute(INode node) : base(node) { }
 
-        public ICollection<ProcedureStep> ProcedureRouteIsToProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.ProcedureRouteIsToProcedureStep));
+        public ICollection<ProcedureStep> ProcedureRouteIsToProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.ProcedureRouteIsToProcedureStep.Uri));
 
-        public ICollection<ProcedureStep> ProcedureRouteIsFromProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.ProcedureRouteIsFromProcedureStep));
+        public ICollection<ProcedureStep> ProcedureRouteIsFromProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.ProcedureRouteIsFromProcedureStep.Uri));
 
-        public ICollection<Procedure> ProcedureRouteHasProcedure => new DynamicObjectCollection<Procedure>(this, Property(UKParliamentOntology.ProcedureRouteHasProcedure));
+        public ICollection<Procedure> ProcedureRouteHasProcedure => new DynamicObjectCollection<Procedure>(this, Property(UKParliamentOntology.ProcedureRouteHasProcedure.Uri));
     }
 }

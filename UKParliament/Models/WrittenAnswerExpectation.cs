@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public WrittenAnswerExpectation(INode node) : base(node) { }
 
-        public ICollection<Question> WrittenAnswerExpectationHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.WrittenAnswerExpectationHasQuestion));
+        public ICollection<Question> WrittenAnswerExpectationHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.WrittenAnswerExpectationHasQuestion.Uri));
     }
 }

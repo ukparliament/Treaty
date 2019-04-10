@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public ParliamentaryIncumbency(INode node) : base(node) { }
 
-        public Member ParliamentaryIncumbencyHasMember => ((IEnumerable<Member>)new DynamicObjectCollection<Member>(this, Property(UKParliamentOntology.ParliamentaryIncumbencyHasMember))).SingleOrDefault();
+        public Member ParliamentaryIncumbencyHasMember => ((IEnumerable<Member>)new DynamicObjectCollection<Member>(this, Property(UKParliamentOntology.ParliamentaryIncumbencyHasMember.Uri))).SingleOrDefault();
 
-        public ICollection<ContactPoint> ParliamentaryIncumbencyHasContactPoint => new DynamicObjectCollection<ContactPoint>(this, Property(UKParliamentOntology.ParliamentaryIncumbencyHasContactPoint));
+        public ICollection<ContactPoint> ParliamentaryIncumbencyHasContactPoint => new DynamicObjectCollection<ContactPoint>(this, Property(UKParliamentOntology.ParliamentaryIncumbencyHasContactPoint.Uri));
 
-        public DateTimeOffset ParliamentaryIncumbencyStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentaryIncumbencyStartDate))).SingleOrDefault();
+        public DateTimeOffset ParliamentaryIncumbencyStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentaryIncumbencyStartDate.Uri))).SingleOrDefault();
     }
 }

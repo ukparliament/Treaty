@@ -20,10 +20,10 @@ namespace UKParliament.Model
     {
         public UKParliamentDynamicGraph(IGraph graph, Uri subjectBaseUri = null) : base(graph, subjectBaseUri) { }
 
-        public ICollection<House> Houses => new DynamicSubjectCollection<House>("rdf:type", this[UKParliamentOntology.House] as DynamicNode);
+        public ICollection<House> Houses => new DynamicSubjectCollection<House>("rdf:type", this[UKParliamentOntology.House.Uri] as DynamicNode);
 
-        public ICollection<Procedure> Procedures => new DynamicSubjectCollection<Procedure>("rdf:type", this[UKParliamentOntology.Procedure] as DynamicNode);
+        public ICollection<Procedure> Procedures => new DynamicSubjectCollection<Procedure>("rdf:type", this[UKParliamentOntology.Procedure.Uri] as DynamicNode);
 
-        public ICollection<Treaty> Treaties => new DynamicSubjectCollection<Treaty>("rdf:type", this[UKParliamentOntology.Treaty] as DynamicNode);
+        public ICollection<Treaty> Treaties => new DynamicSubjectCollection<Treaty>("rdf:type", this[UKParliamentOntology.Treaty.Uri] as DynamicNode);
     }
 }

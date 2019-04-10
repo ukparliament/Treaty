@@ -11,12 +11,12 @@ namespace UKParliament.Model
     {
         public Rejection(INode node) : base(node) { }
 
-        public ICollection<RejectedEPetition> RejectionHasRejectedEPetition => new DynamicObjectCollection<RejectedEPetition>(this, Property(UKParliamentOntology.RejectionHasRejectedEPetition));
+        public ICollection<RejectedEPetition> RejectionHasRejectedEPetition => new DynamicObjectCollection<RejectedEPetition>(this, Property(UKParliamentOntology.RejectionHasRejectedEPetition.Uri));
 
-        public RejectionCode RejectionHasRejectionCode => ((IEnumerable<RejectionCode>)new DynamicObjectCollection<RejectionCode>(this, Property(UKParliamentOntology.RejectionHasRejectionCode))).SingleOrDefault();
+        public RejectionCode RejectionHasRejectionCode => ((IEnumerable<RejectionCode>)new DynamicObjectCollection<RejectionCode>(this, Property(UKParliamentOntology.RejectionHasRejectionCode.Uri))).SingleOrDefault();
 
-        public string RejectedAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectedAt))).SingleOrDefault();
+        public string RejectedAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectedAt.Uri))).SingleOrDefault();
 
-        public ICollection<string> RejectionDetails => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectionDetails));
+        public ICollection<string> RejectionDetails => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectionDetails.Uri));
     }
 }

@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public DeceasedPerson(INode node) : base(node) { }
 
-        public DateTimeOffset PersonDateOfDeath => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PersonDateOfDeath))).SingleOrDefault();
+        public DateTimeOffset PersonDateOfDeath => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PersonDateOfDeath.Uri))).SingleOrDefault();
     }
 }

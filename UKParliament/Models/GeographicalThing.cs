@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public GeographicalThing(INode node) : base(node) { }
 
-        public string Latitude => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Latitude))).SingleOrDefault();
+        public string Latitude => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Latitude.Uri))).SingleOrDefault();
 
-        public string Longitude => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Longitude))).SingleOrDefault();
+        public string Longitude => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Longitude.Uri))).SingleOrDefault();
     }
 }

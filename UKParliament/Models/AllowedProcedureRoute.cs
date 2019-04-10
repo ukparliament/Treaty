@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public AllowedProcedureRoute(INode node) : base(node) { }
 
-        public ICollection<ProcedureStep> AllowedProcedureRouteIsAllowedByProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.AllowedProcedureRouteIsAllowedByProcedureStep));
+        public ICollection<ProcedureStep> AllowedProcedureRouteIsAllowedByProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.AllowedProcedureRouteIsAllowedByProcedureStep.Uri));
     }
 }

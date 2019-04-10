@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public ElectionType(INode node) : base(node) { }
 
-        public ICollection<Election> ElectionTypeHasElection => new DynamicObjectCollection<Election>(this, Property(UKParliamentOntology.ElectionTypeHasElection));
+        public ICollection<Election> ElectionTypeHasElection => new DynamicObjectCollection<Election>(this, Property(UKParliamentOntology.ElectionTypeHasElection.Uri));
 
-        public string ElectionTypeName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ElectionTypeName))).SingleOrDefault();
+        public string ElectionTypeName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ElectionTypeName.Uri))).SingleOrDefault();
     }
 }

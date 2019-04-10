@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public GovernmentIncumbency(INode node) : base(node) { }
 
-        public GovernmentPosition GovernmentIncumbencyHasGovernmentPosition => ((IEnumerable<GovernmentPosition>)new DynamicObjectCollection<GovernmentPosition>(this, Property(UKParliamentOntology.GovernmentIncumbencyHasGovernmentPosition))).SingleOrDefault();
+        public GovernmentPosition GovernmentIncumbencyHasGovernmentPosition => ((IEnumerable<GovernmentPosition>)new DynamicObjectCollection<GovernmentPosition>(this, Property(UKParliamentOntology.GovernmentIncumbencyHasGovernmentPosition.Uri))).SingleOrDefault();
 
-        public GovernmentPerson GovernmentIncumbencyHasGovernmentPerson => ((IEnumerable<GovernmentPerson>)new DynamicObjectCollection<GovernmentPerson>(this, Property(UKParliamentOntology.GovernmentIncumbencyHasGovernmentPerson))).SingleOrDefault();
+        public GovernmentPerson GovernmentIncumbencyHasGovernmentPerson => ((IEnumerable<GovernmentPerson>)new DynamicObjectCollection<GovernmentPerson>(this, Property(UKParliamentOntology.GovernmentIncumbencyHasGovernmentPerson.Uri))).SingleOrDefault();
     }
 }

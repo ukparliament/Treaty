@@ -11,18 +11,18 @@ namespace UKParliament.Model
     {
         public Concept(INode node) : base(node) { }
 
-        public ICollection<ConceptualisedThing> ConceptHasConceptualisedThing => new DynamicObjectCollection<ConceptualisedThing>(this, Property(UKParliamentOntology.ConceptHasConceptualisedThing));
+        public ICollection<ConceptualisedThing> ConceptHasConceptualisedThing => new DynamicObjectCollection<ConceptualisedThing>(this, Property(UKParliamentOntology.ConceptHasConceptualisedThing.Uri));
 
-        public ICollection<SubjectTaggedThing> ConceptHasSubjectTaggedThing => new DynamicObjectCollection<SubjectTaggedThing>(this, Property(UKParliamentOntology.ConceptHasSubjectTaggedThing));
+        public ICollection<SubjectTaggedThing> ConceptHasSubjectTaggedThing => new DynamicObjectCollection<SubjectTaggedThing>(this, Property(UKParliamentOntology.ConceptHasSubjectTaggedThing.Uri));
 
-        public ICollection<Concept> ConceptHasBroaderConcept => new DynamicObjectCollection<Concept>(this, Property(UKParliamentOntology.ConceptHasBroaderConcept));
+        public ICollection<Concept> ConceptHasBroaderConcept => new DynamicObjectCollection<Concept>(this, Property(UKParliamentOntology.ConceptHasBroaderConcept.Uri));
 
-        public ICollection<Concept> ConceptHasNarrowerConcept => new DynamicObjectCollection<Concept>(this, Property(UKParliamentOntology.ConceptHasNarrowerConcept));
+        public ICollection<Concept> ConceptHasNarrowerConcept => new DynamicObjectCollection<Concept>(this, Property(UKParliamentOntology.ConceptHasNarrowerConcept.Uri));
 
-        public string ConceptLabel => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConceptLabel))).SingleOrDefault();
+        public string ConceptLabel => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConceptLabel.Uri))).SingleOrDefault();
 
-        public ICollection<string> ConceptScopeNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConceptScopeNote));
+        public ICollection<string> ConceptScopeNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConceptScopeNote.Uri));
 
-        public ICollection<string> ConceptDefinition => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConceptDefinition));
+        public ICollection<string> ConceptDefinition => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConceptDefinition.Uri));
     }
 }

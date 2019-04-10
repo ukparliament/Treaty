@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Abstract" xml:space="preserve">
-    <value>&lt;p&gt;The Parliament of the United Kingdom of Great Britain and Northern Ireland is the supreme legislative body of the United Kingdom, the Crown dependencies and the British Overseas Territories.&lt;/p&gt;
-&lt;p&gt;Parliament is bicameral but has three parts, consisting of the Sovereign, the House of Lords, and the House of Commons. The two houses meet in the Palace of Westminster.&lt;/p&gt;</value>
+    <value>&lt;p&gt;The UK Parliament is the supreme legislative body of the United Kingdom, Crown dependencies and British Overseas Territories.&lt;/p&gt;
+&lt;p&gt;Parliament is formed of the House of Commons, the House of Lords and the Crown in its legislative role.&lt;/p&gt;</value>
   </data>
   <data name="Constituency" xml:space="preserve">
     <value>Constituency</value>
@@ -134,7 +134,7 @@
     <value>Parliamentary procedure</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Parliament of the United Kingdom</value>
+    <value>UK Parliament</value>
   </data>
   <data name="Treaty" xml:space="preserve">
     <value>Treaty</value>

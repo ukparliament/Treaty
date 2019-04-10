@@ -4,11 +4,17 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT {
     ?treaty
-        a :Treaty, :LaidThing, :WorkPackagedThing ;
+        a :InForceTreaty, :LaidThing, :Treaty, :WorkPackagedThing ;
+        :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership ;
         :laidThingName ?laidThingName ;
         :laidThingHasLaying ?laying ;
+        :treatyHasCountrySeriesMembership ?countrySeriesMembership ;
+        :treatyHasEuropeanUnionSeriesMembership ?europeanSeriesMembership ;
+        :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation ;
+        :treatyHasMiscellaneousSeriesMembership ?miscellaneousSeriesMembership ;
+        :treatyHasSeriesMembership ?seriesMembership ;
         :workPackagedThingHasWorkPackage ?workPackage ;
-        :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation .
+        :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink .
 
     ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
 
@@ -40,6 +46,10 @@ CONSTRUCT {
 
     ?procedureStep :procedureStepHasHouse ?house .
 
+    ?seriesMembership
+        a ?seriesMembershipType ;
+        :seriesItemCitation ?seriesItemCitation .
+
     ?house :houseName ?houseName .
 }
 WHERE {
@@ -49,6 +59,25 @@ WHERE {
         :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation .
 
     ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
+
+    OPTIONAL {
+        ?treaty :treatyHasSeriesMembership ?seriesMembership .
+        ?seriesMembership
+            a ?seriesMembershipType ;
+            :seriesItemCitation ?seriesItemCitation .
+    }
+
+    OPTIONAL { ?treaty :treatyHasEuropeanUnionSeriesMembership ?europeanSeriesMembership . }
+
+    OPTIONAL { ?treaty :treatyHasMiscellaneousSeriesMembership ?miscellaneousSeriesMembership . }
+
+    OPTIONAL { ?treaty :treatyHasCountrySeriesMembership ?countrySeriesMembership . }
+
+    OPTIONAL {
+        ?treaty
+            a :InForceTreaty ;
+            :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership .
+    }
 
     OPTIONAL {
         ?treaty
@@ -75,6 +104,8 @@ WHERE {
         ?workPackage :workPackageHasProcedure ?procedure .
 
         ?procedure :procedureName ?procedureName .
+
+        OPTIONAL { ?treaty :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink . }
 
         OPTIONAL {
             ?workPackage :workPackageHasBusinessItem ?businessItem .

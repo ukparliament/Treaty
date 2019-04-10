@@ -32,7 +32,7 @@ namespace UKParliament
         [HttpGet("{id}")]
         public ActionResult Item(string id)
         {
-            var uris = new[] { new Uri(new Uri(UKParliamentOntology.Base), id) };
+            var uris = new[] { new Uri(UKParliamentOntology.BaseUri, id) };
             var sparqlParameters = new Dictionary<string, IEnumerable<object>> { { "id", uris } };
             var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty_by_id.sparql", sparqlParameters);
             return this.View(new UKParliamentDynamicGraph(graph));

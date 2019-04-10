@@ -11,14 +11,14 @@ namespace UKParliament.Model
     {
         public HouseSeat(INode node) : base(node) { }
 
-        public House HouseSeatHasHouse => ((IEnumerable<House>)new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.HouseSeatHasHouse))).SingleOrDefault();
+        public House HouseSeatHasHouse => ((IEnumerable<House>)new DynamicObjectCollection<House>(this, Property(UKParliamentOntology.HouseSeatHasHouse.Uri))).SingleOrDefault();
 
-        public ConstituencyGroup HouseSeatHasConstituencyGroup => ((IEnumerable<ConstituencyGroup>)new DynamicObjectCollection<ConstituencyGroup>(this, Property(UKParliamentOntology.HouseSeatHasConstituencyGroup))).SingleOrDefault();
+        public ConstituencyGroup HouseSeatHasConstituencyGroup => ((IEnumerable<ConstituencyGroup>)new DynamicObjectCollection<ConstituencyGroup>(this, Property(UKParliamentOntology.HouseSeatHasConstituencyGroup.Uri))).SingleOrDefault();
 
-        public HouseSeatType HouseSeatHasHouseSeatType => ((IEnumerable<HouseSeatType>)new DynamicObjectCollection<HouseSeatType>(this, Property(UKParliamentOntology.HouseSeatHasHouseSeatType))).SingleOrDefault();
+        public HouseSeatType HouseSeatHasHouseSeatType => ((IEnumerable<HouseSeatType>)new DynamicObjectCollection<HouseSeatType>(this, Property(UKParliamentOntology.HouseSeatHasHouseSeatType.Uri))).SingleOrDefault();
 
-        public ICollection<SeatIncumbency> HouseSeatHasSeatIncumbency => new DynamicObjectCollection<SeatIncumbency>(this, Property(UKParliamentOntology.HouseSeatHasSeatIncumbency));
+        public ICollection<SeatIncumbency> HouseSeatHasSeatIncumbency => new DynamicObjectCollection<SeatIncumbency>(this, Property(UKParliamentOntology.HouseSeatHasSeatIncumbency.Uri));
 
-        public string HouseSeatName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatName))).SingleOrDefault();
+        public string HouseSeatName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.HouseSeatName.Uri))).SingleOrDefault();
     }
 }

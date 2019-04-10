@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public MnisOppositionPosition(INode node) : base(node) { }
 
-        public string OppositionPositionMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.OppositionPositionMnisId))).SingleOrDefault();
+        public string OppositionPositionMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.OppositionPositionMnisId.Uri))).SingleOrDefault();
     }
 }

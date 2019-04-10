@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public PartyMember(INode node) : base(node) { }
 
-        public ICollection<PartyMembership> PartyMemberHasPartyMembership => new DynamicObjectCollection<PartyMembership>(this, Property(UKParliamentOntology.PartyMemberHasPartyMembership));
+        public ICollection<PartyMembership> PartyMemberHasPartyMembership => new DynamicObjectCollection<PartyMembership>(this, Property(UKParliamentOntology.PartyMemberHasPartyMembership.Uri));
     }
 }

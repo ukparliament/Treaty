@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public ContactableThing(INode node) : base(node) { }
 
-        public ICollection<ContactPoint> ContactableThingHasContactPoint => new DynamicObjectCollection<ContactPoint>(this, Property(UKParliamentOntology.ContactableThingHasContactPoint));
+        public ICollection<ContactPoint> ContactableThingHasContactPoint => new DynamicObjectCollection<ContactPoint>(this, Property(UKParliamentOntology.ContactableThingHasContactPoint.Uri));
     }
 }

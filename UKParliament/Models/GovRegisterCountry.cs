@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public GovRegisterCountry(INode node) : base(node) { }
 
-        public string CountryGovRegisterId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.CountryGovRegisterId))).SingleOrDefault();
+        public string CountryGovRegisterId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.CountryGovRegisterId.Uri))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> GovRegisterCountryStartDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GovRegisterCountryStartDate));
+        public ICollection<DateTimeOffset> GovRegisterCountryStartDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GovRegisterCountryStartDate.Uri));
 
-        public ICollection<DateTimeOffset> GovRegisterCountryEndDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GovRegisterCountryEndDate));
+        public ICollection<DateTimeOffset> GovRegisterCountryEndDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GovRegisterCountryEndDate.Uri));
     }
 }

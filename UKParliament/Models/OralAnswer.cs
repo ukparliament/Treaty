@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public OralAnswer(INode node) : base(node) { }
 
-        public ICollection<AnsweringBody> OralAnswerHasAnsweringBody => new DynamicObjectCollection<AnsweringBody>(this, Property(UKParliamentOntology.OralAnswerHasAnsweringBody));
+        public ICollection<AnsweringBody> OralAnswerHasAnsweringBody => new DynamicObjectCollection<AnsweringBody>(this, Property(UKParliamentOntology.OralAnswerHasAnsweringBody.Uri));
     }
 }

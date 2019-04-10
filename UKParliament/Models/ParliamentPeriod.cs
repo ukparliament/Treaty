@@ -11,16 +11,16 @@ namespace UKParliament.Model
     {
         public ParliamentPeriod(INode node) : base(node) { }
 
-        public ICollection<BusinessItem> ParliamentPeriodHasBusinessItem => new DynamicObjectCollection<BusinessItem>(this, Property(UKParliamentOntology.ParliamentPeriodHasBusinessItem));
+        public ICollection<BusinessItem> ParliamentPeriodHasBusinessItem => new DynamicObjectCollection<BusinessItem>(this, Property(UKParliamentOntology.ParliamentPeriodHasBusinessItem.Uri));
 
-        public ParliamentPeriod ParliamentPeriodHasImmediatelyPreviousParliamentPeriod => ((IEnumerable<ParliamentPeriod>)new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.ParliamentPeriodHasImmediatelyPreviousParliamentPeriod))).SingleOrDefault();
+        public ParliamentPeriod ParliamentPeriodHasImmediatelyPreviousParliamentPeriod => ((IEnumerable<ParliamentPeriod>)new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.ParliamentPeriodHasImmediatelyPreviousParliamentPeriod.Uri))).SingleOrDefault();
 
-        public ICollection<ParliamentPeriod> ParliamentPeriodHasImmediatelyFollowingParliamentPeriod => new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.ParliamentPeriodHasImmediatelyFollowingParliamentPeriod));
+        public ICollection<ParliamentPeriod> ParliamentPeriodHasImmediatelyFollowingParliamentPeriod => new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.ParliamentPeriodHasImmediatelyFollowingParliamentPeriod.Uri));
 
-        public ICollection<SeatIncumbency> ParliamentPeriodHasSeatIncumbency => new DynamicObjectCollection<SeatIncumbency>(this, Property(UKParliamentOntology.ParliamentPeriodHasSeatIncumbency));
+        public ICollection<SeatIncumbency> ParliamentPeriodHasSeatIncumbency => new DynamicObjectCollection<SeatIncumbency>(this, Property(UKParliamentOntology.ParliamentPeriodHasSeatIncumbency.Uri));
 
-        public DateTimeOffset ParliamentPeriodStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentPeriodStartDate))).SingleOrDefault();
+        public DateTimeOffset ParliamentPeriodStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentPeriodStartDate.Uri))).SingleOrDefault();
 
-        public int ParliamentPeriodNumber => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ParliamentPeriodNumber))).SingleOrDefault();
+        public int ParliamentPeriodNumber => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ParliamentPeriodNumber.Uri))).SingleOrDefault();
     }
 }

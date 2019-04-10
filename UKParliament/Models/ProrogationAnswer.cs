@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public ProrogationAnswer(INode node) : base(node) { }
 
-        public ICollection<Question> ProrogationAnswerHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.ProrogationAnswerHasQuestion));
+        public ICollection<Question> ProrogationAnswerHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.ProrogationAnswerHasQuestion.Uri));
     }
 }

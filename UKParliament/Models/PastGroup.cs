@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public PastGroup(INode node) : base(node) { }
 
-        public DateTimeOffset GroupEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupEndDate))).SingleOrDefault();
+        public DateTimeOffset GroupEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupEndDate.Uri))).SingleOrDefault();
     }
 }

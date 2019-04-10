@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public Approval(INode node) : base(node) { }
 
-        public ICollection<ApprovedEPetition> ApprovalHasApprovedEPetition => new DynamicObjectCollection<ApprovedEPetition>(this, Property(UKParliamentOntology.ApprovalHasApprovedEPetition));
+        public ICollection<ApprovedEPetition> ApprovalHasApprovedEPetition => new DynamicObjectCollection<ApprovedEPetition>(this, Property(UKParliamentOntology.ApprovalHasApprovedEPetition.Uri));
 
-        public string ApprovedAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ApprovedAt))).SingleOrDefault();
+        public string ApprovedAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ApprovedAt.Uri))).SingleOrDefault();
     }
 }

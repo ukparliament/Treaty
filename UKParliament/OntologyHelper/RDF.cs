@@ -8,21 +8,26 @@
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-namespace UKParliament
+namespace OntologyHelper
 {
-    using OntologyHelper;
-    using System;
-    using VDS.RDF;
-    using VDS.RDF.Dynamic;
-
-    public class UKParliamentDynamicNode : DynamicNode
+    /// <summary>
+    /// Static Helper class for the RDFS Ontology
+    /// </summary>
+    public static class RDF
     {
-        public string Id => UKParliamentOntology.BaseUri.MakeRelativeUri((this as IUriNode).Uri).ToString();
+        /// <summary>
+        /// RDFS namespace URI
+        /// </summary>
+        public const string Namespace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 
-        public UKParliamentDynamicNode(INode node) : base(node, UKParliamentOntology.Namespace) { }
+        /// <summary>
+        /// Constant URIs for classes in the RDFS Ontology
+        /// </summary>
 
-        protected string Property (string uri) => Property(new Uri(uri));
-
-        protected string Property (Uri uri) => UKParliamentOntology.Namespace.MakeRelativeUri(uri).ToString();
+        /// <summary>
+        /// Constant URIs for properties in the RDFS Ontology
+        /// </summary>
+        public const string
+            Type = Namespace + "type";
     }
 }

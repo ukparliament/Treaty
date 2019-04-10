@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public Party(INode node) : base(node) { }
 
-        public ICollection<PartyMembership> PartyHasPartyMembership => new DynamicObjectCollection<PartyMembership>(this, Property(UKParliamentOntology.PartyHasPartyMembership));
+        public ICollection<PartyMembership> PartyHasPartyMembership => new DynamicObjectCollection<PartyMembership>(this, Property(UKParliamentOntology.PartyHasPartyMembership.Uri));
 
-        public ICollection<Candidacy> PartyhasCandidacy => new DynamicObjectCollection<Candidacy>(this, Property(UKParliamentOntology.PartyhasCandidacy));
+        public ICollection<Candidacy> PartyhasCandidacy => new DynamicObjectCollection<Candidacy>(this, Property(UKParliamentOntology.PartyhasCandidacy.Uri));
 
-        public string PartyName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PartyName))).SingleOrDefault();
+        public string PartyName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.PartyName.Uri))).SingleOrDefault();
     }
 }

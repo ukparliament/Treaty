@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public ProposedNegativeStatutoryInstrumentPaper(INode node) : base(node) { }
 
-        public ICollection<StatutoryInstrumentPaper> ProposedNegativeStatutoryInstrumentPaperPrecedesStatutoryInstrumentPaper => new DynamicObjectCollection<StatutoryInstrumentPaper>(this, Property(UKParliamentOntology.ProposedNegativeStatutoryInstrumentPaperPrecedesStatutoryInstrumentPaper));
+        public ICollection<StatutoryInstrumentPaper> ProposedNegativeStatutoryInstrumentPaperPrecedesStatutoryInstrumentPaper => new DynamicObjectCollection<StatutoryInstrumentPaper>(this, Property(UKParliamentOntology.ProposedNegativeStatutoryInstrumentPaperPrecedesStatutoryInstrumentPaper.Uri));
 
-        public string ProposedNegativeStatutoryInstrumentPaperName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProposedNegativeStatutoryInstrumentPaperName))).SingleOrDefault();
+        public string ProposedNegativeStatutoryInstrumentPaperName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProposedNegativeStatutoryInstrumentPaperName.Uri))).SingleOrDefault();
     }
 }

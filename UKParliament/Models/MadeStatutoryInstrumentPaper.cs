@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public MadeStatutoryInstrumentPaper(INode node) : base(node) { }
 
-        public DateTimeOffset StatutoryInstrumentPaperMadeDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperMadeDate))).SingleOrDefault();
+        public DateTimeOffset StatutoryInstrumentPaperMadeDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperMadeDate.Uri))).SingleOrDefault();
     }
 }

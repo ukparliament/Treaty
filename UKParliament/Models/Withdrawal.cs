@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public Withdrawal(INode node) : base(node) { }
 
-        public ICollection<WithdrawnThing> WithdrawalHasWithdrawnThing => new DynamicObjectCollection<WithdrawnThing>(this, Property(UKParliamentOntology.WithdrawalHasWithdrawnThing));
+        public ICollection<WithdrawnThing> WithdrawalHasWithdrawnThing => new DynamicObjectCollection<WithdrawnThing>(this, Property(UKParliamentOntology.WithdrawalHasWithdrawnThing.Uri));
 
-        public DateTimeOffset WithdrawalDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.WithdrawalDate))).SingleOrDefault();
+        public DateTimeOffset WithdrawalDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.WithdrawalDate.Uri))).SingleOrDefault();
     }
 }

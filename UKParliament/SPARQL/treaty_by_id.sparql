@@ -4,11 +4,17 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT {
     ?treaty
-        a :Treaty, :LaidThing, :WorkPackagedThing ;
+        a :InForceTreaty, :LaidThing, :Treaty, :WorkPackagedThing ;
+        :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership ;
         :laidThingName ?laidThingName ;
         :laidThingHasLaying ?laying ;
+        :treatyHasCountrySeriesMembership ?countrySeriesMembership ;
+        :treatyHasEuropeanUnionSeriesMembership ?europeanSeriesMembership ;
+        :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation ;
+        :treatyHasMiscellaneousSeriesMembership ?miscellaneousSeriesMembership ;
+        :treatyHasSeriesMembership ?seriesMembership ;
         :workPackagedThingHasWorkPackage ?workPackage ;
-        :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation .
+        :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink .
 
     ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
 
@@ -24,7 +30,15 @@ CONSTRUCT {
 
     ?workPackage
         a :WorkPackage ;
+        :workPackageHasBusinessItem ?businessItem ;
         :workPackageHasProcedure ?procedure .
+
+    ?businessItem
+        :businessItemDate ?businessItemDate ;
+        :businessItemHasBusinessItemWebLink ?businessItemWebLink ;
+        :businessItemHasProcedureStep ?BusinessItemProcedureStep .
+
+    ?BusinessItemProcedureStep :procedureStepName ?procedureStepName .
 
     ?procedure
         a :Procedure ;
@@ -32,10 +46,14 @@ CONSTRUCT {
 
     ?procedureStep :procedureStepHasHouse ?house .
 
+    ?seriesMembership
+        a ?seriesMembershipType ;
+        :seriesItemCitation ?seriesItemCitation .
+
     ?house :houseName ?houseName .
 }
 WHERE {
-    BIND (@id as ?treaty)
+    BIND(@id as ?treaty)
     ?treaty
         a :Treaty ;
         :laidThingName ?laidThingName ;
@@ -44,32 +62,62 @@ WHERE {
     ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
 
     OPTIONAL {
-        ?treaty :laidThingHasLaying ?laying .
+        ?treaty :treatyHasSeriesMembership ?seriesMembership .
+        ?seriesMembership
+            a ?seriesMembershipType ;
+            :seriesItemCitation ?seriesItemCitation .
+    }
 
-        OPTIONAL { ?laying :layingDate ?layingDate . }
+    OPTIONAL { ?treaty :treatyHasEuropeanUnionSeriesMembership ?europeanSeriesMembership . }
 
-        OPTIONAL {
-            ?laying :businessItemHasProcedureStep ?procedureStep .
+    OPTIONAL { ?treaty :treatyHasMiscellaneousSeriesMembership ?miscellaneousSeriesMembership . }
 
-            ?procedureStep :procedureStepHasHouse ?house .
+    OPTIONAL { ?treaty :treatyHasCountrySeriesMembership ?countrySeriesMembership . }
 
-            ?house :houseName ?houseName .
-        }
-
-        OPTIONAL {
-            ?laying :layingHasLayingBody ?layingBody .
-
-            OPTIONAL { ?layingBody :groupName ?layingBodyGroupName . }
-        }
+    OPTIONAL {
+        ?treaty
+            a :InForceTreaty ;
+            :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership .
     }
 
     OPTIONAL {
-        ?treaty :workPackagedThingHasWorkPackage ?workPackage .
+        ?treaty
+            a :LaidThing ;
+            :laidThingHasLaying ?laying .
+
+        ?laying
+            :businessItemHasProcedureStep ?procedureStep ;
+            :layingDate ?layingDate ;
+            :layingHasLayingBody ?layingBody .
+
+        ?layingBody :groupName ?layingBodyGroupName .
+
+        ?procedureStep :procedureStepHasHouse ?house .
+
+        ?house :houseName ?houseName .
+    }
+
+    OPTIONAL {
+        ?treaty
+            a :WorkPackagedThing ;
+            :workPackagedThingHasWorkPackage ?workPackage .
+
+        ?workPackage :workPackageHasProcedure ?procedure .
+
+        ?procedure :procedureName ?procedureName .
+
+        OPTIONAL { ?treaty :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink . }
 
         OPTIONAL {
-            ?workPackage :workPackageHasProcedure ?procedure .
+            ?workPackage :workPackageHasBusinessItem ?businessItem .
 
-            OPTIONAL { ?procedure :procedureName ?procedureName . }
+            ?businessItem :businessItemHasProcedureStep ?BusinessItemProcedureStep .
+
+            OPTIONAL { ?businessItem :businessItemDate ?businessItemDate . }
+
+            OPTIONAL { ?businessItem :businessItemHasBusinessItemWebLink ?businessItemWebLink . }
+
+            ?BusinessItemProcedureStep :procedureStepName ?procedureStepName .
         }
     }
 }

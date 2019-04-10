@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public GovernmentPerson(INode node) : base(node) { }
 
-        public ICollection<GovernmentIncumbency> GovernmentPersonHasGovernmentIncumbency => new DynamicObjectCollection<GovernmentIncumbency>(this, Property(UKParliamentOntology.GovernmentPersonHasGovernmentIncumbency));
+        public ICollection<GovernmentIncumbency> GovernmentPersonHasGovernmentIncumbency => new DynamicObjectCollection<GovernmentIncumbency>(this, Property(UKParliamentOntology.GovernmentPersonHasGovernmentIncumbency.Uri));
     }
 }

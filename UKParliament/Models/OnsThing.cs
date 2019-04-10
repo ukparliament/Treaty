@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public OnsThing(INode node) : base(node) { }
 
-        public string OnsCode => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.OnsCode))).SingleOrDefault();
+        public string OnsCode => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.OnsCode.Uri))).SingleOrDefault();
     }
 }

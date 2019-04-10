@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public RequiredProcedureRoute(INode node) : base(node) { }
 
-        public ICollection<ProcedureStep> RequiredProcedureRouteIsRequiredByProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.RequiredProcedureRouteIsRequiredByProcedureStep));
+        public ICollection<ProcedureStep> RequiredProcedureRouteIsRequiredByProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.RequiredProcedureRouteIsRequiredByProcedureStep.Uri));
     }
 }

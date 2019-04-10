@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public RejectionCode(INode node) : base(node) { }
 
-        public ICollection<Rejection> RejectionCodeHasRejection => new DynamicObjectCollection<Rejection>(this, Property(UKParliamentOntology.RejectionCodeHasRejection));
+        public ICollection<Rejection> RejectionCodeHasRejection => new DynamicObjectCollection<Rejection>(this, Property(UKParliamentOntology.RejectionCodeHasRejection.Uri));
 
-        public ICollection<string> RejectionCodeName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectionCodeName));
+        public ICollection<string> RejectionCodeName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.RejectionCodeName.Uri));
     }
 }

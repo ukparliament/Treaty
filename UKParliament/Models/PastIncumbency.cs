@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public PastIncumbency(INode node) : base(node) { }
 
-        public DateTimeOffset IncumbencyEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.IncumbencyEndDate))).SingleOrDefault();
+        public DateTimeOffset IncumbencyEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.IncumbencyEndDate.Uri))).SingleOrDefault();
     }
 }

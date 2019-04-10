@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public WorkPackage(INode node) : base(node) { }
 
-        public Procedure WorkPackageHasProcedure => ((IEnumerable<Procedure>)new DynamicObjectCollection<Procedure>(this, Property(UKParliamentOntology.WorkPackageHasProcedure))).SingleOrDefault();
+        public Procedure WorkPackageHasProcedure => ((IEnumerable<Procedure>)new DynamicObjectCollection<Procedure>(this, Property(UKParliamentOntology.WorkPackageHasProcedure.Uri))).SingleOrDefault();
 
-        public ICollection<BusinessItem> WorkPackageHasBusinessItem => new DynamicObjectCollection<BusinessItem>(this, Property(UKParliamentOntology.WorkPackageHasBusinessItem));
+        public ICollection<BusinessItem> WorkPackageHasBusinessItem => new DynamicObjectCollection<BusinessItem>(this, Property(UKParliamentOntology.WorkPackageHasBusinessItem.Uri));
 
-        public WorkPackagedThing WorkPackageHasWorkPackagedThing => ((IEnumerable<WorkPackagedThing>)new DynamicObjectCollection<WorkPackagedThing>(this, Property(UKParliamentOntology.WorkPackageHasWorkPackagedThing))).SingleOrDefault();
+        public WorkPackagedThing WorkPackageHasWorkPackagedThing => ((IEnumerable<WorkPackagedThing>)new DynamicObjectCollection<WorkPackagedThing>(this, Property(UKParliamentOntology.WorkPackageHasWorkPackagedThing.Uri))).SingleOrDefault();
     }
 }

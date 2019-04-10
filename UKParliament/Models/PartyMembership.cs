@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public PartyMembership(INode node) : base(node) { }
 
-        public PartyMember PartyMembershipHasPartyMember => ((IEnumerable<PartyMember>)new DynamicObjectCollection<PartyMember>(this, Property(UKParliamentOntology.PartyMembershipHasPartyMember))).SingleOrDefault();
+        public PartyMember PartyMembershipHasPartyMember => ((IEnumerable<PartyMember>)new DynamicObjectCollection<PartyMember>(this, Property(UKParliamentOntology.PartyMembershipHasPartyMember.Uri))).SingleOrDefault();
 
-        public Party PartyMembershipHasParty => ((IEnumerable<Party>)new DynamicObjectCollection<Party>(this, Property(UKParliamentOntology.PartyMembershipHasParty))).SingleOrDefault();
+        public Party PartyMembershipHasParty => ((IEnumerable<Party>)new DynamicObjectCollection<Party>(this, Property(UKParliamentOntology.PartyMembershipHasParty.Uri))).SingleOrDefault();
 
-        public DateTimeOffset PartyMembershipStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PartyMembershipStartDate))).SingleOrDefault();
+        public DateTimeOffset PartyMembershipStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.PartyMembershipStartDate.Uri))).SingleOrDefault();
     }
 }

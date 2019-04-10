@@ -7,16 +7,16 @@
             <div class="card">
                 <div class="card__details">
                     <h3>
-                        @if (GraphHelper.ControllerMap.ContainsKey(procedure.ToString()))
+                        @if (GraphHelper.ControllerMap.ContainsKey(procedure.Id))
                         {
-                            <a asp-action="Index" asp-controller="@GraphHelper.ControllerMap[procedure.ToString()]">@procedure.ProcedureName</a>
+                            <a asp-action="Index" asp-controller="@GraphHelper.ControllerMap[procedure.Id]">@procedure.ProcedureName</a>
                         }
                         else
                         {
                             @procedure.ProcedureName
                         }
                     </h3>
-                    @*<p>@procedure.ProcedureDescription</p>*@
+                    <p>@procedure.ProcedureDescription</p>
                 </div>
             </div>
         </li>

@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public LaidThing(INode node) : base(node) { }
 
-        public ICollection<Laying> LaidThingHasLaying => new DynamicObjectCollection<Laying>(this, Property(UKParliamentOntology.LaidThingHasLaying));
+        public ICollection<Laying> LaidThingHasLaying => new DynamicObjectCollection<Laying>(this, Property(UKParliamentOntology.LaidThingHasLaying.Uri));
 
-        public string LaidThingName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.LaidThingName))).SingleOrDefault();
+        public string LaidThingName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.LaidThingName.Uri))).SingleOrDefault();
     }
 }

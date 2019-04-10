@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public WebsiteLabelledThing(INode node) : base(node) { }
 
-        public ICollection<string> WebsiteLabel => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.WebsiteLabel));
+        public ICollection<string> WebsiteLabel => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.WebsiteLabel.Uri));
     }
 }

@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public OppositionPosition(INode node) : base(node) { }
 
-        public ICollection<OppositionIncumbency> OppositionPositionHasOppositionIncumbency => new DynamicObjectCollection<OppositionIncumbency>(this, Property(UKParliamentOntology.OppositionPositionHasOppositionIncumbency));
+        public ICollection<OppositionIncumbency> OppositionPositionHasOppositionIncumbency => new DynamicObjectCollection<OppositionIncumbency>(this, Property(UKParliamentOntology.OppositionPositionHasOppositionIncumbency.Uri));
     }
 }

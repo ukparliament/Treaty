@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public MnisThing(INode node) : base(node) { }
 
-        public ICollection<string> MnisId => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.MnisId));
+        public ICollection<string> MnisId => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.MnisId.Uri));
     }
 }

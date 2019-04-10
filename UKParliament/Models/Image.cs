@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public Image(INode node) : base(node) { }
 
-        public ICollection<ImageSubject> ImageHasImageSubject => new DynamicObjectCollection<ImageSubject>(this, Property(UKParliamentOntology.ImageHasImageSubject));
+        public ICollection<ImageSubject> ImageHasImageSubject => new DynamicObjectCollection<ImageSubject>(this, Property(UKParliamentOntology.ImageHasImageSubject.Uri));
     }
 }

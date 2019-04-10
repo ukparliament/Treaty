@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public WikidataResource(INode node) : base(node) { }
 
-        public ICollection<WikidataThing> WikidataResourceHasEquivalentWikidataThing => new DynamicObjectCollection<WikidataThing>(this, Property(UKParliamentOntology.WikidataResourceHasEquivalentWikidataThing));
+        public ICollection<WikidataThing> WikidataResourceHasEquivalentWikidataThing => new DynamicObjectCollection<WikidataThing>(this, Property(UKParliamentOntology.WikidataResourceHasEquivalentWikidataThing.Uri));
     }
 }

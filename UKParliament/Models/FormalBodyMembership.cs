@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public FormalBodyMembership(INode node) : base(node) { }
 
-        public Person FormalBodyMembershipHasPerson => ((IEnumerable<Person>)new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.FormalBodyMembershipHasPerson))).SingleOrDefault();
+        public Person FormalBodyMembershipHasPerson => ((IEnumerable<Person>)new DynamicObjectCollection<Person>(this, Property(UKParliamentOntology.FormalBodyMembershipHasPerson.Uri))).SingleOrDefault();
 
-        public FormalBody FormalBodyMembershipHasFormalBody => ((IEnumerable<FormalBody>)new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyMembershipHasFormalBody))).SingleOrDefault();
+        public FormalBody FormalBodyMembershipHasFormalBody => ((IEnumerable<FormalBody>)new DynamicObjectCollection<FormalBody>(this, Property(UKParliamentOntology.FormalBodyMembershipHasFormalBody.Uri))).SingleOrDefault();
 
-        public DateTimeOffset FormalBodyMembershipStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyMembershipStartDate))).SingleOrDefault();
+        public DateTimeOffset FormalBodyMembershipStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyMembershipStartDate.Uri))).SingleOrDefault();
     }
 }

@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public NamedThing(INode node) : base(node) { }
 
-        public ICollection<string> Name => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Name));
+        public ICollection<string> Name => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.Name.Uri));
     }
 }

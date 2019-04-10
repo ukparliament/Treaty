@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public Focus(INode node) : base(node) { }
 
-        public ICollection<FocusPeriod> FocusHasFocusPeriod => new DynamicObjectCollection<FocusPeriod>(this, Property(UKParliamentOntology.FocusHasFocusPeriod));
+        public ICollection<FocusPeriod> FocusHasFocusPeriod => new DynamicObjectCollection<FocusPeriod>(this, Property(UKParliamentOntology.FocusHasFocusPeriod.Uri));
     }
 }

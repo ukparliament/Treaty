@@ -1,13 +1,13 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
-    ViewData["Title"] = @Localizer["Title"];
+    ViewData["Title"] = Model.Treaties.FirstOrDefault().WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName;
 }
 
 <div class="section--primary">
     <div class="container">
         <small><a asp-controller="Procedure" asp-action="Index">@Localizer["Category"]</a></small>
-        <h1><span>@Localizer["Title"]</span></h1>
-        <p>@Localizer["Abstract"] Number of treaties: @Model.Treaties.Count()</p>
+        <h1><span>@ViewData["Title"]</span></h1>
+        <p>Number of treaties: @Model.Treaties.Count()</p>
     </div>
 </div>
 
@@ -22,35 +22,57 @@
                             <h2>
                                 <a asp-controller="Treaty" asp-action="Item" asp-route-id="@treaty.Id">@treaty.LaidThingName</a>
                             </h2>
-                            <dl>
-                                <dt>Lead government organisation</dt>
-                                <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
-                                @foreach (var laying in @treaty.LaidThingHasLaying)
+                            <ul class="list--inline">
+                                <li>
+                                    <a class="hint theme--grey-5" href="?leadGovernmentOrganisation=@treaty.TreatyHasLeadGovernmentOrganisation.Id">@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</a>
+                                </li>
+                                @if (!@treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Any(businessItem => businessItem.BusinessItemHasProcedureStep.Any(procedureStep => UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))))
                                 {
-                                    <dt>Laying date</dt>
-                                    <dd>@laying.LayingDate.ToString("dddd, dd MMMM yyyy")</dd>
-                                    <dt>Laying body</dt>
-                                    <dd>@laying.LayingHasLayingBody.GroupName</dd>
-                                    @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
+                                    <li>
+                                        <a class="hint theme--grey-5" href="?current">Current</a>
+                                    </li>
+                                }
+                                @if (@treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Any(businessItem => businessItem.BusinessItemHasProcedureStep.Any(procedureStep => UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))))
+                                {
+                                    @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem)
                                     {
-                                        @foreach (var house in @procedureStep.ProcedureStepHasHouse)
+                                        @foreach (var procedureStep in businessItem.BusinessItemHasProcedureStep)
                                         {
-                                            <dt>Procedure step has house</dt>
-                                            <dd>@house.HouseName</dd>
+                                            @if (UKParliament.GraphHelper.TreatyProcedureEndStep.Contains(procedureStep.Id))
+                                            {
+                                                <li>
+                                                    <a class="hint theme--grey-5" href="?procedureStep=@procedureStep.Id">@procedureStep.ProcedureStepName</a>
+                                                </li>
+                                            }
                                         }
                                     }
                                 }
-                                <dt>Procedure</dt>
-                                <dd>@treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName</dd>
-                            </dl>
-                            <ul>
-                                @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.OrderBy(x => x.BusinessItemDate.FirstOrDefault()))
+                                @if (@treaty.TreatyHasCountrySeriesMembership != null)
                                 {
-                                    @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
-                                    {
-                                <li>@businessItem.BusinessItemDate.FirstOrDefault().ToString("dddd, dd MMMM yyyy") - @procedureStep.ProcedureStepName - @procedureStep.ProcedureStepHasHouse.FirstOrDefault()?.HouseName - @businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()</li>
-                                    }
+                                    <li>
+                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasCountrySeriesMembership.GetType().Name">Country series membership</a>
+                                    </li>
                                 }
+                                @if (@treaty.TreatyHasEuropeanUnionSeriesMembership != null)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasEuropeanUnionSeriesMembership.GetType().Name">European Union series membership</a>
+                                    </li>
+                                }
+                                @if (@treaty.TreatyHasMiscellaneousSeriesMembership != null)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasMiscellaneousSeriesMembership.GetType().Name">Miscellaneous series membership</a>
+                                    </li>
+                                }
+                                @*
+                                    TODO: Something like treaty is in force treaty and inforcetreaty has InForceTreatyHasTreatySeriesMembership
+                                    @if (@treaty. != null)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-5" href="?seriesMembershipType=@treaty.TreatyHasSeriesMembership.GetType().Name">In force treaty</a>
+                                    </li>
+                                }*@
                             </ul>
                         </div>
                     </div>

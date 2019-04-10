@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public OralAnswerExpectation(INode node) : base(node) { }
 
-        public ICollection<Question> OralAnswerExpectationHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.OralAnswerExpectationHasQuestion));
+        public ICollection<Question> OralAnswerExpectationHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.OralAnswerExpectationHasQuestion.Uri));
 
-        public ICollection<DateTimeOffset> OralAnswerExpectationSurrenderedAt => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.OralAnswerExpectationSurrenderedAt));
+        public ICollection<DateTimeOffset> OralAnswerExpectationSurrenderedAt => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.OralAnswerExpectationSurrenderedAt.Uri));
 
-        public ICollection<DateTimeOffset> OralAnswerExpectationTimedOutAt => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.OralAnswerExpectationTimedOutAt));
+        public ICollection<DateTimeOffset> OralAnswerExpectationTimedOutAt => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.OralAnswerExpectationTimedOutAt.Uri));
     }
 }

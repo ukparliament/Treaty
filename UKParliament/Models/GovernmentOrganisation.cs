@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public GovernmentOrganisation(INode node) : base(node) { }
 
-        public ICollection<Treaty> LeadGovernmentOrganisationHasTreaty => new DynamicObjectCollection<Treaty>(this, Property(UKParliamentOntology.LeadGovernmentOrganisationHasTreaty));
+        public ICollection<Treaty> LeadGovernmentOrganisationHasTreaty => new DynamicObjectCollection<Treaty>(this, Property(UKParliamentOntology.LeadGovernmentOrganisationHasTreaty.Uri));
     }
 }

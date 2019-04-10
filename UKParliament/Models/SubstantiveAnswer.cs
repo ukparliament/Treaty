@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public SubstantiveAnswer(INode node) : base(node) { }
 
-        public HoldingAnswer SubstantiveAnswerReplacesHoldingAnswer => ((IEnumerable<HoldingAnswer>)new DynamicObjectCollection<HoldingAnswer>(this, Property(UKParliamentOntology.SubstantiveAnswerReplacesHoldingAnswer))).SingleOrDefault();
+        public HoldingAnswer SubstantiveAnswerReplacesHoldingAnswer => ((IEnumerable<HoldingAnswer>)new DynamicObjectCollection<HoldingAnswer>(this, Property(UKParliamentOntology.SubstantiveAnswerReplacesHoldingAnswer.Uri))).SingleOrDefault();
 
-        public ICollection<Question> SubstantiveAnswerHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.SubstantiveAnswerHasQuestion));
+        public ICollection<Question> SubstantiveAnswerHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.SubstantiveAnswerHasQuestion.Uri));
     }
 }

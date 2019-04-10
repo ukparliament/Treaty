@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public MnisGovernmentIncumbency(INode node) : base(node) { }
 
-        public string GovernmentIncumbencyMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GovernmentIncumbencyMnisId))).SingleOrDefault();
+        public string GovernmentIncumbencyMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GovernmentIncumbencyMnisId.Uri))).SingleOrDefault();
     }
 }

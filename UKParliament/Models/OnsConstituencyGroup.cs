@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public OnsConstituencyGroup(INode node) : base(node) { }
 
-        public string ConstituencyGroupOnsCode => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConstituencyGroupOnsCode))).SingleOrDefault();
+        public string ConstituencyGroupOnsCode => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ConstituencyGroupOnsCode.Uri))).SingleOrDefault();
     }
 }

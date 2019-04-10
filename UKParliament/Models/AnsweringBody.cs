@@ -11,12 +11,12 @@ namespace UKParliament.Model
     {
         public AnsweringBody(INode node) : base(node) { }
 
-        public ICollection<AnsweringBodyAllocation> AnsweringBodyHasAnsweringBodyAllocation => new DynamicObjectCollection<AnsweringBodyAllocation>(this, Property(UKParliamentOntology.AnsweringBodyHasAnsweringBodyAllocation));
+        public ICollection<AnsweringBodyAllocation> AnsweringBodyHasAnsweringBodyAllocation => new DynamicObjectCollection<AnsweringBodyAllocation>(this, Property(UKParliamentOntology.AnsweringBodyHasAnsweringBodyAllocation.Uri));
 
-        public ICollection<Answer> AnsweringBodyHasAnswer => new DynamicObjectCollection<Answer>(this, Property(UKParliamentOntology.AnsweringBodyHasAnswer));
+        public ICollection<Answer> AnsweringBodyHasAnswer => new DynamicObjectCollection<Answer>(this, Property(UKParliamentOntology.AnsweringBodyHasAnswer.Uri));
 
-        public ICollection<OralAnswer> AnsweringBodyHasOralAnswer => new DynamicObjectCollection<OralAnswer>(this, Property(UKParliamentOntology.AnsweringBodyHasOralAnswer));
+        public ICollection<OralAnswer> AnsweringBodyHasOralAnswer => new DynamicObjectCollection<OralAnswer>(this, Property(UKParliamentOntology.AnsweringBodyHasOralAnswer.Uri));
 
-        public ICollection<WrittenAnswer> AnsweringBodyHasWrittenAnswer => new DynamicObjectCollection<WrittenAnswer>(this, Property(UKParliamentOntology.AnsweringBodyHasWrittenAnswer));
+        public ICollection<WrittenAnswer> AnsweringBodyHasWrittenAnswer => new DynamicObjectCollection<WrittenAnswer>(this, Property(UKParliamentOntology.AnsweringBodyHasWrittenAnswer.Uri));
     }
 }

@@ -11,12 +11,12 @@ namespace UKParliament.Model
     {
         public Procedure(INode node) : base(node) { }
 
-        public ICollection<WorkPackage> ProcedureHasWorkPackage => new DynamicObjectCollection<WorkPackage>(this, Property(UKParliamentOntology.ProcedureHasWorkPackage));
+        public ICollection<WorkPackage> ProcedureHasWorkPackage => new DynamicObjectCollection<WorkPackage>(this, Property(UKParliamentOntology.ProcedureHasWorkPackage.Uri));
 
-        public ICollection<ProcedureRoute> ProcedureHasProcedureRoute => new DynamicObjectCollection<ProcedureRoute>(this, Property(UKParliamentOntology.ProcedureHasProcedureRoute));
+        public ICollection<ProcedureRoute> ProcedureHasProcedureRoute => new DynamicObjectCollection<ProcedureRoute>(this, Property(UKParliamentOntology.ProcedureHasProcedureRoute.Uri));
 
-        public string ProcedureName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureName))).SingleOrDefault();
+        public string ProcedureName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureName.Uri))).SingleOrDefault();
 
-        public string ProcedureDescription => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureDescription))).SingleOrDefault();
+        public string ProcedureDescription => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureDescription.Uri))).SingleOrDefault();
     }
 }

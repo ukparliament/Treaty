@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public LayingPerson(INode node) : base(node) { }
 
-        public ICollection<Laying> LayingPersonHasLaying => new DynamicObjectCollection<Laying>(this, Property(UKParliamentOntology.LayingPersonHasLaying));
+        public ICollection<Laying> LayingPersonHasLaying => new DynamicObjectCollection<Laying>(this, Property(UKParliamentOntology.LayingPersonHasLaying.Uri));
     }
 }

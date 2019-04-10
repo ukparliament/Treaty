@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public PastFormalBodyMembership(INode node) : base(node) { }
 
-        public DateTimeOffset FormalBodyMembershipEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyMembershipEndDate))).SingleOrDefault();
+        public DateTimeOffset FormalBodyMembershipEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.FormalBodyMembershipEndDate.Uri))).SingleOrDefault();
     }
 }

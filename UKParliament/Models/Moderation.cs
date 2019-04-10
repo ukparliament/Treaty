@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public Moderation(INode node) : base(node) { }
 
-        public ICollection<EPetition> ModerationHasEPetition => new DynamicObjectCollection<EPetition>(this, Property(UKParliamentOntology.ModerationHasEPetition));
+        public ICollection<EPetition> ModerationHasEPetition => new DynamicObjectCollection<EPetition>(this, Property(UKParliamentOntology.ModerationHasEPetition.Uri));
 
-        public string ModeratedAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ModeratedAt))).SingleOrDefault();
+        public string ModeratedAt => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ModeratedAt.Uri))).SingleOrDefault();
     }
 }

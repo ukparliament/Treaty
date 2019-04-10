@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public RoundRobin(INode node) : base(node) { }
 
-        public ICollection<Question> RoundRobinHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.RoundRobinHasQuestion));
+        public ICollection<Question> RoundRobinHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.RoundRobinHasQuestion.Uri));
     }
 }

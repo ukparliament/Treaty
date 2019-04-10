@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public Group(INode node) : base(node) { }
 
-        public ICollection<Position> GroupHasPosition => new DynamicObjectCollection<Position>(this, Property(UKParliamentOntology.GroupHasPosition));
+        public ICollection<Position> GroupHasPosition => new DynamicObjectCollection<Position>(this, Property(UKParliamentOntology.GroupHasPosition.Uri));
 
-        public DateTimeOffset GroupStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupStartDate))).SingleOrDefault();
+        public DateTimeOffset GroupStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.GroupStartDate.Uri))).SingleOrDefault();
 
-        public string GroupName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GroupName))).FirstOrDefault();
+        public string GroupName => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GroupName.Uri))).SingleOrDefault();
     }
 }

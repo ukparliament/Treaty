@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public InForceTreaty(INode node) : base(node) { }
 
-        public TreatySeriesMembership InForceTreatyHasTreatySeriesMembership => ((IEnumerable<TreatySeriesMembership>)new DynamicObjectCollection<TreatySeriesMembership>(this, Property(UKParliamentOntology.InForceTreatyHasTreatySeriesMembership))).SingleOrDefault();
+        public TreatySeriesMembership InForceTreatyHasTreatySeriesMembership => ((IEnumerable<TreatySeriesMembership>)new DynamicObjectCollection<TreatySeriesMembership>(this, Property(UKParliamentOntology.InForceTreatyHasTreatySeriesMembership.Uri))).SingleOrDefault();
     }
 }

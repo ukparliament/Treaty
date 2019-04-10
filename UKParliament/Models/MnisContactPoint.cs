@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public MnisContactPoint(INode node) : base(node) { }
 
-        public string ContactPointMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ContactPointMnisId))).SingleOrDefault();
+        public string ContactPointMnisId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ContactPointMnisId.Uri))).SingleOrDefault();
     }
 }

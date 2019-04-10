@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public CorrectingAnswer(INode node) : base(node) { }
 
-        public SinceCorrectedAnswer CorrectingAnswerReplacesSinceCorrectedAnswer => ((IEnumerable<SinceCorrectedAnswer>)new DynamicObjectCollection<SinceCorrectedAnswer>(this, Property(UKParliamentOntology.CorrectingAnswerReplacesSinceCorrectedAnswer))).SingleOrDefault();
+        public SinceCorrectedAnswer CorrectingAnswerReplacesSinceCorrectedAnswer => ((IEnumerable<SinceCorrectedAnswer>)new DynamicObjectCollection<SinceCorrectedAnswer>(this, Property(UKParliamentOntology.CorrectingAnswerReplacesSinceCorrectedAnswer.Uri))).SingleOrDefault();
 
-        public ICollection<Question> CorrectingAnswerHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.CorrectingAnswerHasQuestion));
+        public ICollection<Question> CorrectingAnswerHasQuestion => new DynamicObjectCollection<Question>(this, Property(UKParliamentOntology.CorrectingAnswerHasQuestion.Uri));
     }
 }

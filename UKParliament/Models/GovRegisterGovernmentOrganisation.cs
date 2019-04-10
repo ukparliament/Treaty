@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public GovRegisterGovernmentOrganisation(INode node) : base(node) { }
 
-        public string GovernmentOrganisationGovRegisterId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GovernmentOrganisationGovRegisterId))).SingleOrDefault();
+        public string GovernmentOrganisationGovRegisterId => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.GovernmentOrganisationGovRegisterId.Uri))).SingleOrDefault();
     }
 }

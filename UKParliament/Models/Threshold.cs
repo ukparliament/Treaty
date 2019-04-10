@@ -11,10 +11,10 @@ namespace UKParliament.Model
     {
         public Threshold(INode node) : base(node) { }
 
-        public ICollection<ThresholdAttainment> ThresholdHasThresholdAttainment => new DynamicObjectCollection<ThresholdAttainment>(this, Property(UKParliamentOntology.ThresholdHasThresholdAttainment));
+        public ICollection<ThresholdAttainment> ThresholdHasThresholdAttainment => new DynamicObjectCollection<ThresholdAttainment>(this, Property(UKParliamentOntology.ThresholdHasThresholdAttainment.Uri));
 
-        public ICollection<string> ThresholdName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ThresholdName));
+        public ICollection<string> ThresholdName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ThresholdName.Uri));
 
-        public ICollection<int> ThresholdSignatureNumber => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ThresholdSignatureNumber));
+        public ICollection<int> ThresholdSignatureNumber => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ThresholdSignatureNumber.Uri));
     }
 }

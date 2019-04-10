@@ -1,17 +1,67 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
-    ViewData["Title"] = @Model.Treaties.First().LaidThingName;
+    ViewData["Title"] = @Model.Treaties.FirstOrDefault()?.LaidThingName;
 }
 
 <div class="section--primary">
     <div class="container">
         <small><a asp-controller="Treaty" asp-action="Index">@Localizer["Category"]</a></small>
-        <h1><span>@Model.Treaties.First().LaidThingName</span></h1>
+        <h1><span>@Model.Treaties.FirstOrDefault()?.LaidThingName</span></h1>
     </div>
 </div>
 
-<section id="content">
-    <div class="container">
-        <p>bla</p>
-    </div>
-</section>
+@foreach (var treaty in Model.Treaties)
+{
+    <section id="content">
+        <div class="container">
+            <div class="card">
+                <div class="card__details">
+                    <h2>
+                        <a asp-controller="Treaty" asp-action="Item" asp-route-id="@treaty.Id">@treaty.LaidThingName</a>
+                    </h2>
+                    <dl>
+                        <dt>Lead government organisation</dt>
+                        <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
+                        @foreach (var seriesMembership in @treaty.TreatyHasSeriesMembership)
+                        {
+                            <dt>Series membership item citation</dt>
+                            <dd>@seriesMembership.SeriesItemCitation</dd>
+                        }
+                        @foreach (var weblink in treaty.WorkPackagedThingHasWorkPackagedThingWebLink)
+                        {
+                            <dt>Web link</dt>
+                            <dd><a href="@weblink">Treaty details on the gov.uk website</a></dd>
+                        }
+                        @*@foreach (var laying in @treaty.LaidThingHasLaying)
+        {
+            <dt>Laying date</dt>
+            <dd>@laying.LayingDate.ToString("dddd, dd MMMM yyyy")</dd>
+            <dt>Laying body</dt>
+            <dd>@laying.LayingHasLayingBody.GroupName</dd>
+            @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
+            {
+                @foreach (var house in @procedureStep.ProcedureStepHasHouse)
+                {
+                    <dt>Procedure step has house</dt>
+                    <dd>@house.HouseName</dd>
+                }
+            }
+        }*@
+                        <dt>Timeline</dt>
+                        <dd>
+                            <ul>
+                                @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.OrderBy(x => x.BusinessItemDate.FirstOrDefault()))
+                                {
+                                    @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
+                                    {
+                                        <li>@businessItem.BusinessItemDate.FirstOrDefault().ToString("dddd, dd MMMM yyyy"): <a href="@businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()">@procedureStep.ProcedureStepName</a></li>
+                                    }
+                                }
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+}

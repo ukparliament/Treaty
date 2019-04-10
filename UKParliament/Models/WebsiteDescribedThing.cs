@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public WebsiteDescribedThing(INode node) : base(node) { }
 
-        public ICollection<string> WebsiteDescription => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.WebsiteDescription));
+        public ICollection<string> WebsiteDescription => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.WebsiteDescription.Uri));
     }
 }

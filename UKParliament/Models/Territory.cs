@@ -11,8 +11,8 @@ namespace UKParliament.Model
     {
         public Territory(INode node) : base(node) { }
 
-        public ICollection<string> TerritoryName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TerritoryName));
+        public ICollection<string> TerritoryName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TerritoryName.Uri));
 
-        public ICollection<string> TerritoryOfficialName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TerritoryOfficialName));
+        public ICollection<string> TerritoryOfficialName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TerritoryOfficialName.Uri));
     }
 }

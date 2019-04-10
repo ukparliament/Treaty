@@ -11,6 +11,7 @@
 namespace UKParliament
 {
     using OntologyHelper;
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -21,20 +22,20 @@ namespace UKParliament
         /// <summary>
         /// Constant URIs for the Houses of Parliament
         /// </summary>
-        public const string
-            HouseOfCommons = UKParliamentOntology.Base + "1AFu55Hs",
-            HouseOfLords = UKParliamentOntology.Base + "WkUWUBMx";
+        public static readonly Uri
+            HouseOfCommons = new Uri(UKParliamentOntology.BaseUri, "1AFu55Hs"),
+            HouseOfLords = new Uri(UKParliamentOntology.BaseUri, "WkUWUBMx");
 
         /// <summary>
         /// Constant URIs for instances in the UK Parliament Graph
         /// </summary>
-        public const string
-            DraftAffirmativeProcedure = UKParliamentOntology.Base + "H5YJQsK2",
-            DraftNegativeProcedure = UKParliamentOntology.Base + "gTgidljI",
-            MadeAffirmativeProcedure = UKParliamentOntology.Base + "iWugpxMn",
-            MadeNegativeProcedure = UKParliamentOntology.Base + "5S6p4YsP",
-            ProposedNegativeStatutoryInstrumentProcedure = UKParliamentOntology.Base + "iCdMN1MW",
-            TreatyProcedure = UKParliamentOntology.Base + "D00dsjR2";
+        public static readonly Uri
+            DraftAffirmativeProcedure = new Uri(UKParliamentOntology.BaseUri, "H5YJQsK2"),
+            DraftNegativeProcedure = new Uri(UKParliamentOntology.BaseUri, "gTgidljI"),
+            MadeAffirmativeProcedure = new Uri(UKParliamentOntology.BaseUri, "iWugpxMn"),
+            MadeNegativeProcedure = new Uri(UKParliamentOntology.BaseUri, "5S6p4YsP"),
+            ProposedNegativeStatutoryInstrumentProcedure = new Uri(UKParliamentOntology.BaseUri, "iCdMN1MW"),
+            TreatyProcedure = new Uri(UKParliamentOntology.BaseUri, "D00dsjR2");
 
         /// <summary>
         /// Lists of URI instances in the UK Parliament Graph
@@ -47,12 +48,7 @@ namespace UKParliament
         /// </summary>
         public static readonly Dictionary<string, string>
             ControllerMap = new Dictionary<string, string> {
-                { DraftAffirmativeProcedure, "Treaty" },
-                { DraftNegativeProcedure, "Treaty" },
-                { MadeAffirmativeProcedure, "Treaty" },
-                { MadeNegativeProcedure, "Treaty" },
-                { ProposedNegativeStatutoryInstrumentProcedure, "Treaty" },
-                { TreatyProcedure, "Treaty" }
+                { "D00dsjR2", "Treaty" }
             };
     }
 }

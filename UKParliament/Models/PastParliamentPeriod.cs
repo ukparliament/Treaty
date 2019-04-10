@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public PastParliamentPeriod(INode node) : base(node) { }
 
-        public DateTimeOffset ParliamentPeriodEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentPeriodEndDate))).SingleOrDefault();
+        public DateTimeOffset ParliamentPeriodEndDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentPeriodEndDate.Uri))).SingleOrDefault();
     }
 }

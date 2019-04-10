@@ -11,6 +11,6 @@ namespace UKParliament.Model
     {
         public ExOfficioMembership(INode node) : base(node) { }
 
-        public Member ExOfficioMembershipHasMember => ((IEnumerable<Member>)new DynamicObjectCollection<Member>(this, Property(UKParliamentOntology.ExOfficioMembershipHasMember))).SingleOrDefault();
+        public Member ExOfficioMembershipHasMember => ((IEnumerable<Member>)new DynamicObjectCollection<Member>(this, Property(UKParliamentOntology.ExOfficioMembershipHasMember.Uri))).SingleOrDefault();
     }
 }

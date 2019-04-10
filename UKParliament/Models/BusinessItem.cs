@@ -11,14 +11,14 @@ namespace UKParliament.Model
     {
         public BusinessItem(INode node) : base(node) { }
 
-        public ParliamentPeriod BusinessItemHasParliamentPeriod => ((IEnumerable<ParliamentPeriod>)new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.BusinessItemHasParliamentPeriod))).SingleOrDefault();
+        public ParliamentPeriod BusinessItemHasParliamentPeriod => ((IEnumerable<ParliamentPeriod>)new DynamicObjectCollection<ParliamentPeriod>(this, Property(UKParliamentOntology.BusinessItemHasParliamentPeriod.Uri))).SingleOrDefault();
 
-        public ICollection<BusinessItemWebLink> BusinessItemHasBusinessItemWebLink => new DynamicObjectCollection<BusinessItemWebLink>(this, Property(UKParliamentOntology.BusinessItemHasBusinessItemWebLink));
+        public ICollection<BusinessItemWebLink> BusinessItemHasBusinessItemWebLink => new DynamicObjectCollection<BusinessItemWebLink>(this, Property(UKParliamentOntology.BusinessItemHasBusinessItemWebLink.Uri));
 
-        public ICollection<ProcedureStep> BusinessItemHasProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.BusinessItemHasProcedureStep));
+        public ICollection<ProcedureStep> BusinessItemHasProcedureStep => new DynamicObjectCollection<ProcedureStep>(this, Property(UKParliamentOntology.BusinessItemHasProcedureStep.Uri));
 
-        public WorkPackage BusinessItemHasWorkPackage => ((IEnumerable<WorkPackage>)new DynamicObjectCollection<WorkPackage>(this, Property(UKParliamentOntology.BusinessItemHasWorkPackage))).SingleOrDefault();
+        public WorkPackage BusinessItemHasWorkPackage => ((IEnumerable<WorkPackage>)new DynamicObjectCollection<WorkPackage>(this, Property(UKParliamentOntology.BusinessItemHasWorkPackage.Uri))).SingleOrDefault();
 
-        public ICollection<DateTimeOffset> BusinessItemDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.BusinessItemDate));
+        public ICollection<DateTimeOffset> BusinessItemDate => new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.BusinessItemDate.Uri));
     }
 }

@@ -11,12 +11,12 @@ namespace UKParliament.Model
     {
         public LocatedSignatureCount(INode node) : base(node) { }
 
-        public ICollection<EPetition> LocatedSignatureCountHasEPetition => new DynamicObjectCollection<EPetition>(this, Property(UKParliamentOntology.LocatedSignatureCountHasEPetition));
+        public ICollection<EPetition> LocatedSignatureCountHasEPetition => new DynamicObjectCollection<EPetition>(this, Property(UKParliamentOntology.LocatedSignatureCountHasEPetition.Uri));
 
-        public Place LocatedSignatureCountHasPlace => ((IEnumerable<Place>)new DynamicObjectCollection<Place>(this, Property(UKParliamentOntology.LocatedSignatureCountHasPlace))).SingleOrDefault();
+        public Place LocatedSignatureCountHasPlace => ((IEnumerable<Place>)new DynamicObjectCollection<Place>(this, Property(UKParliamentOntology.LocatedSignatureCountHasPlace.Uri))).SingleOrDefault();
 
-        public ICollection<int> SignatureCount => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.SignatureCount));
+        public ICollection<int> SignatureCount => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.SignatureCount.Uri));
 
-        public ICollection<string> SignatureCountRetrievedAt => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.SignatureCountRetrievedAt));
+        public ICollection<string> SignatureCountRetrievedAt => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.SignatureCountRetrievedAt.Uri));
     }
 }
