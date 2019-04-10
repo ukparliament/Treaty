@@ -79,7 +79,7 @@
                         @if (ViewBag.Current == "true")
                         {
                         <li>
-                            <a aria-label="Remove current filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep">Current</a>
+                            <a aria-label="Remove current filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep"><span></span>Current</a>
                         </li>
                         }
                         @foreach (var leadGovernmentOrganisationId in @ViewBag.LeadGovernmentOrganisation)
@@ -87,7 +87,7 @@
                             @foreach (var leadGovernmentOrganisation in Model.GovernmentOrganisationCollection.Where(x => x.Id == leadGovernmentOrganisationId))
                             {
                                 <li>
-                                    <a aria-label="Remove lead government organisation filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep">@leadGovernmentOrganisation.GroupName</a>
+                                    <a aria-label="Remove lead government organisation filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep"><span></span>@leadGovernmentOrganisation.GroupName</a>
                                 </li>
                             }
                         }
@@ -96,19 +96,19 @@
                             @if (seriesMembershipType == "CountrySeriesMembership")
                             {
                                 <li>
-                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep">Country series</a>
+                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep"><span></span>Country series</a>
                                 </li>
                             }
                             @if (seriesMembershipType == "MiscellaneousSeriesMembership")
                             {
                                 <li>
-                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep">Miscellaneous series</a>
+                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep"><span></span>Miscellaneous series</a>
                                 </li>
                             }
                             @if (seriesMembershipType == "EuropeanUnionSeriesMembership")
                             {
                                 <li>
-                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep">European Union series</a>
+                                    <a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-procedureStep="@ViewBag.ProcedureStep"><span></span>European Union series</a>
                                 </li>
                             }
                         }
@@ -117,7 +117,7 @@
                             @foreach (var procedureStep in Model.ProcedureStepCollection.Where(procedureStep => procedureStep.Id == procedureStepId))
                             {
                                 <li>
-                                    <a aria-label="Remove procedure step filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType">@procedureStep.ProcedureStepName</a>
+                                    <a aria-label="Remove procedure step filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType"><span></span>@procedureStep.ProcedureStepName</a>
                                 </li>
                             }
                         }
