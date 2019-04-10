@@ -1,8 +1,8 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
-    ViewData["Title"] = Model.Treaties.FirstOrDefault().WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName;
-    int totalNumberOfTreaties = Model.Treaties.Count();
-    IEnumerable<Model.Treaty> treaties = Model.Treaties.Where(treaty =>
+    ViewData["Title"] = Model.TreatyCollection.FirstOrDefault().WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName;
+    int totalNumberOfTreaties = Model.TreatyCollection.Count();
+    IEnumerable<Model.Treaty> treaties = Model.TreatyCollection.Where(treaty =>
     {
         var filterTreaty = false;
         var hasLeadGovernmentOrganisation = false;
@@ -84,7 +84,7 @@
                         }
                         @foreach (var leadGovernmentOrganisationId in @ViewBag.LeadGovernmentOrganisation)
                         {
-                            @foreach (var leadGovernmentOrganisation in Model.GovernmentOrganisations.Where(x => x.Id == leadGovernmentOrganisationId))
+                            @foreach (var leadGovernmentOrganisation in Model.GovernmentOrganisationCollection.Where(x => x.Id == leadGovernmentOrganisationId))
                             {
                                 <li>
                                     <a aria-label="Remove lead government organisation filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep">@leadGovernmentOrganisation.GroupName</a>
@@ -114,7 +114,7 @@
                         }
                         @foreach (var procedureStepId in @ViewBag.ProcedureStep)
                         {
-                            @foreach (var procedureStep in Model.ProcedureSteps.Where(procedureStep => procedureStep.Id == procedureStepId))
+                            @foreach (var procedureStep in Model.ProcedureStepCollection.Where(procedureStep => procedureStep.Id == procedureStepId))
                             {
                                 <li>
                                     <a aria-label="Remove procedure step filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-current="@ViewBag.Current" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType">@procedureStep.ProcedureStepName</a>

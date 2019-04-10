@@ -14,7 +14,7 @@
 <section id="content">
     <div class="container">
         <ol class="list--block list--3 ">
-            @foreach (var house in Model.Houses.OrderBy(x => x.HouseName.Single()))
+            @foreach (var house in Model.HouseCollection.OrderBy(x => x.HouseName.Single()))
             {
                 <li>
                     <div class="card">

@@ -1,24 +1,24 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
-    ViewData["Title"] = @Model.Treaties.FirstOrDefault()?.LaidThingName;
+    Model.Treaty treaty = @Model.TreatyCollection.FirstOrDefault();
+    ViewData["Title"] = treaty?.LaidThingName;
+    ViewData["ResourceType"] = "Treaty";
+
 }
 
-<div class="section--primary">
-    <div class="container">
-        <small><a asp-controller="Treaty" asp-action="Index">@Localizer["Category"]</a></small>
-        <h1><span>@Model.Treaties.FirstOrDefault()?.LaidThingName</span></h1>
-    </div>
-</div>
 
-@foreach (var treaty in Model.Treaties)
+@if (treaty != null)
 {
+    <div class="section--primary">
+        <div class="container">
+            <small><a asp-controller="Treaty" asp-action="Index">@Localizer["Category"]</a></small>
+            <h1><span>@treaty?.LaidThingName</span></h1>
+        </div>
+    </div>
     <section id="content">
         <div class="container">
             <div class="card">
                 <div class="card__details">
-                    <h2>
-                        <a asp-controller="Treaty" asp-action="Item" asp-route-id="@treaty.Id">@treaty.LaidThingName</a>
-                    </h2>
                     <dl>
                         <dt>Lead government organisation</dt>
                         <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
@@ -33,20 +33,20 @@
                             <dd><a href="@weblink">Treaty details on the gov.uk website</a></dd>
                         }
                         @*@foreach (var laying in @treaty.LaidThingHasLaying)
-        {
-            <dt>Laying date</dt>
-            <dd>@laying.LayingDate.ToString("dddd, dd MMMM yyyy")</dd>
-            <dt>Laying body</dt>
-            <dd>@laying.LayingHasLayingBody.GroupName</dd>
-            @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
-            {
-                @foreach (var house in @procedureStep.ProcedureStepHasHouse)
-                {
-                    <dt>Procedure step has house</dt>
-                    <dd>@house.HouseName</dd>
-                }
-            }
-        }*@
+                            {
+                                <dt>Laying date</dt>
+                                <dd>@laying.LayingDate.ToString("dddd, dd MMMM yyyy")</dd>
+                                <dt>Laying body</dt>
+                                <dd>@laying.LayingHasLayingBody.GroupName</dd>
+                                @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
+                                {
+                                    @foreach (var house in @procedureStep.ProcedureStepHasHouse)
+                                    {
+                                        <dt>Procedure step has house</dt>
+                                        <dd>@house.HouseName</dd>
+                                    }
+                                }
+                            }*@
                         <dt>Timeline</dt>
                         <dd>
                             <ul>
@@ -64,4 +64,8 @@
             </div>
         </div>
     </section>
+}
+else
+{
+    <partial name="../Shared/_ResourceNotFound.cshtml" />
 }

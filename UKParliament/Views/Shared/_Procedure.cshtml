@@ -1,7 +1,7 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 
 <ol class="list--block list--3">
-    @foreach (var procedure in Model.Procedures.OrderBy(x => x.ProcedureName))
+    @foreach (var procedure in Model.ProcedureCollection.OrderBy(x => x.ProcedureName))
     {
         <li>
             <div class="card">

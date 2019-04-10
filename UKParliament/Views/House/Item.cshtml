@@ -1,12 +1,12 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
-    ViewData["Title"] = @Model.Houses.First().HouseName.Single();
+    ViewData["Title"] = @Model.HouseCollection.First().HouseName.Single();
 }
 
 <div class="section--primary">
     <div class="container">
         <small><a asp-controller="House" asp-action="Index">@Localizer["Category"]</a></small>
-        <h1><span>@Model.Houses.First().HouseName.Single()</span></h1>
+        <h1><span>@Model.HouseCollection.First().HouseName.Single()</span></h1>
         <p>@Localizer["Abstract"]</p>
     </div>
 </div>
