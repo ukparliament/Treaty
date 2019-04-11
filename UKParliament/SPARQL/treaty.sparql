@@ -6,8 +6,8 @@ CONSTRUCT {
     ?treaty
         a :InForceTreaty, :LaidThing, :Treaty, :WorkPackagedThing ;
         :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership ;
-        :laidThingName ?laidThingName ;
         :laidThingHasLaying ?laying ;
+        :treatyName ?treatyName ;
         :treatyHasCountrySeriesMembership ?countrySeriesMembership ;
         :treatyHasEuropeanUnionSeriesMembership ?europeanSeriesMembership ;
         :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation ;
@@ -64,8 +64,14 @@ CONSTRUCT {
 WHERE {
     ?treaty
         a :Treaty ;
-        :laidThingName ?laidThingName ;
+        :treatyName ?treatyName ;
         :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation .
+
+    OPTIONAL {
+        ?treaty
+            a :InForceTreaty ;
+            :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership .
+    }
 
     ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
 
@@ -81,12 +87,6 @@ WHERE {
     OPTIONAL { ?treaty :treatyHasMiscellaneousSeriesMembership ?miscellaneousSeriesMembership . }
 
     OPTIONAL { ?treaty :treatyHasCountrySeriesMembership ?countrySeriesMembership . }
-
-    OPTIONAL {
-        ?treaty
-            a :InForceTreaty ;
-            :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership .
-    }
 
     OPTIONAL {
         ?treaty

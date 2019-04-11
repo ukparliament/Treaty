@@ -1,7 +1,7 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
     Model.Treaty treaty = @Model.TreatyCollection.FirstOrDefault();
-    ViewData["Title"] = treaty?.LaidThingName;
+    ViewData["Title"] = treaty?.TreatyName;
     ViewData["ResourceType"] = "Treaty";
 
 }
@@ -12,56 +12,52 @@
     <div class="section--primary">
         <div class="container">
             <small><a asp-controller="Treaty" asp-action="Index">@Localizer["Category"]</a></small>
-            <h1><span>@treaty?.LaidThingName</span></h1>
+            <h1><span>@treaty.TreatyName</span></h1>
+            <dl class="meta">
+                <dt>Lead government organisation</dt>
+                <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
+                @foreach (var seriesMembership in @treaty.TreatyHasSeriesMembership)
+                {
+                    <dt>Series membership item citation</dt>
+                    <dd>@seriesMembership.SeriesItemCitation</dd>
+                }
+                @foreach (var weblink in treaty.WorkPackagedThingHasWorkPackagedThingWebLink)
+                {
+                    <dt>Web link</dt>
+                    <dd><a href="@weblink">Treaty details on the gov.uk website</a></dd>
+                }
+            </dl>
         </div>
     </div>
     <section id="content">
         <div class="container">
-            <div class="card">
-                <div class="card__details">
-                    <dl>
-                        <dt>Lead government organisation</dt>
-                        <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
-                        @foreach (var seriesMembership in @treaty.TreatyHasSeriesMembership)
+            <ol class="track--alternative">
+                @foreach (var businessItemDate in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Select(x => x.BusinessItemDate.FirstOrDefault()).Distinct().OrderBy(x => x))
+                {
+                    <li>
+                        <h2>@businessItemDate.ToString("dddd, dd MMMM yyyy")</h2>
+                        <ol class="list--block">
+                        @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Where(x => x.BusinessItemDate.FirstOrDefault() == businessItemDate).OrderBy(x => x.BusinessItemDate.FirstOrDefault()))
                         {
-                            <dt>Series membership item citation</dt>
-                            <dd>@seriesMembership.SeriesItemCitation</dd>
-                        }
-                        @foreach (var weblink in treaty.WorkPackagedThingHasWorkPackagedThingWebLink)
-                        {
-                            <dt>Web link</dt>
-                            <dd><a href="@weblink">Treaty details on the gov.uk website</a></dd>
-                        }
-                        @*@foreach (var laying in @treaty.LaidThingHasLaying)
+                            @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
                             {
-                                <dt>Laying date</dt>
-                                <dd>@laying.LayingDate.ToString("dddd, dd MMMM yyyy")</dd>
-                                <dt>Laying body</dt>
-                                <dd>@laying.LayingHasLayingBody.GroupName</dd>
-                                @foreach (var procedureStep in @laying.BusinessItemHasProcedureStep)
-                                {
-                                    @foreach (var house in @procedureStep.ProcedureStepHasHouse)
-                                    {
-                                        <dt>Procedure step has house</dt>
-                                        <dd>@house.HouseName</dd>
-                                    }
-                                }
-                            }*@
-                        <dt>Timeline</dt>
-                        <dd>
-                            <ul>
-                                @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.OrderBy(x => x.BusinessItemDate.FirstOrDefault()))
-                                {
-                                    @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
-                                    {
-                                        <li>@businessItem.BusinessItemDate.FirstOrDefault().ToString("dddd, dd MMMM yyyy"): <a href="@businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()">@procedureStep.ProcedureStepName</a></li>
-                                    }
-                                }
-                            </ul>
-                        </dd>
-                    </dl>
-                </div>
-            </div>
+                            <li>
+                                <div class="card">
+                                    <div class="card__details">
+                                        <h3>@procedureStep.ProcedureStepName</h3>
+                                        @if (@businessItem.BusinessItemHasBusinessItemWebLink.Count() > 0)
+                                        {
+                                            <p><a href="@businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()">@businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()</a></p>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                            }
+                        }
+                        </ol>
+                    </li>
+                }
+            </ol>
         </div>
     </section>
 }

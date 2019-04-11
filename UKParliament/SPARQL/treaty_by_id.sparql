@@ -6,8 +6,8 @@ CONSTRUCT {
     ?treaty
         a :InForceTreaty, :LaidThing, :Treaty, :WorkPackagedThing ;
         :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership ;
-        :laidThingName ?laidThingName ;
         :laidThingHasLaying ?laying ;
+        :treatyName ?treatyName ;
         :treatyHasCountrySeriesMembership ?countrySeriesMembership ;
         :treatyHasEuropeanUnionSeriesMembership ?europeanSeriesMembership ;
         :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation ;
@@ -16,7 +16,9 @@ CONSTRUCT {
         :workPackagedThingHasWorkPackage ?workPackage ;
         :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink .
 
-    ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
+    ?leadGovernmentOrganisation
+        a :GovernmentOrganisation ;
+        :groupName ?leadGovernmentOrganisationGroupName .
 
     ?laying
         a :Laying, :BusinessItem ;
@@ -34,30 +36,43 @@ CONSTRUCT {
         :workPackageHasProcedure ?procedure .
 
     ?businessItem
+        a :BusinessItem ;
         :businessItemDate ?businessItemDate ;
         :businessItemHasBusinessItemWebLink ?businessItemWebLink ;
         :businessItemHasProcedureStep ?BusinessItemProcedureStep .
 
-    ?BusinessItemProcedureStep :procedureStepName ?procedureStepName .
+    ?BusinessItemProcedureStep
+        a :ProcedureStep ;
+        :procedureStepName ?procedureStepName .
 
     ?procedure
         a :Procedure ;
         :procedureName ?procedureName .
 
-    ?procedureStep :procedureStepHasHouse ?house .
+    ?procedureStep
+        a :ProcedureStep ;
+        :procedureStepHasHouse ?house .
 
     ?seriesMembership
         a ?seriesMembershipType ;
         :seriesItemCitation ?seriesItemCitation .
 
-    ?house :houseName ?houseName .
+    ?house
+        a :House ;
+        :houseName ?houseName .
 }
 WHERE {
     BIND(@id as ?treaty)
     ?treaty
         a :Treaty ;
-        :laidThingName ?laidThingName ;
+        :treatyName ?treatyName ;
         :treatyHasLeadGovernmentOrganisation ?leadGovernmentOrganisation .
+
+    OPTIONAL {
+        ?treaty
+            a :InForceTreaty ;
+            :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership .
+    }
 
     ?leadGovernmentOrganisation :groupName ?leadGovernmentOrganisationGroupName .
 
@@ -73,12 +88,6 @@ WHERE {
     OPTIONAL { ?treaty :treatyHasMiscellaneousSeriesMembership ?miscellaneousSeriesMembership . }
 
     OPTIONAL { ?treaty :treatyHasCountrySeriesMembership ?countrySeriesMembership . }
-
-    OPTIONAL {
-        ?treaty
-            a :InForceTreaty ;
-            :inForceTreatyHasTreatySeriesMembership ?treatySeriesMembership .
-    }
 
     OPTIONAL {
         ?treaty

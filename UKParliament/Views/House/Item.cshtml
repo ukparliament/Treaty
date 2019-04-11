@@ -1,18 +1,27 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
-    ViewData["Title"] = @Model.HouseCollection.First().HouseName.Single();
+    Model.House house = @Model.HouseCollection.FirstOrDefault();
+    ViewData["Title"] = house?.HouseName;
+    ViewData["ResourceType"] = "House";
 }
 
-<div class="section--primary">
-    <div class="container">
-        <small><a asp-controller="House" asp-action="Index">@Localizer["Category"]</a></small>
-        <h1><span>@Model.HouseCollection.First().HouseName.Single()</span></h1>
-        <p>@Localizer["Abstract"]</p>
+@if (house != null)
+{
+    <div class="section--primary">
+        <div class="container">
+            <small><a asp-controller="House" asp-action="Index">@Localizer["Category"]</a></small>
+            <h1><span>@house.HouseName</span></h1>
+            <p>@Localizer["Abstract"]</p>
+        </div>
     </div>
-</div>
 
-<section id="content">
-    <div class="container">
-        <p>something about the house</p>
-    </div>
-</section>
+    <section id="content">
+        <div class="container">
+            <p>something about the house</p>
+        </div>
+    </section>
+}
+else
+{
+    <partial name="../Shared/_ResourceNotFound.cshtml" />
+}

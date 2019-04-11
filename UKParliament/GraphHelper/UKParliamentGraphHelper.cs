@@ -41,7 +41,9 @@ namespace UKParliament
         /// Lists of URI instances in the UK Parliament Graph
         /// </summary>
         public static List<string>
-            TreatyProcedureEndStep = new List<string>() { "ypryR1wZ", "qkrlv9rh" };
+            TreatyProcedureEndStep = new List<string>() { "ypryR1wZ", "qkrlv9rh" },
+            TreatyProcedureScheduledDebateStep = new List<string>() { "WdiOAL9I", "bEzmXakv", "M28y2NsI", "uwTqgHE3", "bNQUaV4J" },
+            TreatyProcedureMotionToNotRatifyStep = new List<string>() { "3wIKRs06", "443aMXaZ" };
 
         /// <summary>
         /// Constant mapping of resource URIs to controllers
