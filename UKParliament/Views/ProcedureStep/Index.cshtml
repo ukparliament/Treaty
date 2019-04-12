@@ -1,0 +1,82 @@
+﻿@model UKParliament.Model.UKParliamentDynamicGraph
+@{
+    ViewData["Title"] = OntologyHelper.UKParliamentOntology.ProcedureStep.Label;
+    int totalNumberOfProcedureSteps = Model.ProcedureStepCollection.Count();
+    IEnumerable<Model.ProcedureStep> procedureSteps = ViewBag.Filter.Count > 0 ? Model.ProcedureStepCollection.Where(procedureStep =>
+        {
+            var filterProcedureStep = false;
+
+            if (ViewBag.Filter["house"].Count > 0 && !procedureStep.ProcedureStepHasHouse.Any(house => { List<string> houses = ViewBag.Filter["house"]; return houses.Any(houseId => houseId == house.Id); }))
+            {
+                filterProcedureStep = true;
+            }
+            if (ViewBag.Filter["procedure"].Count > 0 && !procedureStep.ProcedureStepIsFromProcedureRoute.Any(procedureRoute => procedureRoute.ProcedureRouteHasProcedure.Any(procedure => { List<string> procedures = ViewBag.Filter["procedure"]; return procedures.Any(procedureId => procedureId == procedure.Id); })))
+            {
+                filterProcedureStep = true;
+            }
+            return !filterProcedureStep;
+        }
+    ) : Model.ProcedureStepCollection;
+}
+
+<div class="section--primary">
+    <div class="container">
+        <small><a asp-controller="Home" asp-action="Index">@Localizer["Category"]</a></small>
+        <h1><span>@ViewData["Title"]</span></h1>
+        <dl class="meta">
+            <dt>Total number of procedure steps</dt>
+            <dd>@totalNumberOfProcedureSteps</dd>
+            <dt>Order</dt>
+            <dd>Alphabetical by procedure step name</dd>
+            @if (ViewBag.Filter.Count > 0)
+            {
+                <dt>Number of filtered procedure steps</dt>
+                <dd>@procedureSteps.Count()</dd>
+                <dt>Filters</dt>
+                <dd>
+                    <ul class="list--inline">
+                        @foreach (var houseId in ViewBag.Filter["house"])
+                        {
+                            <li><a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="ProcedureStep" asp-action="Index"><span></span>@Model.HouseCollection.Where(house => house.Id == houseId).FirstOrDefault()?.HouseName</a></li>
+                        }
+                        @foreach (var procedureId in ViewBag.Filter["procedure"])
+                        {
+                            <li><a aria-label="Remove series membership filter" class="hint theme--grey-4 remove-hint" asp-controller="ProcedureStep" asp-action="Index"><span></span>@Model.ProcedureCollection.Where(procedure => procedure.Id == procedureId).FirstOrDefault()?.ProcedureName</a></li>
+                        }
+                    </ul>
+                </dd>
+            }
+        </dl>
+    </div>
+</div>
+
+<section id="content">
+    <div class="container">
+        <ol class="list--block">
+            @foreach (var procedureStep in procedureSteps.OrderBy(x => x.ProcedureStepName))
+            {
+                <li>
+                    <div class="card">
+                        <div class="card__details">
+                            <h3>@procedureStep.ProcedureStepName</h3>
+                            <ul class="list--inline">
+                                @foreach (var house in procedureStep.ProcedureStepHasHouse)
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-4" asp-controller="ProcedureStep" asp-action="Index" asp-route-house="@house.Id">@house.HouseName</a>
+                                    </li>
+                                }
+                                @foreach (var procedure in procedureStep.ProcedureStepIsFromProcedureRoute.SelectMany(route => route.ProcedureRouteHasProcedure).Distinct())
+                                {
+                                    <li>
+                                        <a class="hint theme--grey-4" asp-controller="ProcedureStep" asp-action="Index" asp-route-procedure="@procedure.Id">@procedure.ProcedureName</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ol>
+    </div>
+</section>

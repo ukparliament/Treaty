@@ -26,6 +26,10 @@ namespace UKParliament
         [HttpGet]
         public ActionResult Index()
         {
+            //var query = "treaty.sparql";
+            //var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
+
+            //return GetView(query, filters);
             var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty.sparql");
 
             var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };

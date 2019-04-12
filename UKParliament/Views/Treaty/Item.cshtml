@@ -14,17 +14,47 @@
             <small><a asp-controller="Treaty" asp-action="Index">@Localizer["Category"]</a></small>
             <h1><span>@treaty.TreatyName</span></h1>
             <dl class="meta">
-                <dt>Lead government organisation</dt>
-                <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
+                @if (treaty.TreatyCommandPaperPrefix != null)
+                {
+                    <dt>Command paper prefix and number</dt>
+                    <dd>@treaty.TreatyCommandPaperPrefix @treaty.TreatyCommandPaperNumber</dd>
+                }
                 @foreach (var seriesMembership in @treaty.TreatyHasSeriesMembership)
                 {
-                    <dt>Series membership item citation</dt>
-                    <dd>@seriesMembership.SeriesItemCitation</dd>
+                    @if (Model.CountrySeriesMembershipCollection.Any(countrySeriesMembership => countrySeriesMembership.Id == seriesMembership.Id))
+                    {
+                        <dt>Series membership</dt>
+                        <dd>Country series</dd>
+                    }
+                    @if (Model.EuropeanUnionSeriesMembershipCollection.Any(europeanUnionSeriesMembership => europeanUnionSeriesMembership.Id == seriesMembership.Id))
+                    {
+                        <dt>Series membership</dt>
+                        <dd>European union series</dd>
+                    }
+                    @if (Model.MiscellaneousSeriesMembershipCollection.Any(miscellaneousSeriesMembership => miscellaneousSeriesMembership.Id == seriesMembership.Id))
+                    {
+                        <dt>Series membership</dt>
+                        <dd>Miscellaneous series</dd>
+                    }
+                    @if (@seriesMembership.SeriesItemCitation != null)
+                    {
+                        <dt>Series item citation</dt>
+                        <dd>@seriesMembership.SeriesItemCitation</dd>
+                    }
+                }
+                <dt>Lead government organisation</dt>
+                <dd>@treaty.TreatyHasLeadGovernmentOrganisation.GroupName</dd>
+                @if (treaty.LaidThingHasLaying.Count() > 0)
+                {
+                    <dt>Laying body</dt>
+                    <dd>@treaty.LaidThingHasLaying.FirstOrDefault()?.LayingHasLayingBody.GroupName</dd>
+                    <dt>Date laid</dt>
+                    <dd>@treaty.LaidThingHasLaying.FirstOrDefault()?.LayingDate.ToString("dddd, dd MMMM yyyy")</dd>
                 }
                 @foreach (var weblink in treaty.WorkPackagedThingHasWorkPackagedThingWebLink)
                 {
                     <dt>Web link</dt>
-                    <dd><a href="@weblink">Treaty details on the gov.uk website</a></dd>
+                    <dd><a href="@weblink">@weblink</a></dd>
                 }
             </dl>
         </div>
@@ -32,12 +62,20 @@
     <section id="content">
         <div class="container">
             <ol class="track--alternative">
-                @foreach (var businessItemDate in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Select(x => x.BusinessItemDate.FirstOrDefault()).Distinct().OrderBy(x => x))
+                @foreach (var businessItemDate in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Select(x => x.BusinessItemDate.FirstOrDefault()).Distinct().OrderBy(distinctBusinessItemDate => distinctBusinessItemDate))
                 {
                     <li>
                         <h2>@businessItemDate.ToString("dddd, dd MMMM yyyy")</h2>
                         <ol class="list--block">
-                        @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Where(x => x.BusinessItemDate.FirstOrDefault() == businessItemDate).OrderBy(x => x.BusinessItemDate.FirstOrDefault()))
+                        @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Where(businessItem => businessItem.BusinessItemDate.FirstOrDefault() == businessItemDate).OrderBy(businessItem =>
+                                {
+
+                                    if (UKParliament.GraphHelper.TreatyProcedureStepOrder.Contains(businessItem.BusinessItemHasProcedureStep.FirstOrDefault()?.Id))
+                                    {
+                                        return UKParliament.GraphHelper.TreatyProcedureStepOrder.IndexOf(businessItem.BusinessItemHasProcedureStep.FirstOrDefault()?.Id);
+                                    }
+                                    return 999;
+                                }))
                         {
                             @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
                             {

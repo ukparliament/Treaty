@@ -5753,6 +5753,7 @@ namespace OntologyHelper
             public static string Label => "procedure step date note";
             public static ICollection<INode> Type => new List<INode> {
                 nodeFactory.CreateUriNode(UriFactory.Create("http://www.w3.org/2002/07/owl#DatatypeProperty")),
+                nodeFactory.CreateUriNode(UriFactory.Create("http://www.w3.org/2002/07/owl#FunctionalProperty")),
             };
         };
 
@@ -5774,6 +5775,7 @@ namespace OntologyHelper
             public static string Label => "procedure step link note";
             public static ICollection<INode> Type => new List<INode> {
                 nodeFactory.CreateUriNode(UriFactory.Create("http://www.w3.org/2002/07/owl#DatatypeProperty")),
+                nodeFactory.CreateUriNode(UriFactory.Create("http://www.w3.org/2002/07/owl#FunctionalProperty")),
             };
         };
 
@@ -5815,6 +5817,7 @@ namespace OntologyHelper
             public static string Label => "procedure step scope note";
             public static ICollection<INode> Type => new List<INode> {
                 nodeFactory.CreateUriNode(UriFactory.Create("http://www.w3.org/2002/07/owl#DatatypeProperty")),
+                nodeFactory.CreateUriNode(UriFactory.Create("http://www.w3.org/2002/07/owl#FunctionalProperty")),
             };
         };
 

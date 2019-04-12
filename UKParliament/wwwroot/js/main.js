@@ -113,19 +113,19 @@ var UK_Parliament = (function () {
     };
 })();
 
-UK_Parliament.cookieBanner = function (cname, cvalue, exdays) {
+//UK_Parliament.cookieBanner = function (cname, cvalue, exdays) {
 
-  var
-    cookieContent = document.getElementById('cookie'),
-    cookieName = this.getCookie(cname);
+//  var
+//    cookieContent = document.getElementById('cookie'),
+//    cookieName = this.getCookie(cname);
 
-  if (!cookieName && cookieContent) {
-    cookieContent.classList.add('show');
-    this.setCookie(cname, cvalue, exdays);
-  }
-};
+//  if (!cookieName && cookieContent) {
+//    cookieContent.classList.add('show');
+//    this.setCookie(cname, cvalue, exdays);
+//  }
+//};
 
-UK_Parliament.cookieBanner('UK_Parliament__seen_cookie_message', 'yes', 28);
+//UK_Parliament.cookieBanner('UK_Parliament__seen_cookie_message', 'yes', 28);
 
 UK_Parliament.nsAria = function () {
     var noScript = document.getElementsByTagName('noscript');

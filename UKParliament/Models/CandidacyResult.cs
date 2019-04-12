@@ -15,8 +15,8 @@ namespace UKParliament.Model
 
         public ICollection<ElectoralIncumbency> CandidacyResultHasElectoralIncumbency => new DynamicObjectCollection<ElectoralIncumbency>(this, Property(UKParliamentOntology.CandidacyResultHasElectoralIncumbency.Uri));
 
-        public int VoteCount => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.VoteCount.Uri))).SingleOrDefault();
+        public System.Int64 VoteCount => ((IEnumerable<System.Int64>)new DynamicObjectCollection<System.Int64>(this, Property(UKParliamentOntology.VoteCount.Uri))).SingleOrDefault();
 
-        public int ResultPosition => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ResultPosition.Uri))).SingleOrDefault();
+        public System.Int64 ResultPosition => ((IEnumerable<System.Int64>)new DynamicObjectCollection<System.Int64>(this, Property(UKParliamentOntology.ResultPosition.Uri))).SingleOrDefault();
     }
 }

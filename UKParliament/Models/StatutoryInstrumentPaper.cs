@@ -19,7 +19,7 @@ namespace UKParliament.Model
 
         public string StatutoryInstrumentPaperYear => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperYear.Uri))).SingleOrDefault();
 
-        public int StatutoryInstrumentPaperNumber => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperNumber.Uri))).SingleOrDefault();
+        public System.Int64 StatutoryInstrumentPaperNumber => ((IEnumerable<System.Int64>)new DynamicObjectCollection<System.Int64>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperNumber.Uri))).SingleOrDefault();
 
         public DateTimeOffset StatutoryInstrumentPaperComingIntoForceDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.StatutoryInstrumentPaperComingIntoForceDate.Uri))).SingleOrDefault();
 

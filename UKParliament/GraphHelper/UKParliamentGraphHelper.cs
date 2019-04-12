@@ -38,12 +38,23 @@ namespace UKParliament
             TreatyProcedure = new Uri(UKParliamentOntology.BaseUri, "D00dsjR2");
 
         /// <summary>
+        /// Lists of string ID in the UK Parliament Graph
+        /// </summary>
+        public static readonly string
+            ProcedureStepTreatyCreated = "H6GOB6yX",
+            ProcedureStepLaidBeforeTheHouseOfCommons = "cspzmb6w",
+            ProcedureStepLaidBeforeTheHouseOfLords = "puVMaN7t",
+            ProcedureStepAllocatedToTheEUJusticeSubCommittee = "ljni7FvY",
+            ProcedureStepObjectionPeriodABegins = "NnizWAGU";
+
+        /// <summary>
         /// Lists of URI instances in the UK Parliament Graph
         /// </summary>
         public static List<string>
             TreatyProcedureEndStep = new List<string>() { "ypryR1wZ", "qkrlv9rh" },
             TreatyProcedureScheduledDebateStep = new List<string>() { "WdiOAL9I", "bEzmXakv", "M28y2NsI", "uwTqgHE3", "bNQUaV4J" },
-            TreatyProcedureMotionToNotRatifyStep = new List<string>() { "3wIKRs06", "443aMXaZ" };
+            TreatyProcedureMotionToNotRatifyStep = new List<string>() { "3wIKRs06", "443aMXaZ" },
+            TreatyProcedureStepOrder = new List<string>() { ProcedureStepTreatyCreated, ProcedureStepLaidBeforeTheHouseOfCommons, ProcedureStepLaidBeforeTheHouseOfLords, ProcedureStepAllocatedToTheEUJusticeSubCommittee };
 
         /// <summary>
         /// Constant mapping of resource URIs to controllers

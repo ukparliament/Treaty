@@ -15,6 +15,6 @@ namespace UKParliament.Model
 
         public ICollection<string> ThresholdName => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ThresholdName.Uri));
 
-        public ICollection<int> ThresholdSignatureNumber => new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ThresholdSignatureNumber.Uri));
+        public ICollection<System.Int64> ThresholdSignatureNumber => new DynamicObjectCollection<System.Int64>(this, Property(UKParliamentOntology.ThresholdSignatureNumber.Uri));
     }
 }

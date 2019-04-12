@@ -35,10 +35,10 @@ namespace UKParliament.Model
 
         public string ProcedureStepDescription => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepDescription.Uri))).SingleOrDefault();
 
-        public ICollection<string> ProcedureStepScopeNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepScopeNote.Uri));
+        public string ProcedureStepScopeNote => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepScopeNote.Uri))).SingleOrDefault();
 
-        public ICollection<string> ProcedureStepLinkNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepLinkNote.Uri));
+        public string ProcedureStepLinkNote => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepLinkNote.Uri))).SingleOrDefault();
 
-        public ICollection<string> ProcedureStepDateNote => new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepDateNote.Uri));
+        public string ProcedureStepDateNote => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.ProcedureStepDateNote.Uri))).SingleOrDefault();
     }
 }

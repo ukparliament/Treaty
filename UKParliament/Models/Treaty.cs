@@ -29,6 +29,6 @@ namespace UKParliament.Model
 
         public string TreatyCommandPaperPrefix => ((IEnumerable<string>)new DynamicObjectCollection<string>(this, Property(UKParliamentOntology.TreatyCommandPaperPrefix.Uri))).SingleOrDefault();
 
-        public int TreatyCommandPaperNumber => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.TreatyCommandPaperNumber.Uri))).SingleOrDefault();
+        public System.Int64 TreatyCommandPaperNumber => ((IEnumerable<System.Int64>)new DynamicObjectCollection<System.Int64>(this, Property(UKParliamentOntology.TreatyCommandPaperNumber.Uri))).SingleOrDefault();
     }
 }

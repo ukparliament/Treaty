@@ -8,6 +8,7 @@
   <ItemGroup>
     <None Remove="SPARQL\House.sparql" />
     <None Remove="SPARQL\house_by_id.sparql" />
+    <None Remove="SPARQL\procedure-step.sparql" />
     <None Remove="SPARQL\procedure.sparql" />
     <None Remove="SPARQL\Treaty.sparql" />
     <None Remove="SPARQL\treaty_by_id.sparql" />
@@ -20,6 +21,9 @@
       <CustomToolNamespace></CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="SPARQL\house.sparql">
+      <CustomToolNamespace></CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SPARQL\procedure-step.sparql">
       <CustomToolNamespace></CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="SPARQL\procedure.sparql">
@@ -63,6 +67,9 @@
     <Content Update="Views\Meta\CookiePolicy.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\ProcedureStep\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Procedure\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -99,6 +106,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Views.ProcedureStep.Index.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Procedure.Index.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

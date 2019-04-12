@@ -21,6 +21,6 @@ namespace UKParliament.Model
 
         public DateTimeOffset ParliamentPeriodStartDate => ((IEnumerable<DateTimeOffset>)new DynamicObjectCollection<DateTimeOffset>(this, Property(UKParliamentOntology.ParliamentPeriodStartDate.Uri))).SingleOrDefault();
 
-        public int ParliamentPeriodNumber => ((IEnumerable<int>)new DynamicObjectCollection<int>(this, Property(UKParliamentOntology.ParliamentPeriodNumber.Uri))).SingleOrDefault();
+        public System.Int64 ParliamentPeriodNumber => ((IEnumerable<System.Int64>)new DynamicObjectCollection<System.Int64>(this, Property(UKParliamentOntology.ParliamentPeriodNumber.Uri))).SingleOrDefault();
     }
 }

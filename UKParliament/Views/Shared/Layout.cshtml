@@ -14,17 +14,17 @@
 <body>
     <script>document.body.className = ((document.body.className) ? document.body.className + ' has-js' : 'has-js');</script>
     <a class="skip-to-content" href="#content" id="skiplink">@Localizer["SkipLink"]</a>
-    <div class="status--banner theme--caution cookie " id="cookie">
+    @*<div class="status--banner theme--caution cookie " id="cookie">
         <div class="container">
             <p>@Localizer["CookieWarning"] <a asp-action="CookiePolicy" asp-controller="Meta">@Localizer["CookiePolicy"]</a></p>
         </div>
-    </div>
+    </div>*@
     <header>
         <div class="container">
             <a asp-action="Index" asp-controller="Home" class="uk_parliament ">
                 <partial name="_UKParliamentPortcullis.cshtml" />
             </a>
-            <partial name="_Search.cshtml" />
+            @*<partial name="_Search.cshtml" />*@
         </div>
     </header>
     <main>

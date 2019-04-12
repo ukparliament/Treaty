@@ -1,0 +1,38 @@
+﻿PREFIX : <https://id.parliament.uk/schema/>
+
+CONSTRUCT
+{
+    ?procedureStep
+        a :ProcedureStep ;
+        :procedureStepName ?procedureStepName ;
+        :procedureStepDescription ?procedureStepDescription ;
+        :procedureStepHasHouse ?house ;
+        :procedureStepIsFromProcedureRoute ?procedureRoute ;
+        :procedureStepIsToProcedureRoute ?procedureRoute .
+    ?procedureRoute
+        a :ProcedureRoute ;
+        :procedureRouteHasProcedure ?procedure .
+    ?procedure
+        a :Procedure ;
+        :procedureName ?procedureName .
+    ?house
+        a :House ;
+        :houseName ?HouseName .
+}
+WHERE
+{
+    ?procedureStep a :ProcedureStep .
+    OPTIONAL { ?procedureStep :procedureStepName ?procedureStepName . }
+    OPTIONAL { ?procedureStep :procedureStepDescription ?procedureStepDescription . }
+    OPTIONAL {
+        ?procedureStep :procedureStepHasHouse ?house .
+        ?house
+            a :House ;
+            :houseName ?HouseName .
+    }
+    OPTIONAL { 
+        ?procedureStep :procedureStepIsFromProcedureRoute|:procedureStepIsToProcedureRoute ?procedureRoute .
+        ?procedureRoute :procedureRouteHasProcedure ?procedure .
+        ?procedure :procedureName ?procedureName .
+    }
+}
