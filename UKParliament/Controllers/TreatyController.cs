@@ -18,7 +18,7 @@ namespace UKParliament
     using System.Linq;
     using UKParliament.Model;
 
-    [Route("treaty")]
+    [Route("/view/treaty")]
     public class TreatyController : BaseController
     {
         public TreatyController(SparqlService sparqlService) : base(sparqlService) { }

@@ -14,7 +14,7 @@ namespace UKParliament
     using Services;
     using UKParliament.Model;
 
-    [Route("")]
+    [Route("/view/")]
     public class HomeController : BaseController
     {
         public HomeController(SparqlService sparqlService) : base(sparqlService) { }

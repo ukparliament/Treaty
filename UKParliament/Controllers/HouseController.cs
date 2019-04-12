@@ -17,7 +17,7 @@ namespace UKParliament
     using System.Collections.Generic;
     using UKParliament.Model;
 
-    [Route("house")]
+    [Route("/view/house")]
     public class HouseController : BaseController
     {
         public HouseController(SparqlService sparqlService) : base(sparqlService) { }

@@ -14,7 +14,7 @@ namespace UKParliament
     using Services;
     using System.Collections.Generic;
 
-    [Route("procedure-step")]
+    [Route("/view/procedure-step")]
     public class ProcedureStepController : BaseController
     {
         public ProcedureStepController(SparqlService sparqlService) : base(sparqlService) { }

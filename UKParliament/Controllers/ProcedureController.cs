@@ -14,7 +14,7 @@ namespace UKParliament
     using Services;
     using UKParliament.Model;
 
-    [Route("procedure")]
+    [Route("/view/procedure")]
     public class ProcedureController : BaseController
     {
         public ProcedureController(SparqlService sparqlService) : base(sparqlService) { }

@@ -12,7 +12,7 @@ namespace UKParliament
 {
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("meta")]
+    [Route("/view/meta")]
     public class MetaController : Controller
     {
         public MetaController() : base() { }

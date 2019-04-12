@@ -12,7 +12,7 @@ namespace UKParliament
 {
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("search")]
+    [Route("/view/search")]
     public class SearchController : Controller
     {
         public SearchController() : base() { }
