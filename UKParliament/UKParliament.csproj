@@ -10,8 +10,6 @@
     <None Remove="SPARQL\house_by_id.sparql" />
     <None Remove="SPARQL\procedure-step.sparql" />
     <None Remove="SPARQL\procedure.sparql" />
-    <None Remove="SPARQL\Treaty.sparql" />
-    <None Remove="SPARQL\treaty_by_id.sparql" />
     <None Remove="SPARQL\uk_parliament.sparql" />
     <None Remove="SPARQL\workpackage_by_id.sparql" />
   </ItemGroup>
@@ -33,12 +31,6 @@
       <CustomToolNamespace></CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="SPARQL\uk_parliament.sparql">
-      <CustomToolNamespace></CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SPARQL\treaty_by_id.sparql">
-      <CustomToolNamespace></CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SPARQL\treaty.sparql">
       <CustomToolNamespace></CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>

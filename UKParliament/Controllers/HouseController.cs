@@ -20,7 +20,7 @@ namespace UKParliament
     [Route("/view/house")]
     public class HouseController : BaseController
     {
-        public HouseController(SparqlService sparqlService) : base(sparqlService) { }
+        public HouseController(QueryService sparqlService) : base(sparqlService) { }
 
         [HttpGet]
         public ActionResult Index()
@@ -32,8 +32,8 @@ namespace UKParliament
         [HttpGet("{id}")]
         public ActionResult Item(string id)
         {
-            var uris = new[] { new Uri(UKParliamentOntology.BaseUri, id) };
-            var sparqlParameters = new Dictionary<string, IEnumerable<object>> { { "id", uris } };
+            var uris = new[] { id };
+            var sparqlParameters = new Dictionary<string, IEnumerable<string>> { { "id", uris } };
             var graph = this.SparqlService.Execute("UKParliament.SPARQL.house_by_id.sparql", sparqlParameters);
             return this.View(new UKParliamentDynamicGraph(graph));
         }

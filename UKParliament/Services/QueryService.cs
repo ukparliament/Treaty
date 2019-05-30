@@ -8,29 +8,39 @@
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-namespace VDS.RDF.Query
+namespace Services
 {
     using Microsoft.Extensions.Configuration;
     using System;
-    using System.Net;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using VDS.RDF;
 
-    public class SecureSparqlRemoteEndpoint : SparqlRemoteEndpoint
+    public class QueryService
     {
-        private readonly string authorisationHeader;
-        private readonly string key;
+        private Uri baseUrl;
 
-        public SecureSparqlRemoteEndpoint(Uri endpointUri, IConfiguration config) : base(endpointUri)
+        public QueryService(IConfiguration config)
         {
-            this.authorisationHeader = config.GetSection("SparqlService")["AuthorisationHeader"]; ;
-            this.key = config.GetSection("SparqlService")["Key"];
+            this.baseUrl = new Uri(config.GetSection("QueryService")["BaseUrl"]);
         }
 
-        protected override void ApplyCustomRequestOptions(HttpWebRequest httpRequest)
+        internal IGraph Execute(string name, IDictionary<string, IEnumerable<string>> parameters = null)
         {
-            if (!string.IsNullOrEmpty(this.authorisationHeader) && !string.IsNullOrEmpty(this.key))
+            var g = new Graph();
+
+            var builder = new UriBuilder(baseUrl);
+            builder.Path = name;
+            builder.Query = parameters is null ? string.Empty : string.Join('&', parameters.SelectMany(parameter => parameter.Value.Select(value => $"{parameter.Key}={value.ToString()}")));
+
+            using (var client = new HttpClient())
             {
-                httpRequest.Headers[this.authorisationHeader] = this.key;
+                var rdf = client.GetStringAsync(builder.Uri).Result;
+                g.LoadFromString(rdf);
             }
+
+            return g;
         }
     }
 }

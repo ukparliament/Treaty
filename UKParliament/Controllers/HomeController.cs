@@ -17,7 +17,7 @@ namespace UKParliament
     [Route("/view/")]
     public class HomeController : BaseController
     {
-        public HomeController(SparqlService sparqlService) : base(sparqlService) { }
+        public HomeController(QueryService sparqlService) : base(sparqlService) { }
 
         [HttpGet]
         public ActionResult Index()

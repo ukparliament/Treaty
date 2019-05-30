@@ -21,7 +21,7 @@ namespace UKParliament
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLocalization(options => options.ResourcesPath = "Resources");
-            services.AddSingleton<SparqlService>();
+            services.AddSingleton<QueryService>();
             services.AddMvc().AddViewLocalization();
         }
 

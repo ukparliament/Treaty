@@ -17,7 +17,7 @@ namespace UKParliament
     [Route("/view/procedure-step")]
     public class ProcedureStepController : BaseController
     {
-        public ProcedureStepController(SparqlService sparqlService) : base(sparqlService) { }
+        public ProcedureStepController(QueryService sparqlService) : base(sparqlService) { }
 
         [HttpGet]
         public ActionResult Index()

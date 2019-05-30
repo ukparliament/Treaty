@@ -18,16 +18,16 @@ namespace UKParliament
 
     public class BaseController : Controller
     {
-        protected BaseController(SparqlService sparqlService) { this.SparqlService = sparqlService; }
+        protected BaseController(QueryService sparqlService) { this.SparqlService = sparqlService; }
 
-        protected SparqlService SparqlService { get; set; }
+        protected QueryService SparqlService { get; set; }
 
         protected ViewResult GetView(string query)
         {
             return View(GetGraph(query));
         }
 
-        protected ViewResult GetView(string query, Dictionary<string, IEnumerable<object>> sparqlParameters)
+        protected ViewResult GetView(string query, Dictionary<string, IEnumerable<string>> sparqlParameters)
         {
             return View(GetGraph(query, sparqlParameters));
         }
@@ -39,7 +39,7 @@ namespace UKParliament
             return GetView(query);
         }
 
-        protected ViewResult GetView(string query, List<string> filters, Dictionary<string, IEnumerable<object>> sparqlParameters)
+        protected ViewResult GetView(string query, List<string> filters, Dictionary<string, IEnumerable<string>> sparqlParameters)
         {
             SetViewFilters(filters);
 
@@ -48,7 +48,7 @@ namespace UKParliament
 
         private UKParliamentDynamicGraph GetGraph(string query) => new UKParliamentDynamicGraph(SparqlService.Execute($"UKParliament.SPARQL.{query}"));
 
-        private UKParliamentDynamicGraph GetGraph(string query, Dictionary<string, IEnumerable<object>> sparqlParameters) => new UKParliamentDynamicGraph(SparqlService.Execute($"UKParliament.SPARQL.{query}", sparqlParameters));
+        private UKParliamentDynamicGraph GetGraph(string query, Dictionary<string, IEnumerable<string>> sparqlParameters) => new UKParliamentDynamicGraph(SparqlService.Execute($"UKParliament.SPARQL.{query}", sparqlParameters));
 
         private void SetViewFilters(List<string> filters)
         {

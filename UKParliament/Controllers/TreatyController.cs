@@ -21,7 +21,7 @@ namespace UKParliament
     [Route("/view/treaty")]
     public class TreatyController : BaseController
     {
-        public TreatyController(SparqlService sparqlService) : base(sparqlService) { }
+        public TreatyController(QueryService sparqlService) : base(sparqlService) { }
 
         [HttpGet]
         public ActionResult Index()
@@ -30,7 +30,7 @@ namespace UKParliament
             //var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
 
             //return GetView(query, filters);
-            var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty.sparql");
+            var graph = this.SparqlService.Execute("treaty");
 
             var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
 
@@ -51,9 +51,7 @@ namespace UKParliament
         [HttpGet("{id}")]
         public ActionResult Item(string id)
         {
-            var uris = new[] { new Uri(UKParliamentOntology.BaseUri, id) };
-            var sparqlParameters = new Dictionary<string, IEnumerable<object>> { { "id", uris } };
-            var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty_by_id.sparql", sparqlParameters);
+            var graph = this.SparqlService.Execute("treaty_by_id", new Dictionary<string, IEnumerable<string>> { { "treaty_id", new[] { id } } });
             return this.View(new UKParliamentDynamicGraph(graph));
         }
     }
