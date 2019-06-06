@@ -7,3 +7,11 @@ TODO: Guide users through getting your code up and running on their own system. 
 2.	Software dependencies
 3.	Latest releases
 4.	API references
+
+
+# Git submodule
+To update the submodules:
+git submodule update --init --recursive --remote
+
+In case the source of the submodule changes:
+git submodule sync
