@@ -10,49 +10,52 @@
 
 namespace UKParliament
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Services;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.AspNetCore.Mvc;
+    using Services;
     using UKParliament.Model;
 
     public class BaseController : Controller
     {
-        protected BaseController(SparqlService sparqlService) { this.SparqlService = sparqlService; }
+        protected BaseController(SparqlService sparqlService)
+        {
+            this.SparqlService = sparqlService;
+        }
 
         protected SparqlService SparqlService { get; set; }
 
         protected ViewResult GetView(string query)
         {
-            return View(GetGraph(query));
+            return this.View(this.GetGraph(query));
         }
 
         protected ViewResult GetView(string query, Dictionary<string, IEnumerable<object>> sparqlParameters)
         {
-            return View(GetGraph(query, sparqlParameters));
+            return this.View(this.GetGraph(query, sparqlParameters));
         }
 
         protected ViewResult GetView(string query, List<string> filters)
         {
-            SetViewFilters(filters);
+            this.SetViewFilters(filters);
 
-            return GetView(query);
+            return this.GetView(query);
         }
 
         protected ViewResult GetView(string query, List<string> filters, Dictionary<string, IEnumerable<object>> sparqlParameters)
         {
-            SetViewFilters(filters);
+            this.SetViewFilters(filters);
 
-            return GetView(query, sparqlParameters);
+            return this.GetView(query, sparqlParameters);
         }
 
-        private UKParliamentDynamicGraph GetGraph(string query) => new UKParliamentDynamicGraph(SparqlService.Execute($"UKParliament.SPARQL.{query}"));
+        private UKParliamentDynamicGraph GetGraph(string query) => new UKParliamentDynamicGraph(this.SparqlService.Execute($"UKParliament.SPARQL.{query}"));
 
-        private UKParliamentDynamicGraph GetGraph(string query, Dictionary<string, IEnumerable<object>> sparqlParameters) => new UKParliamentDynamicGraph(SparqlService.Execute($"UKParliament.SPARQL.{query}", sparqlParameters));
+        private UKParliamentDynamicGraph GetGraph(string query, Dictionary<string, IEnumerable<object>> sparqlParameters) => new UKParliamentDynamicGraph(this.SparqlService.Execute($"UKParliament.SPARQL.{query}", sparqlParameters));
 
         private void SetViewFilters(List<string> filters)
         {
-            ViewBag.Filter = filters.ToDictionary(filter => filter, filter => Request.Query.ContainsKey(filter) ? Request.Query[filter].ToList() : new List<string>() { });
+            this.ViewBag.Filter = filters.ToDictionary(filter => filter, filter => this.Request.Query.ContainsKey(filter) ? this.Request.Query[filter].ToList() : new List<string>() { });
         }
     }
 }

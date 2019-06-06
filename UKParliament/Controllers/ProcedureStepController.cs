@@ -10,22 +10,25 @@
 
 namespace UKParliament
 {
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using Services;
-    using System.Collections.Generic;
 
     [Route("/view/procedure-step")]
     public class ProcedureStepController : BaseController
     {
-        public ProcedureStepController(SparqlService sparqlService) : base(sparqlService) { }
+        public ProcedureStepController(SparqlService sparqlService)
+            : base(sparqlService)
+        {
+        }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(IEnumerable<string> house)
         {
             var query = "procedure-step.sparql";
             var filters = new List<string>() { "house", "procedure" };
 
-            return GetView(query, filters);
+            return this.GetView(query, filters);
         }
     }
 }

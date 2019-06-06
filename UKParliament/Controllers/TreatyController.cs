@@ -10,39 +10,45 @@
 
 namespace UKParliament
 {
-    using Microsoft.AspNetCore.Mvc;
-    using OntologyHelper;
-    using Services;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+    using OntologyHelper;
+    using Services;
     using UKParliament.Model;
 
     [Route("/view/treaty")]
     public class TreatyController : BaseController
     {
-        public TreatyController(SparqlService sparqlService) : base(sparqlService) { }
+        public TreatyController(SparqlService sparqlService)
+            : base(sparqlService)
+        {
+        }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(bool current, IEnumerable<string> leadGovernmentOrganisation)
         {
-            //var query = "treaty.sparql";
-            //var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
+            if (!this.ModelState.IsValid)
+            {
+                return new BadRequestResult();
+            }
 
-            //return GetView(query, filters);
             var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty.sparql");
 
             var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
 
-            ViewBag.Filter = false;
+            this.ViewBag.Filter = false;
 
-            if (filters.Any(x => Request.Query.ContainsKey(x)))
+            if (filters.Any(x => this.Request.Query.ContainsKey(x)))
             {
-                ViewBag.Filter = true;
-                ViewBag.Current = Request.Query["current"];
-                ViewBag.LeadGovernmentOrganisation = Request.Query["leadGovernmentOrganisation"];
-                ViewBag.SeriesMembershipType = Request.Query["seriesMembershipType"];
-                ViewBag.ProcedureStep = Request.Query["procedureStep"];
+                this.ViewBag.Filter = true;
+                this.ViewBag.Current = this.Request.Query["current"];
+                this.ViewBag.LeadGovernmentOrganisation = this.Request.Query["leadGovernmentOrganisation"];
+                this.ViewBag.SeriesMembershipType = this.Request.Query["seriesMembershipType"];
+                this.ViewBag.ProcedureStep = this.Request.Query["procedureStep"];
             }
 
             return this.View(new UKParliamentDynamicGraph(graph));

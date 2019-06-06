@@ -15,7 +15,10 @@ namespace UKParliament
     [Route("/view/search")]
     public class SearchController : Controller
     {
-        public SearchController() : base() { }
+        public SearchController()
+            : base()
+        {
+        }
 
         [HttpGet]
         public ActionResult Index()

@@ -10,17 +10,20 @@
 
 namespace UKParliament
 {
+    using System;
+    using System.Collections.Generic;
     using Microsoft.AspNetCore.Mvc;
     using OntologyHelper;
     using Services;
-    using System;
-    using System.Collections.Generic;
     using UKParliament.Model;
 
     [Route("/view/house")]
     public class HouseController : BaseController
     {
-        public HouseController(SparqlService sparqlService) : base(sparqlService) { }
+        public HouseController(SparqlService sparqlService)
+            : base(sparqlService)
+        {
+        }
 
         [HttpGet]
         public ActionResult Index()
