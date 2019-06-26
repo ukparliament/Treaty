@@ -1,6 +1,22 @@
 ﻿@model UKParliament.Model.UKParliamentDynamicGraph
 @{
     ViewData["Title"] = Model.TreatyCollection.FirstOrDefault().WorkPackagedThingHasWorkPackage.WorkPackageHasProcedure.ProcedureName;
+    List<SelectListItem> SeriesMembershipTypes = new List<SelectListItem>();
+    SeriesMembershipTypes.Add(new SelectListItem {
+        Value = "CountrySeriesMembership",
+        Text = "Country series",
+        Selected = "CountrySeriesMembership" == ViewBag.SeriesMembershipType
+    });
+    SeriesMembershipTypes.Add(new SelectListItem {
+        Value = "MiscellaneousSeriesMembership",
+        Text = "Miscellaneous series",
+        Selected = "MiscellaneousSeriesMembership" == ViewBag.SeriesMembershipType
+    });
+    SeriesMembershipTypes.Add(new SelectListItem {
+        Value = "EuropeanUnionSeriesMembership",
+        Text = "European Union series",
+        Selected = "EuropeanUnionSeriesMembership" == ViewBag.SeriesMembershipType
+    });
     int totalNumberOfTreaties = Model.TreatyCollection.Count();
     IEnumerable<Model.Treaty> treaties = Model.TreatyCollection.Where(treaty =>
     {
@@ -18,7 +34,7 @@
             {
                 foreach (var leadGovernmentOrganisationId in ViewBag.LeadGovernmentOrganisation)
                 {
-                    if (treaty.TreatyHasLeadGovernmentOrganisation.Id == leadGovernmentOrganisationId)
+                    if (treaty.TreatyHasLeadGovernmentOrganisation.Id == leadGovernmentOrganisationId || leadGovernmentOrganisationId == "all")
                     {
                         hasLeadGovernmentOrganisation = true;
                     }
@@ -38,6 +54,10 @@
                         hasSeriesMembership = true;
                     }
                     if (treaty.TreatyHasEuropeanUnionSeriesMembership != null && seriesMembershipType == "EuropeanUnionSeriesMembership")
+                    {
+                        hasSeriesMembership = true;
+                    }
+                    if (seriesMembershipType == "all")
                     {
                         hasSeriesMembership = true;
                     }
@@ -64,6 +84,34 @@
     <div class="container">
         <small><a asp-controller="Procedure" asp-action="Index">@Localizer["Category"]</a></small>
         <h1><span>@ViewData["Title"]</span></h1>
+        <form method="get" asp-action="Index" asp-controller="Treaty" asp-antiforgery="false">
+            <fieldset>
+                <div class="input-group">
+                    @if (ViewBag.Current == "true")
+                    {
+                        <input type="checkbox" name="current" value="true" id="current" checked />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="current" value="true" id="current" />
+                    }
+                    <label for="current">Current</label>
+                </div>
+                <div class="input-group">
+                    <label for="leadGovernmentOrganisation">Lead government organisation</label>
+                    <select id="leadGovernmentOrganisation" name="leadGovernmentOrganisation" asp-items="Model.GovernmentOrganisationCollection.Select(governmentOrganisation => new SelectListItem { Text = governmentOrganisation.GroupName, Value = governmentOrganisation.Id, Selected = governmentOrganisation.Id == ViewBag.LeadGovernmentOrganisation })">
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="seriesMembershipType">Series membership type</label>
+                    <select id="seriesMembershipType" name="seriesMembershipType" asp-items="SeriesMembershipTypes">
+                        <option value="all">All</option>
+                    </select>
+                </div>
+            </fieldset>
+            <input class="btn--primary" type="submit" value="Find treaties">
+        </form>
         <dl class="meta">
             <dt>Total number of treaties</dt>
             <dd>@totalNumberOfTreaties</dd>
@@ -78,9 +126,9 @@
                     <ul class="list--inline">
                         @if (ViewBag.Current == "true")
                         {
-                        <li>
-                            <a aria-label="Remove current filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep"><span></span>Current</a>
-                        </li>
+                            <li>
+                                <a aria-label="Remove current filter" class="hint theme--grey-4 remove-hint" asp-controller="Treaty" asp-action="Index" asp-route-leadGovernmentOrganisation="@ViewBag.LeadGovernmentOrganisation" asp-route-seriesMembershipType="@ViewBag.SeriesMembershipType" asp-route-procedureStep="@ViewBag.ProcedureStep"><span></span>Current</a>
+                            </li>
                         }
                         @foreach (var leadGovernmentOrganisationId in @ViewBag.LeadGovernmentOrganisation)
                         {
