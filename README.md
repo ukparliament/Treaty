@@ -1,5 +1,5 @@
 # Introduction 
-A small DotNet Core application that uses UK Parliament's knowledge graph to display information about treaties.
+A DotNet Core application that uses UK Parliament's knowledge graph to display information about treaties.
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
