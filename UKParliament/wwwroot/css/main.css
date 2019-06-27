@@ -15,15 +15,15 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 .remove-hint:hover span {
     opacity: 1;
 }
-.remove-hint span:before, .remove-hint span:after {
-    background-color: #7592c8;
-    content: ' ';
-    height: 16px;
-    position: absolute;
-    right: 12px;
-    top: 10px;
-    width: 2px;
-}
+    .remove-hint span:before, .remove-hint span:after {
+        background-color: #7592c8;
+        content: ' ';
+        height: 14px;
+        position: absolute;
+        right: 12px;
+        top: 6px;
+        width: 2px;
+    }
 .remove-hint span:before {
     transform: rotate(45deg);
 }
@@ -33,10 +33,6 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
 @media(min-width: 481px) {
     input, select, textarea {
         width: 100%;
-    }
-    .remove-hint span:before, .remove-hint span:after {
-        height: 14px;
-        top: 6px;
     }
 }
 @media(min-width: 768px) {
