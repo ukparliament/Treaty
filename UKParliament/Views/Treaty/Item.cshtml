@@ -66,30 +66,38 @@
                     <li>
                         <h2>@businessItemDate.ToString("dddd, dd MMMM yyyy")</h2>
                         <ol class="list--block">
-                        @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Where(businessItem => businessItem.BusinessItemDate.FirstOrDefault() == businessItemDate).OrderBy(businessItem =>
-                                {
+                            @foreach (var businessItem in @treaty.WorkPackagedThingHasWorkPackage.WorkPackageHasBusinessItem.Where(businessItem => businessItem.BusinessItemDate.FirstOrDefault() == businessItemDate).OrderBy(businessItem =>
+                            {
 
-                                    if (UKParliament.GraphHelper.TreatyProcedureStepOrder.Contains(businessItem.BusinessItemHasProcedureStep.FirstOrDefault()?.Id))
-                                    {
-                                        return UKParliament.GraphHelper.TreatyProcedureStepOrder.IndexOf(businessItem.BusinessItemHasProcedureStep.FirstOrDefault()?.Id);
-                                    }
+                                if (UKParliament.GraphHelper.TreatyProcedureStepOrder.Contains(businessItem.BusinessItemHasProcedureStep.FirstOrDefault()?.Id))
+                                {
+                                    return UKParliament.GraphHelper.TreatyProcedureStepOrder.IndexOf(businessItem.BusinessItemHasProcedureStep.FirstOrDefault()?.Id);
+                                }
+                                if (businessItem.BusinessItemHasProcedureStep.FirstOrDefault()?.Id == UKParliament.GraphHelper.ProcedureStepObjectionPeriodABegins)
+                                {
                                     return 999;
-                                }))
-                        {
-                            @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
+                                }
+                                return 998;
+                            }))
                             {
                             <li>
                                 <div class="card">
                                     <div class="card__details">
-                                        <h3>@procedureStep.ProcedureStepName</h3>
+                                        @foreach (var procedureStep in @businessItem.BusinessItemHasProcedureStep)
+                                        {
+                                            <h3>@procedureStep.ProcedureStepName</h3>
+                                            @foreach (var house in procedureStep.ProcedureStepHasHouse)
+                                            {
+                                                <span class="hint">@house.HouseName</span>
+                                            }
+                                        }
                                         @if (@businessItem.BusinessItemHasBusinessItemWebLink.Count() > 0)
                                         {
-                                            <p><a href="@businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()">@businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()</a></p>
+                                            <p><a href="@businessItem.BusinessItemHasBusinessItemWebLink.FirstOrDefault()">Business item details</a></p>
                                         }
                                     </div>
                                 </div>
                             </li>
-                            }
                         }
                         </ol>
                     </li>

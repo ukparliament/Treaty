@@ -42,6 +42,7 @@ namespace UKParliament
         public static readonly string ProcedureStepLaidBeforeTheHouseOfCommons = "cspzmb6w";
         public static readonly string ProcedureStepLaidBeforeTheHouseOfLords = "puVMaN7t";
         public static readonly string ProcedureStepAllocatedToTheEUJusticeSubCommittee = "ljni7FvY";
+        public static readonly string ProcedureStepAllocatedToTheEUInternalMarketSubCommittee = "dsfJmPVy";
         public static readonly string ProcedureStepObjectionPeriodABegins = "NnizWAGU";
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace UKParliament
         public static List<string> TreatyProcedureEndStep = new List<string>() { "ypryR1wZ", "qkrlv9rh" };
         public static List<string> TreatyProcedureScheduledDebateStep = new List<string>() { "WdiOAL9I", "bEzmXakv", "M28y2NsI", "uwTqgHE3", "bNQUaV4J" };
         public static List<string> TreatyProcedureMotionToNotRatifyStep = new List<string>() { "3wIKRs06", "443aMXaZ" };
-        public static List<string> TreatyProcedureStepOrder = new List<string>() { ProcedureStepTreatyCreated, ProcedureStepLaidBeforeTheHouseOfCommons, ProcedureStepLaidBeforeTheHouseOfLords, ProcedureStepAllocatedToTheEUJusticeSubCommittee };
+        public static List<string> TreatyProcedureStepOrder = new List<string>() { ProcedureStepTreatyCreated, ProcedureStepLaidBeforeTheHouseOfCommons, ProcedureStepLaidBeforeTheHouseOfLords, ProcedureStepAllocatedToTheEUJusticeSubCommittee, ProcedureStepAllocatedToTheEUInternalMarketSubCommittee };
 
         /// <summary>
         /// Constant mapping of resource URIs to controllers
