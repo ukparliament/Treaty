@@ -44,6 +44,7 @@ namespace UKParliament
         public static readonly string ProcedureStepAllocatedToTheEUJusticeSubCommittee = "ljni7FvY";
         public static readonly string ProcedureStepAllocatedToTheEUInternalMarketSubCommittee = "dsfJmPVy";
         public static readonly string ProcedureStepObjectionPeriodABegins = "NnizWAGU";
+        public static readonly string ProcedureStepObjectionPeriodAEnds = "y3MuaSK6";
 
         /// <summary>
         /// Lists of URI instances in the UK Parliament Graph
@@ -56,6 +57,6 @@ namespace UKParliament
         /// <summary>
         /// Constant mapping of resource URIs to controllers
         /// </summary>
-        public static Dictionary<string, string> ControllerMap = new Dictionary<string, string> { { "D00dsjR2", "Treaty" } };
+        public static Dictionary<string, string> ControllerMap = new Dictionary<string, string> { { "D00dsjR2", "Treaty" }, { "H5YJQsK2", "Procedure" } };
     }
 }
