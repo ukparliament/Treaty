@@ -113,14 +113,12 @@
             <input class="btn--primary" type="submit" value="Find treaties">
         </form>
         <dl class="meta">
-            <dt>Total number of treaties</dt>
-            <dd>@totalNumberOfTreaties</dd>
-            <dt>Order</dt>
+            <dt>Total results</dt>
+            <dd>@treaties.Count()</dd>
+            <dt>Ordered by</dt>
             <dd>Reverse chronological by laid date</dd>
             @if (ViewBag.Filter)
             {
-                <dt>Number of filtered treaties</dt>
-                <dd>@treaties.Count()</dd>
                 <dt>Filters</dt>
                 <dd>
                     <ul class="list--inline">
