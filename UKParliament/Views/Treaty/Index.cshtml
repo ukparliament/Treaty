@@ -8,14 +8,14 @@
         Selected = "CountrySeriesMembership" == ViewBag.SeriesMembershipType
     });
     SeriesMembershipTypes.Add(new SelectListItem {
-        Value = "MiscellaneousSeriesMembership",
-        Text = "Miscellaneous series",
-        Selected = "MiscellaneousSeriesMembership" == ViewBag.SeriesMembershipType
-    });
-    SeriesMembershipTypes.Add(new SelectListItem {
         Value = "EuropeanUnionSeriesMembership",
         Text = "European Union series",
         Selected = "EuropeanUnionSeriesMembership" == ViewBag.SeriesMembershipType
+    });
+    SeriesMembershipTypes.Add(new SelectListItem {
+        Value = "MiscellaneousSeriesMembership",
+        Text = "Miscellaneous series",
+        Selected = "MiscellaneousSeriesMembership" == ViewBag.SeriesMembershipType
     });
     int totalNumberOfTreaties = Model.TreatyCollection.Count();
     IEnumerable<Model.Treaty> treaties = Model.TreatyCollection.Where(treaty =>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="input-group">
                     <label for="leadGovernmentOrganisation">Lead government organisation</label>
-                    <select id="leadGovernmentOrganisation" name="leadGovernmentOrganisation" asp-items="Model.GovernmentOrganisationCollection.Select(governmentOrganisation => new SelectListItem { Text = governmentOrganisation.GroupName, Value = governmentOrganisation.Id, Selected = governmentOrganisation.Id == ViewBag.LeadGovernmentOrganisation })">
+                    <select id="leadGovernmentOrganisation" name="leadGovernmentOrganisation" asp-items="Model.GovernmentOrganisationCollection.OrderBy(x => x.GroupName).Select(governmentOrganisation => new SelectListItem { Text = governmentOrganisation.GroupName, Value = governmentOrganisation.Id, Selected = governmentOrganisation.Id == ViewBag.LeadGovernmentOrganisation })">
                         <option value="all">All</option>
                     </select>
                 </div>
