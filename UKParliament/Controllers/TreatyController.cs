@@ -29,8 +29,11 @@ namespace UKParliament
         }
 
         [HttpGet]
-        public ActionResult Index(bool current, IEnumerable<string> leadGovernmentOrganisation)
+        public ActionResult Index(ProcedureQueryParameters parameters)
         {
+            // TODO: rewrite Treaty query use model binding
+            // change the way parameters are bound to UI
+            // Note the materialisation of type is computationally intensive (it takes 2s to run query with type, 0.4 without).
             if (!this.ModelState.IsValid)
             {
                 return new BadRequestResult();

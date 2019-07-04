@@ -13,9 +13,7 @@ CONSTRUCT {
         :treatyName ?treatyName ;
         :inForceTreatyHasTreatySeriesMembership ?inForceTreatySeriesMembership ;
         :treatyHasSeriesMembership ?treatySeriesMembership ;
-        :treatyHasCountrySeriesMembership ?treatyCountrySeriesMembership ;
-        :treatyHasEuropeanUnionSeriesMembership ?treatyEuropeanSeriesMembership ;
-        :treatyHasMiscellaneousSeriesMembership ?treatyMiscellaneousSeriesMembership ;
+        ?seriesMembership ?treatySeriesMembership ;
         :treatyHasLeadGovernmentOrganisation ?treatyLeadGovernmentOrganisation .
 
     ?workPackage
@@ -62,39 +60,69 @@ CONSTRUCT {
 WHERE {
     BIND(@id as ?workPackagedThing)
 
-    # Work packaged thing has workpackage and workpackage has procedure
-    ?workPackagedThing
-        a ?workPackagedThingType ;
-        :workPackagedThingHasWorkPackage ?workPackage .
-
-    ?workPackage :workPackageHasProcedure ?procedure .
-
-    ?procedure :procedureName ?procedureName .
-
-    OPTIONAL { ?workPackagedThing :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink . }
-
-    # Business items and actualised procedure steps details for work package
-    OPTIONAL
     {
-        ?workPackage :workPackageHasBusinessItem ?businessItem .
+        # Work packaged thing has workpackage and workpackage has procedure
+        ?workPackagedThing :workPackagedThingHasWorkPackage ?workPackage .
 
-        ?businessItem :businessItemHasProcedureStep ?procedureStep .
+        ?workPackage :workPackageHasProcedure ?procedure .
 
-        ?procedureStep :procedureStepName ?procedureStepName .
+        ?procedure :procedureName ?procedureName .
 
-        OPTIONAL { ?businessItem :businessItemDate ?businessItemDate . }
+        OPTIONAL { ?workPackagedThing :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink . }
 
-        OPTIONAL { ?businessItem :businessItemHasBusinessItemWebLink ?businessItemWebLink . }
+        # Business items and actualised procedure steps details for work package
+        OPTIONAL
+        {
+            ?workPackage :workPackageHasBusinessItem ?businessItem .
+
+            ?businessItem :businessItemHasProcedureStep ?procedureStep .
+
+            ?procedureStep :procedureStepName ?procedureStepName .
+
+            OPTIONAL { ?businessItem :businessItemDate ?businessItemDate . }
+
+            OPTIONAL { ?businessItem :businessItemHasBusinessItemWebLink ?businessItemWebLink . }
+
+            OPTIONAL
+            {
+                ?procedureStep :procedureStepHasHouse ?house .
+                ?house :houseName ?houseName .
+            }
+        }
+
+        # Treaty specific predicates
+        OPTIONAL { ?workPackagedThing :treatyName ?treatyName . }
+        
+        OPTIONAL
+        {
+            ?workPackagedThing :treatyHasLeadGovernmentOrganisation ?treatyLeadGovernmentOrganisation .
+
+            ?treatyLeadGovernmentOrganisation :groupName ?treatyLeadGovernmentOrganisationGroupName .
+        }
 
         OPTIONAL
         {
-            ?procedureStep :procedureStepHasHouse ?house .
-            ?house :houseName ?houseName .
+            ?workPackagedThing
+                :treatyCommandPaperPrefix ?treatyCommandPaperPrefix ;
+                :treatyCommandPaperNumber ?treatyCommandPaperNumber .
+        }
+
+        OPTIONAL { ?workPackagedThing :inForceTreatyHasTreatySeriesMembership ?inForceTreatySeriesMembership . }
+
+        OPTIONAL
+        {
+            ?workPackagedThing
+                :treatyHasSeriesMembership ?treatySeriesMembership ;
+                ?seriesMembership ?treatySeriesMembership .
+
+            ?treatySeriesMembership
+                a ?treatySeriesMembershipType ;
+                :seriesItemCitation ?treatySeriesItemCitation .
         }
     }
-
-    # Laid thing details
-    OPTIONAL {
+    UNION
+    {
+        # Laid thing details
         ?workPackagedThing :laidThingHasLaying ?laying .
 
         ?laying
@@ -106,38 +134,9 @@ WHERE {
             a ?layingBodyType ;
             :groupName ?layingBodyGroupName .
     }
-
-    # Treaty specific predicates
-    OPTIONAL { ?workPackagedThing :treatyName ?treatyName . }
-    
-    OPTIONAL
+    UNION
     {
-        ?workPackagedThing :treatyHasLeadGovernmentOrganisation ?treatyLeadGovernmentOrganisation .
-
-        ?treatyLeadGovernmentOrganisation :groupName ?treatyLeadGovernmentOrganisationGroupName .
+        # Work packaged thing types
+        ?workPackagedThing a ?workPackagedThingType .
     }
-
-    OPTIONAL
-    {
-        ?workPackagedThing
-            :treatyCommandPaperPrefix ?treatyCommandPaperPrefix ;
-            :treatyCommandPaperNumber ?treatyCommandPaperNumber .
-    }
-
-    OPTIONAL { ?workPackagedThing :inForceTreatyHasTreatySeriesMembership ?inForceTreatySeriesMembership . }
-
-    OPTIONAL
-    {
-        ?workPackagedThing :treatyHasSeriesMembership ?treatySeriesMembership .
-
-        ?treatySeriesMembership
-            a ?treatySeriesMembershipType ;
-            :seriesItemCitation ?treatySeriesItemCitation .
-    }
-
-    OPTIONAL { ?workPackagedThing :treatyHasEuropeanUnionSeriesMembership ?treatyEuropeanSeriesMembership . }
-
-    OPTIONAL { ?workPackagedThing :treatyHasMiscellaneousSeriesMembership ?treatyMiscellaneousSeriesMembership . }
-
-    OPTIONAL { ?workPackagedThing :treatyHasCountrySeriesMembership ?treatyCountrySeriesMembership . }
 }

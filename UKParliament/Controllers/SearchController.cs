@@ -25,5 +25,14 @@ namespace UKParliament
         {
             return this.View();
         }
+
+        [HttpGet("{type}")]
+        public ActionResult Index(string type)
+        {
+// Custom search has:
+// - named query
+// - named query parameters
+            return this.View();
+        }
     }
 }
