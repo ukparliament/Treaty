@@ -31,30 +31,42 @@ namespace UKParliament
         [HttpGet]
         public ActionResult Index(ProcedureQueryParameters parameters)
         {
-            // TODO: rewrite Treaty query use model binding
-            // change the way parameters are bound to UI
-            // Note the materialisation of type is computationally intensive (it takes 2s to run query with type, 0.4 without).
             if (!this.ModelState.IsValid)
             {
-                return new BadRequestResult();
+                return this.ValidationProblem();
             }
 
-            var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty.sparql");
+            var searchTerms = new List<string>();
 
-            var filters = new List<string>() { "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
+
+            if (string.IsNullOrEmpty(parameters.SearchTerms))
+            {
+                searchTerms.Add("+treaty:*");
+            }
+            else
+            {
+                searchTerms.Add(QueryParameters.ParseSearchTerms(parameters.SearchTerms, "+treaty:"));
+            }
+
+            var sparqlParameters = new Dictionary<string, IEnumerable<object>> { { "searchTerms", searchTerms } };
+
+            var graph = this.SparqlService.Execute("UKParliament.SPARQL.treaty.sparql", sparqlParameters);
+
+            var filters = new List<string>() { "q", "current", "leadGovernmentOrganisation", "seriesMembershipType", "procedureStep" };
 
             this.ViewBag.Filter = false;
 
             if (filters.Any(x => this.Request.Query.ContainsKey(x)))
             {
                 this.ViewBag.Filter = true;
+                this.ViewBag.SearchText = this.Request.Query["q"];
                 this.ViewBag.Current = this.Request.Query["current"];
                 this.ViewBag.LeadGovernmentOrganisation = this.Request.Query["leadGovernmentOrganisation"];
                 this.ViewBag.SeriesMembershipType = this.Request.Query["seriesMembershipType"];
                 this.ViewBag.ProcedureStep = this.Request.Query["procedureStep"];
             }
 
-            return this.View(new UKParliamentDynamicGraph(graph));
+            return this.View(new UKParliamentDataView(graph, parameters));
         }
 
         [HttpGet("{id}")]

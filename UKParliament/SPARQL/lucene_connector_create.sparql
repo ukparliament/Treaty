@@ -1,0 +1,50 @@
+﻿PREFIX : <http://www.ontotext.com/connectors/lucene#>
+PREFIX inst: <http://www.ontotext.com/connectors/lucene/instance#>
+
+INSERT DATA {
+    <http://www.ontotext.com/connectors/lucene/instance#ukparliament> :createConnector '''
+{
+  "types": [
+    "http://www.w3.org/2000/01/rdf-schema#Resource"
+  ],
+  "fields": [
+    {
+      "fieldName": "treaty$1",
+      "propertyChain": [
+        "https://id.parliament.uk/schema/treatyName"
+      ],
+      "facet": true
+    },
+    {
+      "fieldName": "treaty$2",
+      "propertyChain": [
+        "https://id.parliament.uk/schema/treatyCommandPaperNumber"
+      ],
+      "facet": true
+    },
+    {
+      "fieldName": "treaty$3",
+      "propertyChain": [
+        "https://id.parliament.uk/schema/treatyCommandPaperPrefix"
+      ]
+    },
+    {
+      "fieldName": "treaty$4",
+      "propertyChain": [
+        "https://id.parliament.uk/schema/treatyHasLeadGovernmentOrganisation",
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "facet": true
+    },
+    {
+      "fieldName": "treaty$5",
+      "propertyChain": [
+        "https://id.parliament.uk/schema/treatyHasSeriesMembership",
+        "https://id.parliament.uk/schema/seriesItemCitation"
+      ],
+      "facet": true
+    }
+  ]
+}
+''' .
+}

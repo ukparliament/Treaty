@@ -1,6 +1,8 @@
 ﻿PREFIX : <https://id.parliament.uk/schema/>
 PREFIX id: <https://id.parliament.uk/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX luc: <http://www.ontotext.com/connectors/lucene#>
+PREFIX inst: <http://www.ontotext.com/connectors/lucene/instance#>
 
 CONSTRUCT {
     ?workPackagedThing
@@ -59,6 +61,19 @@ CONSTRUCT {
 }
 WHERE {
     BIND(:Treaty as ?workPackagedThingTypeRestriction)
+
+    {
+        SELECT ?workPackagedThing
+        {
+            VALUES ?query { @searchTerms  }
+
+            ?search
+                a <http://www.ontotext.com/connectors/lucene/instance#ukparliament> ;
+                luc:query ?query ;
+                luc:entities ?workPackagedThing .
+        }
+        GROUP BY ?workPackagedThing
+    }
 
     ?workPackagedThing a ?workPackagedThingTypeRestriction .
 
