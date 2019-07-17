@@ -1,0 +1,26 @@
+﻿PREFIX : <https://id.parliament.uk/schema/>
+PREFIX id: <https://id.parliament.uk/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX luc: <http://www.ontotext.com/connectors/lucene#>
+PREFIX inst: <http://www.ontotext.com/connectors/lucene/instance#>
+
+CONSTRUCT
+{
+    ?search
+        :hasTotalResults ?totalHits ;
+        :hasSearchTerms ?query ;
+        :hasSearchResults ?entity .
+
+    ?entity :hasScore ?score .
+}
+{
+    VALUES ?query { @searchTerms  }
+
+    ?search
+        a <http://www.ontotext.com/connectors/lucene/instance#ukparliament> ;
+        luc:query ?query ;
+        luc:entities ?entity ;
+        luc:totalHits ?totalHits .
+
+    ?entity luc:score ?score .
+}

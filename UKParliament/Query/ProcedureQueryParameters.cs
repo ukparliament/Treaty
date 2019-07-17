@@ -10,10 +10,10 @@
         public bool Current { get; set; }
 
         [FromQuery(Name = "leadGovernmentOrganisation")]
-        public IEnumerable<string> LeadGovernmentOrganisation { get; set; }
+        public string LeadGovernmentOrganisation { get; set; }
 
         [FromQuery(Name = "procedureStep")]
-        public IEnumerable<string> ProcedureStep { get; set; }
+        public string ProcedureStep { get; set; }
 
         [FromQuery(Name = "seriesMembershipType")]
         [Range(0, 2)]

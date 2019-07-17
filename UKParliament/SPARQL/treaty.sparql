@@ -7,6 +7,7 @@ PREFIX inst: <http://www.ontotext.com/connectors/lucene/instance#>
 CONSTRUCT {
     ?workPackagedThing
         a ?workPackagedThingType ;
+        :score ?score ;
         :workPackagedThingHasWorkPackage ?workPackage ;
         :workPackagedThingHasWorkPackagedThingWebLink ?workPackagedThingWebLink ;
         :laidThingHasLaying ?laying ;
@@ -63,17 +64,22 @@ WHERE {
     BIND(:Treaty as ?workPackagedThingTypeRestriction)
 
     {
-        SELECT ?workPackagedThing
+        SELECT ?query ?totalHits ?workPackagedThing ?score
         {
             VALUES ?query { @searchTerms  }
 
             ?search
                 a <http://www.ontotext.com/connectors/lucene/instance#ukparliament> ;
                 luc:query ?query ;
-                luc:entities ?workPackagedThing .
+                luc:entities ?workPackagedThing ;
+                luc:totalHits ?totalHits .
+
+            ?workPackagedThing luc:score ?score .
         }
-        GROUP BY ?workPackagedThing
+        GROUP BY ?query ?totalHits ?workPackagedThing ?score
     }
+
+    FILTER(IF(BOUND(?workPackagedThing), ?workPackagedThing = ?workPackagedThing, ?workPackagedThing = :NoResult))
 
     ?workPackagedThing a ?workPackagedThingTypeRestriction .
 
